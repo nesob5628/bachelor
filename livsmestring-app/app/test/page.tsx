@@ -12,7 +12,7 @@ const videos = [
   {
     id: "2",
     title: "2. Å ta egne valg",
-    url: "https://share.synthesia.io/embeds/videos/46623012-eb25-4ed7-abd0-2600205c214c",
+    url: "https://share.synthesia.io/embeds/videos/2d37ce0f-b99d-4739-a76f-4bc5f967a98c",
   },
   {
     id: "3",
