@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@oslokommune/punkt-assets": "^16.0.0",
+    "@oslokommune/punkt-css": "^16.0.5",
+    "@oslokommune/punkt-react": "^16.1.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
@@ -20,6 +23,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "sass": "^1.98.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
