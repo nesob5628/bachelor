@@ -1,5 +1,5 @@
-export const careerThemes = [
-  {
+  export const careerThemes = [
+    {
     id: "meg_i_kontekst",
     title: {
       no: "Meg i kontekst",
@@ -823,4 +823,4 @@ export const careerThemes = [
       },
     ],
   },
-];
+ ];
