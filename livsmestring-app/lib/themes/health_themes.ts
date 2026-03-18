@@ -14,7 +14,7 @@ Countries and their languagecodes:
     Ukrainian: uk
     Urdu: ur
 */
-export const health_themes = [
+export const healthThemes = [
     {
         id: "skeiv_verden",
         title: {
