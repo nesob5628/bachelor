@@ -12,7 +12,7 @@ export default function CategoryPage() {
   useEffect(() => {
     const progress = getProgress();
 
-    if (!progress.language) {
+    if (progress.languages) {
       router.replace("/language");
       return;
     }

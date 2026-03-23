@@ -1,41 +1,26 @@
 "use client";
 
-import Papa from "papaparse";
-import { useEffect, useState } from "react";
+import { topics } from "@/lib/data/videos";
+import { Topic } from "@/lib/types";
 
 export default function Page() {
-  const [data, setData] = useState<any[]>([]);
-
-  useEffect(() => {
-    fetch("/database.csv")
-      .then((res) => res.text())
-      .then((text) => {
-        const result = Papa.parse(text, {
-          header: true,
-        });
-        setData(result.data);
-      });
-  }, []);
-
   return (
     <main style={{ padding: "2rem" }}>
       <h1>Videoer</h1>
 
-      {data.slice(0, 5).map((item, i) => (
-        <div key={i}>
+      {topics.map((item: Topic, i: number) => (
+        <div key={item.synthesiaId || i} style={{ marginBottom: "2rem" }}>
           <h3>{item.title}</h3>
 
-          <iframe
-    
-          width="400"
-          height="225"
-          src={`https://share.synthesia.io/embeds/videos/${item.videoId}`}
-          allow="encrypted-media; fullscreen; microphone;"
-          allowFullScreen
-        />
-
-        
-  
+          {item.synthesiaId && (
+            <iframe
+              width="400"
+              height="225"
+              src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
+              allow="encrypted-media; fullscreen;"
+              allowFullScreen
+            />
+          )}
         </div>
       ))}
     </main>
