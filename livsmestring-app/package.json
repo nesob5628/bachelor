@@ -11,6 +11,7 @@
   "dependencies": {
     "@oslokommune/punkt-assets": "^16.0.0",
     "@oslokommune/punkt-css": "^16.0.5",
+    "@oslokommune/punkt-elements": "^16.1.0",
     "@oslokommune/punkt-react": "^16.1.0",
     "next": "16.1.6",
     "react": "19.2.3",
