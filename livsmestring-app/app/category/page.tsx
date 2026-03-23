@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getProgress } from "@/lib/storage";
+import { getProgress, saveProgress } from "@/lib/storage";
 
 export default function CategoryPage() {
   const router = useRouter();
@@ -12,13 +12,18 @@ export default function CategoryPage() {
   useEffect(() => {
     const progress = getProgress();
 
-    if (!progress.language) {
+    if (!progress.selectedLanguage) {
       router.replace("/language");
       return;
     }
 
     setReady(true);
   }, [router]);
+
+  function handleChangeLanguage() {
+    saveProgress({});
+    router.push("/language");
+  }
 
   if (!ready) {
     return (
@@ -30,6 +35,10 @@ export default function CategoryPage() {
 
   return (
     <main className="pkt-container">
+      <div style={{ marginBottom: "1rem" }}>
+        <button onClick={handleChangeLanguage}>Bytt språk</button>
+      </div>
+
       <div className="category-grid">
         <Link href="/category/helse" className="pkt-linkcard pkt-linkcard--blue">
           <div className="pkt-linkcard__title">Helse</div>
@@ -37,8 +46,7 @@ export default function CategoryPage() {
             Velg temaer og videoer innen helse.
           </div>
         </Link>
-        </div>
-        </main>
-        );
-      }
-        
+      </div>
+    </main>
+  );
+}
