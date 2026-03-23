@@ -18,6 +18,10 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://punkt-cdn.oslo.kommune.no/16/css/pkt.min.css"
         />
+        <script
+        src="https://punkt-cdn.oslo.kommune.no/16/elements/pkt-button.js"
+        type="module"
+        ></script>
       </head>
       <body>{children}</body>
     </html>

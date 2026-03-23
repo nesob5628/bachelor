@@ -1,18 +1,28 @@
+'use client';
+import Link from 'next/link';
+
+import { useParams } from 'next/navigation';
+
 export default function Page() {
-  const undertemaer = ["tema1", "tema2", "tema3", "tema4", "tema5"];
+  const params = useParams();
+  const category = params.category as 'helse' | 'karriere';
+
+  const undertemaer = {
+    helse: ["Skeiv verden", "Vold i nære relasjoner", "Mat og helse", "Psykisk helse", "Fysisk helse", "Munnhelse", "Kvinnens reproduktive helse"],
+    karriere: ["Meg i kontekst", "Muligheter og begrensninger", "Valg og tilfeldigheter", "Tilpasning og motstand", "Endring og stabilitet"],
+  };
 
   return (
-    <main className="pkt-container">
-      <div className="category-grid">
-        {undertemaer.map((tema) => (
-          <button
-            key={tema}
-            className="pkt-button pkt-button--primary pkt-button--small"
-          >
-            {tema}
-          </button>
-        ))}
-      </div>
-    </main>
-  );
+<main className="pkt-container">
+  <div className="category-grid">
+    {undertemaer[category].map((undertema) => (
+      <Link href={`/category/${category}/${undertema}`} key={undertema} className="pkt-linkcard pkt-linkcard-green">
+        <div className="pkt-linkcard pkt-linkcard--green">
+          <div className="pkt-linkcard__title">{undertema}</div>
+        </div>
+      </Link>
+    ))}
+  </div>
+</main>
+);
 }
