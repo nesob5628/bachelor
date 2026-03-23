@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getProgress, saveProgress } from "@/lib/storage";
+import { getProgress } from "@/lib/storage";
 
 export default function CategoryPage() {
   const router = useRouter();
@@ -21,7 +21,6 @@ export default function CategoryPage() {
   }, [router]);
 
   function handleChangeLanguage() {
-    saveProgress({});
     router.push("/language");
   }
 
