@@ -1,46 +1,11 @@
-.category-card {
-  background: #ffffff;
-  border: 1px solid #d3d3d3;
-  border-radius: 14px;
-  padding: 16px 16px;
-  position: relative;
-}
-
-.category-card__top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 6px;
-}
-
-.category-card__icon svg {
-  width: 24px;
-  height: 24px;
-}
-
-.category-card__title {
-  margin: 0;
-  font-size: 1.6rem; /* mye mindre */
-  font-weight: 600;
-}
-
-.category-card__description {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  max-width: 100%;
-}
-
-.category-card__arrow {
-  position: absolute;
-  right: 16px;
-  bottom: 14px;
-  font-size: 1.2rem;
-  opacity: 0.6;
-}
 .home-page__grid {
   display: flex;
   flex-direction: column;
   gap: 12px; /* mindre space */
   padding: 12px;
+}
+.category-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

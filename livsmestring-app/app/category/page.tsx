@@ -1,39 +1,44 @@
 "use client";
 
-import Papa from "papaparse";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getProgress } from "@/lib/storage";
 
-export default function Page() {
-  const [data, setData] = useState<any[]>([]);
+export default function CategoryPage() {
+  const router = useRouter();
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    fetch("/database.csv")
-      .then((res) => res.text())
-      .then((text) => {
-        const result = Papa.parse(text, {
-          header: true,
-        });
-        setData(result.data);
-      });
-  }, []);
+    const progress = getProgress();
+
+    if (!progress.language) {
+      router.replace("/language");
+      return;
+    }
+
+    setReady(true);
+  }, [router]);
+
+  if (!ready) {
+    return (
+      <main className="min-h-screen flex items-center justify-center">
+        <p>Laster...</p>
+      </main>
+    );
+  }
 
   return (
-    <main style={{ padding: "2rem" }}>
-      <h1>Videoer</h1>
-
-      {data.slice(0, 5).map((item, i) => (
-        <div key={i}>
-          <h3>{item.title}</h3>
-
-          <iframe
-  width="400"
-  height="225"
-  src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
-  allow="encrypted-media; fullscreen;"
-  allowFullScreen
-/>
+    <main className="pkt-container">
+      <div className="category-grid">
+        <Link href="/category/helse" className="pkt-linkcard pkt-linkcard--blue">
+          <div className="pkt-linkcard__title">Helse</div>
+          <div className="pkt-linkcard__text">
+            Velg temaer og videoer innen helse.
+          </div>
+        </Link>
         </div>
-      ))}
-    </main>
-  );
-}
+        </main>
+        );
+      }
+        
