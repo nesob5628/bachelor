@@ -4,3 +4,8 @@
   gap: 12px; /* mindre space */
   padding: 12px;
 }
+.category-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

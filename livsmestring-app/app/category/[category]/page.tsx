@@ -2,21 +2,15 @@ export default function Page() {
   const undertemaer = ["tema1", "tema2", "tema3", "tema4", "tema5"];
 
   return (
-    <main style={{ padding: "2rem" }}>
+    <main className="pkt-container">
       <div className="category-grid">
         {undertemaer.map((tema) => (
-          <pkt-button
+          <button
             key={tema}
-            skin="primary"
-            size="small"
-            variant="label-only"
-            iconName="heart"
-            color="red"
-            state="normal"
-            type="button"
+            className="pkt-button pkt-button--primary pkt-button--small"
           >
-            <span>{tema}</span>
-          </pkt-button>
+            {tema}
+          </button>
         ))}
       </div>
     </main>
