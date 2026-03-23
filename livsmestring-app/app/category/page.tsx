@@ -1,8 +1,35 @@
-import Link from "next/link";
+"use client";
 
-export default function Page() {
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getProgress } from "@/lib/storage";
+
+export default function CategoryPage() {
+  const router = useRouter();
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const progress = getProgress();
+
+    if (!progress.language) {
+      router.replace("/language");
+      return;
+    }
+
+    setReady(true);
+  }, [router]);
+
+  if (!ready) {
+    return (
+      <main className="min-h-screen flex items-center justify-center">
+        <p>Laster...</p>
+      </main>
+    );
+  }
+
   return (
-    <main style={{ padding: "2rem" }}>
+    <main className="pkt-container">
       <div className="category-grid">
         <Link href="/category/helse" className="pkt-linkcard pkt-linkcard--blue">
           <div className="pkt-linkcard__title">Helse</div>
