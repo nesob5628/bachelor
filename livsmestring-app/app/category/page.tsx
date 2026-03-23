@@ -12,13 +12,17 @@ export default function CategoryPage() {
   useEffect(() => {
     const progress = getProgress();
 
-    if (!progress.language) {
+    if (!progress.selectedLanguage) {
       router.replace("/language");
       return;
     }
 
     setReady(true);
   }, [router]);
+
+  function handleChangeLanguage() {
+    router.push("/language");
+  }
 
   if (!ready) {
     return (
@@ -30,18 +34,15 @@ export default function CategoryPage() {
 
   return (
     <main className="pkt-container">
+      <div style={{ marginBottom: "1rem" }}>
+        <button onClick={handleChangeLanguage}>Bytt språk</button>
+      </div>
+
       <div className="category-grid">
         <Link href="/category/helse" className="pkt-linkcard pkt-linkcard--blue">
           <div className="pkt-linkcard__title">Helse</div>
           <div className="pkt-linkcard__text">
             Velg temaer og videoer innen helse.
-          </div>
-        </Link>
-
-        <Link href="/category/karriere" className="pkt-linkcard pkt-linkcard--blue">
-          <div className="pkt-linkcard__title">Karriere</div>
-          <div className="pkt-linkcard__text">
-            Velg temaer og videoer innen karriere.
           </div>
         </Link>
       </div>
