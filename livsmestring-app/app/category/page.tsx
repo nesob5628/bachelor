@@ -1,23 +1,39 @@
-import Link from "next/link";
+"use client";
+
+import Papa from "papaparse";
+import { useEffect, useState } from "react";
 
 export default function Page() {
+  const [data, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("/database.csv")
+      .then((res) => res.text())
+      .then((text) => {
+        const result = Papa.parse(text, {
+          header: true,
+        });
+        setData(result.data);
+      });
+  }, []);
+
   return (
     <main style={{ padding: "2rem" }}>
-      <div className="category-grid">
-        <Link href="/category/helse" className="pkt-linkcard pkt-linkcard--blue">
-          <div className="pkt-linkcard__title">Helse</div>
-          <div className="pkt-linkcard__text">
-            Velg temaer og videoer innen helse.
-          </div>
-        </Link>
+      <h1>Videoer</h1>
 
-        <Link href="/category/karriere" className="pkt-linkcard pkt-linkcard--blue">
-          <div className="pkt-linkcard__title">Karriere</div>
-          <div className="pkt-linkcard__text">
-            Velg temaer og videoer innen karriere.
-          </div>
-        </Link>
-      </div>
+      {data.slice(0, 5).map((item, i) => (
+        <div key={i}>
+          <h3>{item.title}</h3>
+
+          <iframe
+  width="400"
+  height="225"
+  src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
+  allow="encrypted-media; fullscreen;"
+  allowFullScreen
+/>
+        </div>
+      ))}
     </main>
   );
 }
