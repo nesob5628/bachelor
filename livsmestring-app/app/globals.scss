@@ -240,3 +240,9 @@ button {
   justify-content: space-around; /* eller space-between, center, etc. */
   align-items: center;
 }
+
+.category-grid {  
+  display: grid;  
+  gap: 3rem; 
+  margin-top: 2rem;
+}

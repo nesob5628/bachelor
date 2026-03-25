@@ -33,7 +33,7 @@ export default function CategoryPage() {
       </main>
     );
   }
-
+ 
   return (
     <><main className="pkt-container">
       <button
@@ -85,4 +85,4 @@ export default function CategoryPage() {
       </div>
     </main><FooterMenu /></>
   );
-}
+} 
