@@ -22,7 +22,7 @@ export default function CategoryPage() {
 
   if (!ready) {
     return (
-      <main className="min-h-screen flex items-center justify-center">
+      <main className="pkt-container">
         <p>Laster...</p>
       </main>
     );
@@ -31,14 +31,26 @@ export default function CategoryPage() {
   return (
     <main className="pkt-container">
       <div className="category-grid">
-        <Link href="/category/helse" className="pkt-linkcard pkt-linkcard--blue">
+        <Link
+          href="/category/helse"
+          className="pkt-linkcard pkt-linkcard--blue"
+        >
           <div className="pkt-linkcard__title">Helse</div>
           <div className="pkt-linkcard__text">
             Velg temaer og videoer innen helse.
           </div>
         </Link>
-        </div>
-        </main>
-        );
-      }
-        
+
+        <Link
+          href="/category/karriere"
+          className="pkt-linkcard pkt-linkcard--blue"
+        >
+          <div className="pkt-linkcard__title">Karriere</div>
+          <div className="pkt-linkcard__text">
+            Velg temaer og videoer innen karriere.
+          </div>
+        </Link>
+      </div>
+    </main>
+  );
+}
