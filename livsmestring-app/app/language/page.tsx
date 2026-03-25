@@ -56,8 +56,8 @@ export default function LanguagePage() {
       setTimeout(() => {
         setHeadingIndex((prev) => (prev + 1) % selectLanguageTexts.length);
         setFade(true);
-      }, 300);
-    }, 2000);
+      }, 250);
+    }, 2200);
 
     return () => clearInterval(interval);
   }, []);
@@ -68,36 +68,30 @@ export default function LanguagePage() {
   };
 
   return (
-    <main className="min-h-screen bg-white px-6 py-10 text-black">
-      <div className="mx-auto max-w-md">
-        <div className="mb-10 text-center">
-          <p className="mb-3 text-sm uppercase tracking-[0.2em] text-gray-500">
-            Livsmestring
-          </p>
-
-          <div className="flex min-h-[88px] items-center justify-center">
-            <h1
-              className={`min-h-[48px] text-3xl font-semibold transition-opacity duration-500 ${
-                fade ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              {selectLanguageTexts[headingIndex] ?? "Select language"}
-            </h1>
+    <main className="pkt-container">
+      <div className="language-shell">
+        <header className="language-header">
+          <div className="brand-header">
+            <p className="brand-header__text">Livsmestring</p>
           </div>
-        </div>
 
-        <div className="grid grid-cols-2 gap-4">
+          <h1 className={`language-title ${fade ? "is-visible" : "is-hidden"}`}>
+            {selectLanguageTexts[headingIndex]}
+          </h1>
+        </header>
+
+        <section className="language-grid" aria-label="Velg språk">
           {languages.map((lang) => (
             <button
               key={lang.code}
               type="button"
               onClick={() => selectLanguage(lang.code)}
-              className="rounded-2xl border border-gray-200 bg-white px-4 py-4 text-lg shadow-sm transition hover:bg-gray-50 hover:shadow-md"
+              className="pkt-linkcard pkt-linkcard--blue"
             >
-              {lang.name}
+              <div className="pkt-linkcard__title">{lang.name}</div>
             </button>
           ))}
-        </div>
+        </section>
       </div>
     </main>
   );

@@ -16,10 +16,12 @@ export default function Page() {
 <main className="pkt-container">
   <div className="category-grid">
     {undertemaer[category].map((undertema) => (
-      <Link href={`/category/${category}/${undertema}`} key={undertema} className="pkt-linkcard pkt-linkcard-green">
-        <div className="pkt-linkcard pkt-linkcard--green">
+      <Link 
+      href={`/category/${category}/${undertema}`} 
+      key={undertema} 
+      className="pkt-linkcard"
+      >
           <div className="pkt-linkcard__title">{undertema}</div>
-        </div>
       </Link>
     ))}
   </div>

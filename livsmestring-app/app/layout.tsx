@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./globals.scss";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,12 +18,19 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://punkt-cdn.oslo.kommune.no/16/css/pkt.min.css"
         />
-        <script
-        src="https://punkt-cdn.oslo.kommune.no/16/elements/pkt-button.js"
-        type="module"
-        ></script>
       </head>
-      <body>{children}</body>
+      <body>
+        <header className="oslo-header">
+          <div className="brand-header">
+            <img
+              src="https://punkt-cdn.oslo.kommune.no/16/logos/oslologo.svg"
+              className="brand-header__logo"
+            />
+          </div>
+        </header>
+      <main>{children}</main>
+      </body>
     </html>
   );
 }
+
