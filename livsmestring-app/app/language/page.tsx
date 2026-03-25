@@ -72,11 +72,6 @@ export default function LanguagePage() {
       <div className="language-shell">
         <header className="language-header">
           <div className="brand-header">
-            <img
-              src="https://punkt-cdn.oslo.kommune.no/16/logos/oslologo.svg"
-              alt="Oslo kommune"
-              className="brand-header__logo"
-            />
             <p className="brand-header__text">Livsmestring</p>
           </div>
 
