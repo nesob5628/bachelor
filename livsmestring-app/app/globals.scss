@@ -168,3 +168,21 @@ button {
     font-size: 1rem;
   }
 }
+
+/* OSLO LOGO HEADER */
+
+.oslo-header {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem 2rem;
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+}
+
+.brand-header__logo {
+  height: 40px;
+}
+

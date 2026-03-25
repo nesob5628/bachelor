@@ -19,7 +19,19 @@ export default function RootLayout({
           href="https://punkt-cdn.oslo.kommune.no/16/css/pkt.min.css"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <header className="oslo-header">
+          <div className="brand-header">
+            <img
+              src="https://punkt-cdn.oslo.kommune.no/16/logos/oslologo.svg"
+              alt="Oslo kommune"
+              className="brand-header__logo"
+            />
+          </div>
+        </header>
+      <main>{children}</main>
+      </body>
     </html>
   );
 }
+
