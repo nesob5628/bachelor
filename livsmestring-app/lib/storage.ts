@@ -159,3 +159,12 @@ export function clearProgress() {
 
   localStorage.removeItem(STORAGE_KEY);
 }
+
+export function clearSelectedLanguage() {
+  const progress = getProgress();
+
+  saveProgress({
+    ...progress,
+    selectedLanguage: undefined,
+  });
+}
