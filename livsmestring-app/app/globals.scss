@@ -183,6 +183,38 @@ button {
 }
 
 .brand-header__logo {
-  height: 40px;
+  height: 30px;
+
 }
 
+/* Wrapper for tittel + ikon */
+.pkt-linkcard__title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* luft mellom ikon og tittel */
+}
+
+/* Ikonet */
+.pkt-linkcard__icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Selve tittelen */
+.pkt-linkcard__title {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* Kortbeskrivelse under */
+.pkt-linkcard__text {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #000000;
+}
+
+.return-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+}

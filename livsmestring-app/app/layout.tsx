@@ -24,7 +24,6 @@ export default function RootLayout({
           <div className="brand-header">
             <img
               src="https://punkt-cdn.oslo.kommune.no/16/logos/oslologo.svg"
-              alt="Oslo kommune"
               className="brand-header__logo"
             />
           </div>
