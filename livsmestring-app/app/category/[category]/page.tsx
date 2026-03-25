@@ -1,7 +1,9 @@
 'use client';
-import Link from 'next/link';
 
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import FooterMenu from "../../footerMenu";
+
 
 export default function Page() {
   const params = useParams();
@@ -13,18 +15,18 @@ export default function Page() {
   };
 
   return (
-<main className="pkt-container">
-  <div className="category-grid">
-    {undertemaer[category].map((undertema) => (
-      <Link 
-      href={`/category/${category}/${undertema}`} 
-      key={undertema} 
-      className="pkt-linkcard"
-      >
-          <div className="pkt-linkcard__title">{undertema}</div>
-      </Link>
-    ))}
-  </div>
-</main>
+    <><main className="pkt-container">
+      <div className="category-grid">
+        {undertemaer[category].map((undertema) => (
+          <Link
+            href={`/category/${category}/${undertema}`}
+            key={undertema}
+            className="pkt-linkcard"
+          >
+            <div className="pkt-linkcard__title">{undertema}</div>
+          </Link>
+        ))}
+      </div>
+    </main><FooterMenu /></>
 );
 }

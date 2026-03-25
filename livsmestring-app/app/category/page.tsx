@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clearSelectedLanguage, getProgress, setCategory } from "@/lib/storage";
+import FooterMenu from "../footerMenu";
 
 export default function CategoryPage() {
   const router = useRouter();
@@ -34,18 +35,17 @@ export default function CategoryPage() {
   }
 
   return (
-    <main className="pkt-container">
+    <><main className="pkt-container">
       <button
         type="button"
         onClick={handleChangeLanguage}
         className="pkt-button pkt-button--white return-button"
       >
         <img
-      src="https://punkt-cdn.oslo.kommune.no/16/icons/arrow-return.svg"
-      alt="Tilbake"
-      className="return-icon"
-    />
-    Bytt språk
+          src="https://punkt-cdn.oslo.kommune.no/16/icons/arrow-return.svg"
+          alt="Tilbake"
+          className="return-icon" />
+        Bytt språk
       </button>
 
       <div className="category-grid">
@@ -55,14 +55,13 @@ export default function CategoryPage() {
           onClick={() => setCategory("helse")}
         >
           <div className="pkt-linkcard__title-wrapper">
-          <img
-            src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
-            alt="Helse"
-            className="pkt-linkcard__icon"
-          />
-          <div className="pkt-linkcard__title">Helse</div>
+            <img
+              src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
+              alt="Helse"
+              className="pkt-linkcard__icon" />
+            <div className="pkt-linkcard__title">Helse</div>
           </div>
-           <div className="pkt-linkcard__text">
+          <div className="pkt-linkcard__text">
             Velg temaer og videoer innen helse.
           </div>
         </Link>
@@ -73,18 +72,17 @@ export default function CategoryPage() {
           onClick={() => setCategory("karriere")}
         >
           <div className="pkt-linkcard__title-wrapper">
-          <img
-            src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
-            alt="Karriere"
-            className="pkt-linkcard__icon"
-          />
-          <div className="pkt-linkcard__title">Karriere</div>
+            <img
+              src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
+              alt="Karriere"
+              className="pkt-linkcard__icon" />
+            <div className="pkt-linkcard__title">Karriere</div>
           </div>
-           <div className="pkt-linkcard__text">
+          <div className="pkt-linkcard__text">
             Velg temaer og videoer innen karriere.
           </div>
         </Link>
       </div>
-    </main>
+    </main><FooterMenu /></>
   );
 }
