@@ -4,6 +4,9 @@ import { useParams, useRouter } from 'next/navigation';
 import { getProgress, setProgress } from "@/lib/storage";
 import { healthThemes } from "@/lib/themes/health_themes";
 import { careerThemes } from "@/lib/themes/career_themes";
+import Link from 'next/link';
+import FooterMenu from "../../footerMenu";
+
 
 export default function Page() {
   const params = useParams();
@@ -33,23 +36,26 @@ export default function Page() {
 
     router.push(`/category/${category}/${themeId}`);
   };
-
   return (
-    <main className="pkt-container">
-      <div className="category-grid">
-        {themes.map((item: any) => (
-          <div
-            key={item.id}
-            className="pkt-linkcard"
-            onClick={() => handleClick(item.id)}
-            style={{ cursor: "pointer" }}
-          >
-            <div className="pkt-linkcard__title">
-              {item.title[language] || item.title.no}
+    <>
+      <main className="pkt-container">
+        <div className="category-grid">
+          {themes.map((item: any) => (
+            <div
+              key={item.id}
+              className="pkt-linkcard"
+              onClick={() => handleClick(item.id)}
+              style={{ cursor: "pointer" }}
+            >
+              <div className="pkt-linkcard__title">
+                {item.title[language] || item.title.no}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </main>
+          ))}
+        </div>
+      </main>
+      <FooterMenu />
+    </>
   );
 }
+
