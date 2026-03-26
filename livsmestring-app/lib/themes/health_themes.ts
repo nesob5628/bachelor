@@ -106,10 +106,10 @@ export const healthThemes = [
         ]
     },
     {
-        id: "vold_i_nare_relasjoner",
+        id: "vold_i_naere_relasjoner",
         title: {
             no: "Vold i nære relasjoner",
-            en: "",
+            en: "Violence in close relationships ",
             ar: "",
             fa: "",
             ku: "",
@@ -127,7 +127,7 @@ export const healthThemes = [
                 id: "vold_introduksjon",
                 title: {
                     no: "Introduksjon",
-                    en: "",
+                    en: "Introduction ",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -145,7 +145,7 @@ export const healthThemes = [
                 id: "vold_nye_ord", // vi må muligens finne en bedre løsning på id-navn, da mange av de samme ordene går igjen i flere temaer. Kanskje id kan være en kombinasjon av tema og ord som skrevet nå, slik at det blir unikt?
                 title: {
                     no: "Nye ord",
-                    en: "",
+                    en: "New Words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -163,7 +163,7 @@ export const healthThemes = [
                 id: "typer_vold",
                 title: {
                     no: "Typer vold",
-                    en: "",
+                    en: "Types of Violence",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -181,7 +181,7 @@ export const healthThemes = [
                 id: "naere_relasjoner",
                 title: {
                     no: "Nære relasjoner",
-                    en: "",
+                    en: "Close Relationships",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -199,7 +199,7 @@ export const healthThemes = [
                 id: "avvergingsplikt",
                 title: {
                     no: "Avvergingsplikt",
-                    en: "",
+                    en: "Duty to Prevent Harm",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -217,7 +217,7 @@ export const healthThemes = [
                 id: "taushetsplikt",
                 title: {
                     no: "Taushetsplikt",
-                    en: "",
+                    en: "Duty of Confidentiality",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -235,7 +235,7 @@ export const healthThemes = [
                 id: "tegn_paa_vold",
                 title: {
                     no: "Tegn på vold",
-                    en: "",
+                    en: "Signs of Violence",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -253,7 +253,7 @@ export const healthThemes = [
                 id: "hvem_kan_hjelpe_1",
                 title: {
                     no: "Hvem kan hjelpe, 1",
-                    en: "",
+                    en: "Who Can Help, Part 1",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -271,7 +271,7 @@ export const healthThemes = [
                 id: "hvem_kan_hjelpe_2",
                 title: {
                     no: "Hvem kan hjelpe, 2",
-                    en: "",
+                    en: "Who Can Help, Part 2",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -289,7 +289,7 @@ export const healthThemes = [
                 id: "vold_case",
                 title: {
                     no: "Case",
-                    en: "",
+                    en: "Case",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -833,7 +833,7 @@ export const healthThemes = [
         id: "fysisk_aktivitet",
         title: {
             no: "Fysisk aktivitet",
-            en: "",
+            en: "Physical activity ",
             ar: "",
             fa: "",
             ku: "",
@@ -851,7 +851,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_introduksjon",
                 title: {
                     no: "Introduksjon",
-                    en: "",
+                    en: "Introduction",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -869,7 +869,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_2_1",
                 title: {
                     no: "2.1 Nye ord",
-                    en: "",
+                    en: "2.1 New words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -887,7 +887,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_vaer_fysisk_aktiv",
                 title: {
                     no: "2.2 Vær fysisk aktiv",
-                    en: "",
+                    en: "2.2 Be physically active",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -905,7 +905,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_3_1",
                 title: {
                     no: "3.1 Nye ord",
-                    en: "",
+                    en: "3.1 New words ",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -923,7 +923,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_intensivtrening",
                 title: {
                     no: "3.2 Intensivtrening",
-                    en: "",
+                    en: "3.2 High-intensity training",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -941,7 +941,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_4_1",
                 title: {
                     no: "4.1 Nye ord",
-                    en: "",
+                    en: "4.1 New words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -959,7 +959,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_styrketrening",
                 title: {
                     no: "4.2 Styrketrening",
-                    en: "",
+                    en: "4.2 Strength training",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -977,7 +977,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_5_1",
                 title: {
                     no: "5.1 Nye ord",
-                    en: "",
+                    en: "5.1 New words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -995,7 +995,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_energiinntak_og_energiforbruk",
                 title: {
                     no: "5.2 Energiinntak og energiforbruk",
-                    en: "",
+                    en: "5.2 Intake and  expenditure",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1013,7 +1013,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_6_1",
                 title: {
                     no: "6.1 Nye ord",
-                    en: "",
+                    en: "6.1 New words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1031,7 +1031,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_blodsukker",
                 title: {
                     no: "6.2 Blodsukker",
-                    en: "",
+                    en: "6.2 Blood sugar",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1049,7 +1049,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_7_1",
                 title: {
                     no: "7.1 Nye ord",
-                    en: "",
+                    en: "7.1 New words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1067,7 +1067,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_kolesterol",
                 title: {
                     no: "7.2 Kolesterol",
-                    en: "",
+                    en: "7.2 Cholesterol",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1085,7 +1085,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_8_1",
                 title: {
                     no: "8.1 Nye ord",
-                    en: "",
+                    en: "8.1 New words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1103,7 +1103,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_blodtrykk",
                 title: {
                     no: "8.2 Blodtrykk",
-                    en: "",
+                    en: "8.2 Blood pressure",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1121,7 +1121,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_9_1",
                 title: {
                     no: "9.1 Nye ord",
-                    en: "",
+                    en: "9.1 New words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1139,7 +1139,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_kreft",
                 title: {
                     no: "9.2 Kreft",
-                    en: "",
+                    en: "9.2 Cancer ",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1157,7 +1157,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_10_1",
                 title: {
                     no: "10.1  Nye ord",
-                    en: "",
+                    en: "10.1 New words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1175,7 +1175,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_hjernen",
                 title: {
                     no: "10.2 Hjernen",
-                    en: "",
+                    en: "10.2 The brain",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1193,7 +1193,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_11_1",
                 title: {
                     no: "11.1 Nye ord",
-                    en: "",
+                    en: "11.1 New words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1211,7 +1211,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_smerte",
                 title: {
                     no: "11.2 Smerte",
-                    en: "",
+                    en: "11.2 Pain",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1229,7 +1229,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_nye_ord_12_1",
                 title: {
                     no: "12.1 Nye ord",
-                    en: "",
+                    en: "12.1 New words",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1247,7 +1247,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_muskler_og_skjelett",
                 title: {
                     no: "12.2 Muskler og skjelett",
-                    en: "",
+                    en: "12.2 Muscles and skeleton",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1265,7 +1265,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_andre_aspekter",
                 title: {
                     no: "13. Andre aspekter",
-                    en: "",
+                    en: "13. Other aspects",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1283,7 +1283,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_caser",
                 title: {
                     no: "14. Caser",
-                    en: "",
+                    en: "14. Cases ",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1301,7 +1301,7 @@ export const healthThemes = [
                 id: "fysisk_aktivitet_oppsummering",
                 title: {
                     no: "Oppsummering",
-                    en: "",
+                    en: "15. Summary",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1319,10 +1319,10 @@ export const healthThemes = [
         // her skal PSYKISK HELSE ligge, men usikker på strukturen pga undertemaene, så ventet med å legge det inn.
     },
     {
-        id: "kvinnens_reproduktive_helse",
+        id: "kvinnens_helse",
         title: {
             no: "Kvinnens reproduktive helse",
-            en: "",
+            en: "Women's reproductive health ",
             ar: "",
             fa: "",
             ku: "",
@@ -1337,10 +1337,10 @@ export const healthThemes = [
         },
         subthemes: [
             {
-                id: "kvinnens_reproduktive_helse_ytre_kjonnsorganer",
+                id: "kvinnens_helse_ytre_kjonnsorganer",
                 title: {
                     no: "Kvinnens ytre kjønnsorganer",
-                    en: "",
+                    en: "Women’s external genitalia",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1355,10 +1355,10 @@ export const healthThemes = [
                 }
             },
             {
-                id: "kvinnens_reproduktive_helse_indre_kjonnsorganer",
+                id: "kvinnens_helse_indre_kjonnsorganer",
                 title: {
                     no: "Kvinnens indre kjønnsorganer",
-                    en: "",
+                    en: "Women’s internal reproductive organs ",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1373,10 +1373,10 @@ export const healthThemes = [
                 }
             },
             {
-                id: "kvinnens_reproduktive_helse_menstruasjon",
+                id: "kvinnens__helse_menstruasjon",
                 title: {
                     no: "Menstruasjon",
-                    en: "",
+                    en: "Menstruation ",
                     ar: "",
                     fa: "",
                     ku: "",
@@ -1391,10 +1391,10 @@ export const healthThemes = [
                 }
             },
             {
-                id: "kvinnens_reproduktive_helse_prevensjon",
+                id: "kvinnens_helse_prevensjon",
                 title: {
                     no: "Prevensjon",
-                    en: "",
+                    en: "Contraception",
                     ar: "",
                     fa: "",
                     ku: "",
