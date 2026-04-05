@@ -7,6 +7,12 @@ export type LanguageProgress = {
   synthesiaId?: string;
 };
 
+
+export const setProgress = (progress: any) => {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+};
+
 export type Progress = {
   selectedLanguage?: string;
   languages: Record<string, LanguageProgress>;

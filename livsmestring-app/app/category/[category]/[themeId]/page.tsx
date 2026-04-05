@@ -33,7 +33,7 @@ export default function Page() {
       return;
     }
 
-    // filtrer riktig data
+    //  filtrer riktig data
     const filtered = topics
       .filter(
         (item) =>

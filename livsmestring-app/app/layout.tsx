@@ -33,7 +33,7 @@ export default function RootLayout({
           </div>
 
           <div className="brand-livsmestring">
-            <h1 className="brand-livsmestring__title">Livsmestring</h1>
+            <span className="brand-livsmestring__title">Livsmestring</span>
           </div>
 
           <div className="header-spacer" />

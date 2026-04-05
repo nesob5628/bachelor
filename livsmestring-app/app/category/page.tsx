@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clearSelectedLanguage, getProgress, setCategory } from "@/lib/storage";
+import FooterMenu from "../footerMenu";
 
 export default function CategoryPage() {
   const router = useRouter();
@@ -32,15 +33,19 @@ export default function CategoryPage() {
       </main>
     );
   }
-
+ 
   return (
-    <main className="pkt-container">
+    <><main className="pkt-container">
       <button
         type="button"
         onClick={handleChangeLanguage}
-        className="pkt-button pkt-button--tertiary"
+        className="pkt-button pkt-button--white return-button"
       >
-        ← Bytt språk
+        <img
+          src="https://punkt-cdn.oslo.kommune.no/16/icons/arrow-return.svg"
+          alt="Tilbake"
+          className="return-icon" />
+        Bytt språk
       </button>
 
       <div className="category-grid">
@@ -49,7 +54,13 @@ export default function CategoryPage() {
           className="pkt-linkcard pkt-linkcard--blue"
           onClick={() => setCategory("helse")}
         >
-          <div className="pkt-linkcard__title">Helse</div>
+          <div className="pkt-linkcard__title-wrapper">
+            <img
+              src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
+              alt="Helse"
+              className="pkt-linkcard__icon" />
+            <div className="pkt-linkcard__title">Helse</div>
+          </div>
           <div className="pkt-linkcard__text">
             Velg temaer og videoer innen helse.
           </div>
@@ -60,12 +71,18 @@ export default function CategoryPage() {
           className="pkt-linkcard pkt-linkcard--blue"
           onClick={() => setCategory("karriere")}
         >
-          <div className="pkt-linkcard__title">Karriere</div>
+          <div className="pkt-linkcard__title-wrapper">
+            <img
+              src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
+              alt="Karriere"
+              className="pkt-linkcard__icon" />
+            <div className="pkt-linkcard__title">Karriere</div>
+          </div>
           <div className="pkt-linkcard__text">
             Velg temaer og videoer innen karriere.
           </div>
         </Link>
       </div>
-    </main>
+    </main><FooterMenu /></>
   );
-}
+} 
