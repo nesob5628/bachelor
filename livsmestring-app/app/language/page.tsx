@@ -16,7 +16,6 @@ const languages = [
   { code: "ta", name: "தமிழ்" },
   { code: "ti", name: "ትግርኛ" },
   { code: "tr", name: "Türkçe" },
-  { code: "uk", name: "Українська" },
   { code: "ur", name: "اردو" },
 ];
 
@@ -32,7 +31,6 @@ const selectLanguageTexts = [
   "மொழியைத் தேர்ந்தெடுக்கவும்",
   "ቋንቋ ምረጽ",
   "Dil seçin",
-  "Оберіть мову",
   "زبان منتخب کریں",
 ];
 
@@ -43,7 +41,6 @@ export default function LanguagePage() {
 
   useEffect(() => {
     const progress = getProgress();
-
     if (progress.selectedLanguage) {
       router.replace("/category");
     }
@@ -68,31 +65,37 @@ export default function LanguagePage() {
   };
 
   return (
-    <main className="pkt-container">
-      <div className="language-shell">
-        <header className="language-header">
-          <div className="brand-header">
-            <p className="brand-header__text">Livsmestring</p>
+    <div className="pkt-container">
+      <section className="pkt-section">
+        <div className="pkt-section__content">
+
+          {/* Heading */}
+          <header className="language-header">
+            <div className="language-heading-wrap">
+              <h1 className={`language-title ${fade ? "is-visible" : "is-hidden"}`}>
+                {selectLanguageTexts[headingIndex]}
+              </h1>
+            </div>
+          </header>
+
+          {/* Grid */}
+          <div className="language-grid">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                type="button"
+                onClick={() => selectLanguage(lang.code)}
+                className="pkt-linkcard language-card"
+              >
+                <span className="pkt-linkcard__title">
+                  {lang.name}
+                </span>
+              </button>
+            ))}
           </div>
 
-          <h1 className={`language-title ${fade ? "is-visible" : "is-hidden"}`}>
-            {selectLanguageTexts[headingIndex]}
-          </h1>
-        </header>
-
-        <section className="language-grid" aria-label="Velg språk">
-          {languages.map((lang) => (
-            <button
-              key={lang.code}
-              type="button"
-              onClick={() => selectLanguage(lang.code)}
-              className="pkt-linkcard pkt-linkcard--blue"
-            >
-              <div className="pkt-linkcard__title">{lang.name}</div>
-            </button>
-          ))}
-        </section>
-      </div>
-    </main>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,5 +1,6 @@
 import "./globals.scss";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Livsmestring",
@@ -22,16 +23,24 @@ export default function RootLayout({
       <body>
         <header className="oslo-header">
           <div className="brand-header">
-            <img
-              src="https://punkt-cdn.oslo.kommune.no/16/logos/oslologo.svg"
-              alt="Oslo kommune"
-              className="brand-header__logo"
-            />
+            <Link href="/category" aria-label="Gå til kategorisiden">
+              <img
+                src="https://punkt-cdn.oslo.kommune.no/16/logos/oslologo.svg"
+                alt="Oslo kommune"
+                className="brand-header__logo"
+              />
+            </Link>
           </div>
+
+          <div className="brand-livsmestring">
+            <h1 className="brand-livsmestring__title">Livsmestring</h1>
+          </div>
+
+          <div className="header-spacer" />
         </header>
-      <main>{children}</main>
+
+        <main>{children}</main>
       </body>
     </html>
   );
 }
-
