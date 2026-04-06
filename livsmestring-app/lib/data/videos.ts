@@ -1038,7 +1038,7 @@ export const topics: Topic[] = [
                     
                       {
                         language: "en",
-                        category: "health",
+                        category: "helse",
                         theme: "skeiv_verden",
                         subtopicId: "social_norms",
                         subtopicTitle: "Social Norms",
@@ -1048,7 +1048,7 @@ export const topics: Topic[] = [
                       },
                       {
                         language: "en",
-                        category: "health",
+                        category: "helse",
                         theme: "skeiv_verden",
                         subtopicId: "diversity",
                         subtopicTitle: "Diversity",
@@ -1058,7 +1058,7 @@ export const topics: Topic[] = [
                       },
                       {
                         language: "en",
-                        category: "health",
+                        category: "helse",
                         theme: "skeiv_verden",
                         subtopicId: "discrimination",
                         subtopicTitle: "Discrimination",
@@ -1068,7 +1068,7 @@ export const topics: Topic[] = [
                       },
                         {
                           language: "en",
-                          category: "health",
+                          category: "helse",
                           theme: "vold_i_naere_relasjoner",
                           subtopicId: "new_words",
                           subtopicTitle: "New Words",
@@ -1078,7 +1078,7 @@ export const topics: Topic[] = [
                         },
                         {
                           language: "en",
-                          category: "health",
+                          category: "helse",
                           theme: "vold_i_naere_relasjoner",
                           subtopicId: "types_of_violence",
                           subtopicTitle: "Types of Violence",
@@ -1088,7 +1088,7 @@ export const topics: Topic[] = [
                         },
                         {
                           language: "en",
-                          category: "health",
+                          category: "helse",
                           theme: "vold_i_naere_relasjoner",
                           subtopicId: "close_relationships",
                           subtopicTitle: "Close Relationships",
@@ -1098,7 +1098,7 @@ export const topics: Topic[] = [
                         },
                         {
                           language: "en",
-                          category: "health",
+                          category: "helse",
                           theme: "vold_i_naere_relasjoner",
                           subtopicId: "duty_to_prevent_harm",
                           subtopicTitle: "Duty to Prevent Harm",
@@ -1108,7 +1108,7 @@ export const topics: Topic[] = [
                         },
                         {
                           language: "en",
-                          category: "health",
+                          category: "helse",
                           theme: "vold_i_naere_relasjoner",
                           subtopicId: "duty_of_confidentiality", 
                           subtopicTitle: "Duty of Confidentiality",
@@ -1118,7 +1118,7 @@ export const topics: Topic[] = [
                         },
                           {
                             language: "en",
-                            category: "health",
+                            category: "helse",
                             theme: "vold_i_naere_relasjoner",
                             subtopicId: "who_can_help_part1",
                             subtopicTitle: "Who Can Help, Part 1",
@@ -1128,7 +1128,7 @@ export const topics: Topic[] = [
                           },
                           {
                             language: "en",
-                            category: "health",
+                            category: "helse",
                             theme: "vold_i_naere_relasjoner",
                             subtopicId: "who_can_help_part2",
                             subtopicTitle: "Who Can Help, Part 2",
@@ -1138,7 +1138,7 @@ export const topics: Topic[] = [
                           },
                           {
                             language: "en",
-                            category: "health",
+                            category: "helse",
                             theme: "vold_i_naere_relasjoner",
                             subtopicId: "case",
                             subtopicTitle: "Case",
@@ -1150,7 +1150,7 @@ export const topics: Topic[] = [
                           
                           {
                             language: "en",
-                            category: "health",
+                            category: "helse",
                             theme: "fysisk_aktivitet",
                             subtopicId: "introduction",
                             subtopicTitle: "Introduction",
@@ -1160,7 +1160,7 @@ export const topics: Topic[] = [
                           },
                           {
                             language: "en",
-                            category: "health",
+                            category: "helse",
                             theme: "fysisk_aktivitet",
                             subtopicId: "new_words",
                             subtopicTitle: "New Words",
@@ -1170,7 +1170,7 @@ export const topics: Topic[] = [
                           },
                           {
                             language: "en",
-                            category: "health",
+                            category: "helse",
                             theme: "fysisk_aktivitet",
                             subtopicId: "be_physically_active",
                             subtopicTitle: "Be Physically Active",
@@ -1180,7 +1180,7 @@ export const topics: Topic[] = [
                           },
                           {
                             language: "en",
-                            category: "health",
+                            category: "helse",
                             theme: "fysisk_aktivitet",
                             subtopicId: "new_words",
                             subtopicTitle: "New Words",
@@ -1191,7 +1191,7 @@ export const topics: Topic[] = [
                          
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "new_words",
                               subtopicTitle: "New Words",
@@ -1201,7 +1201,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "strength_training",
                               subtopicTitle: "Strength Training",
@@ -1211,7 +1211,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "new_words",
                               subtopicTitle: "New Words",
@@ -1221,7 +1221,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "intake_and_expenditure",
                               subtopicTitle: "Intake And Expenditure",
@@ -1231,7 +1231,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "new_words",
                               subtopicTitle: "New Words",
@@ -1241,7 +1241,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "blood_sugar",
                               subtopicTitle: "Blood Sugar",
@@ -1251,7 +1251,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "new_words",
                               subtopicTitle: "New Words",
@@ -1261,7 +1261,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "cholestrol",
                               subtopicTitle: "Cholestrol",
@@ -1271,7 +1271,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "new_words",
                               subtopicTitle: "New Words",
@@ -1281,7 +1281,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "blood_pressure",
                               subtopicTitle: "Blood Pressure",
@@ -1291,7 +1291,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "new_words",
                               subtopicTitle: "New Words",
@@ -1301,7 +1301,7 @@ export const topics: Topic[] = [
                             },
                             {
                               language: "en",
-                              category: "health",
+                              category: "helse",
                               theme: "fysisk_aktivitet",
                               subtopicId: "cancer",
                               subtopicTitle: "Cancer",
@@ -1312,7 +1312,7 @@ export const topics: Topic[] = [
                            
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "fysisk_aktivitet",
                                 subtopicId: "the_brain",
                                 subtopicTitle: "The Brain",
@@ -1322,7 +1322,7 @@ export const topics: Topic[] = [
                               },
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "fysisk_aktivitet",
                                 subtopicId: "new_words",
                                 subtopicTitle: "New Words",
@@ -1332,7 +1332,7 @@ export const topics: Topic[] = [
                               },
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "fysisk_aktivitet",
                                 subtopicId: "pain",
                                 subtopicTitle: "Pain",
@@ -1342,7 +1342,7 @@ export const topics: Topic[] = [
                               },
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "fysisk_aktivitet",
                                 subtopicId: "new_words",
                                 subtopicTitle: "New Words",
@@ -1352,7 +1352,7 @@ export const topics: Topic[] = [
                               },
                               {
                                 language: "en",
-                                category: "health",
+                                category:"helse",
                                 theme: "fysisk_aktivitet",
                                 subtopicId: "muscles_and_skeleton",
                                 subtopicTitle: "Muscles And Skeleton",
@@ -1362,7 +1362,7 @@ export const topics: Topic[] = [
                               },
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "fysisk_aktivitet",
                                 subtopicId: "cases",
                                 subtopicTitle: "Cases",
@@ -1372,7 +1372,7 @@ export const topics: Topic[] = [
                               },
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "fysisk_aktivitet",
                                 subtopicId: "summary",
                                 subtopicTitle: "Summary",
@@ -1384,7 +1384,7 @@ export const topics: Topic[] = [
                             
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "munnhelse",
                                 subtopicId: "introduction",
                                 subtopicTitle: "Introduction",
@@ -1394,7 +1394,7 @@ export const topics: Topic[] = [
                               },
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "munnhelse",
                                 subtopicId: "new_words",
                                 subtopicTitle: "New Words",
@@ -1404,7 +1404,7 @@ export const topics: Topic[] = [
                               },
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "munnhelse",
                                 subtopicId: "rights",
                                 subtopicTitle: "Rights",
@@ -1414,7 +1414,7 @@ export const topics: Topic[] = [
                               },
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "munnhelse",
                                 subtopicId: "keep_your_teeth_clean",
                                 subtopicTitle: "Keep Your Teeth Clean",
@@ -1424,7 +1424,7 @@ export const topics: Topic[] = [
                               },
                               {
                                 language: "en",
-                                category: "health",
+                                category: "helse",
                                 theme: "munnhelse",
                                 subtopicId: "go_for_dental_checkup",
                                 subtopicTitle: "Go For Dental Checkup",
@@ -1435,7 +1435,7 @@ export const topics: Topic[] = [
                               
                                 {
                                   language: "en",
-                                  category: "health",
+                                  category: "helse",
                                   theme: "munnhelse",
                                   groupId: "",
                                   groupTitle: "",
@@ -1447,7 +1447,7 @@ export const topics: Topic[] = [
                                 },
                                 {
                                   language: "en",
-                                  category: "health",
+                                  category: "helse",
                                   theme: "psykisk_helse",
                                   groupId: "",
                                   groupTitle: "Psykisk helse",
@@ -1459,7 +1459,7 @@ export const topics: Topic[] = [
                                 },
                                 {
                                   language: "en",
-                                  category: "health",
+                                  category: "helse",
                                   theme: "psykisk_helse",
                                   groupId: "",
                                   groupTitle: "Psykisk helse",
@@ -1471,7 +1471,7 @@ export const topics: Topic[] = [
                                 },
                                 {
                                   language: "en",
-                                  category: "health",
+                                  category: "helse",
                                   theme: "psykisk_helse",
                                   groupId: "",
                                   groupTitle: "Psykisk helse",
@@ -1483,7 +1483,7 @@ export const topics: Topic[] = [
                                 },
                                 {
                                   language: "en",
-                                  category: "health",
+                                  category: "helse",
                                   theme: "psykisk_helse",
                                   groupId: "",
                                   groupTitle: "Psykisk helse",
@@ -1495,7 +1495,7 @@ export const topics: Topic[] = [
                                 },
                                 {
                                   language: "en",
-                                  category: "health",
+                                  category: "helse",
                                   theme: "psykisk_helse",
                                   groupId: "",
                                   groupTitle: "Psykisk helse",
@@ -1507,7 +1507,7 @@ export const topics: Topic[] = [
                                 },
                                 {
                                   language: "en",
-                                  category: "health",
+                                  category: "helse",
                                   theme: "psykisk_helse",
                                   groupId: "",
                                   groupTitle: "Psykisk helse",
@@ -1519,7 +1519,7 @@ export const topics: Topic[] = [
                                 },
                                 {
                                   language: "en",
-                                  category: "health",
+                                  category: "helse",
                                   theme: "psykisk_helse",
                                   groupId: "",
                                   groupTitle: "Psykisk helse",
@@ -1531,7 +1531,7 @@ export const topics: Topic[] = [
                                 },
                                   {
                                     language: "en",
-                                    category: "health",
+                                    category: "helse",
                                     theme: "psykisk_helse",
                                     groupId: "where_to_get_help",
                                     groupTitle: "Where To get Help",
@@ -1543,7 +1543,7 @@ export const topics: Topic[] = [
                                   },
                                   {
                                     language: "en",
-                                    category: "health",
+                                    category: "helse",
                                     theme: "psykisk_helse",
                                     groupId: "where_to_get_help",
                                     groupTitle: "Where To get Help",
@@ -1555,7 +1555,7 @@ export const topics: Topic[] = [
                                   },
                                   {
                                     language: "en",
-                                    category: "health",
+                                    category: "helse",
                                     theme: "psykisk_helse",
                                     groupId: "where_to_get_help",
                                     groupTitle: "Where To get Help",
@@ -1567,7 +1567,7 @@ export const topics: Topic[] = [
                                   },
                                   {
                                     language: "en",
-                                    category: "health",
+                                    category: "helse",
                                     theme: "psykisk_helse",
                                     groupId: "where_to_get_help",
                                     groupTitle: "Where To get Help",
@@ -1579,7 +1579,7 @@ export const topics: Topic[] = [
                                   },
                                   {
                                     language: "en",
-                                    category: "health",
+                                    category: "helse",
                                     theme: "psykisk_helse",
                                     groupId: "where_to_get_help",
                                     groupTitle: "Where To get Help",
@@ -1591,7 +1591,7 @@ export const topics: Topic[] = [
                                   },
                                   {
                                     language: "en",
-                                    category: "health",
+                                    category: "helse",
                                     theme: "psykisk_helse",
                                     groupId: "where_to_get_help",
                                     groupTitle: "Where To get Help",
@@ -1603,7 +1603,7 @@ export const topics: Topic[] = [
                                   },
                                   {
                                     language: "en",
-                                    category: "health",
+                                    category: "helse",
                                     theme: "psykisk_helse",
                                     groupId: "general_practitioner",
                                     groupTitle: "General Practitioner",
@@ -1615,7 +1615,7 @@ export const topics: Topic[] = [
                                   },
                                   {
                                     language: "en",
-                                    category: "health",
+                                    category: "helse",
                                     theme: "psykisk_helse",
                                     groupId: "general_practitioner",
                                     groupTitle: "General Practitioner",
@@ -1627,7 +1627,7 @@ export const topics: Topic[] = [
                                   },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "general_practitioner",
                                       groupTitle: "General Practitioner",
@@ -1639,7 +1639,7 @@ export const topics: Topic[] = [
                                     },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "general_practitioner",
                                       groupTitle: "General Practitioner",
@@ -1651,7 +1651,7 @@ export const topics: Topic[] = [
                                     },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "stress",
                                       groupTitle: "Stress",
@@ -1663,7 +1663,7 @@ export const topics: Topic[] = [
                                     },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "stress",
                                       groupTitle: "Stress",
@@ -1675,7 +1675,7 @@ export const topics: Topic[] = [
                                     },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "stress",
                                       groupTitle: "Stress",
@@ -1687,7 +1687,7 @@ export const topics: Topic[] = [
                                     },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "stress_as_newcomer",
                                       groupTitle: "Stress As a Newcomer To Norway",
@@ -1699,7 +1699,7 @@ export const topics: Topic[] = [
                                     },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "stress_as_newcomer",
                                       groupTitle: "Stress As a Newcomer To Norway",
@@ -1711,7 +1711,7 @@ export const topics: Topic[] = [
                                     },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "managing_stress",
                                       groupTitle: "Managing Stress",
@@ -1723,7 +1723,7 @@ export const topics: Topic[] = [
                                     },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "managing_stress",
                                       groupTitle: "Managing Stress",
@@ -1735,7 +1735,7 @@ export const topics: Topic[] = [
                                     },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "stress",
                                       groupTitle: "Stress",
@@ -1747,7 +1747,7 @@ export const topics: Topic[] = [
                                     },
                                     {
                                       language: "en",
-                                      category: "health",
+                                      category: "helse",
                                       theme: "psykisk_helse",
                                       groupId: "bullying",
                                       groupTitle: "Bullying",
@@ -1761,7 +1761,7 @@ export const topics: Topic[] = [
                                    
                                       {
                                         language: "en",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "psykisk_helse",
                                         groupId: "bullying",
                                         groupTitle: "Bullying",
@@ -1773,7 +1773,7 @@ export const topics: Topic[] = [
                                       },
                                       {
                                         language: "en",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "psykisk_helse",
                                         groupId: "bullying",
                                         groupTitle: "Bullying",
@@ -1785,7 +1785,7 @@ export const topics: Topic[] = [
                                       },
                                       {
                                         language: "en",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "psykisk_helse",
                                         groupId: "bullying",
                                         groupTitle: "Bullying",
@@ -1797,7 +1797,7 @@ export const topics: Topic[] = [
                                       },
                                       {
                                         language: "en",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "psykisk_helse",
                                         groupId: "bullying",
                                         groupTitle: "Bullying",
@@ -1809,7 +1809,7 @@ export const topics: Topic[] = [
                                       },
                                       {
                                         language: "en",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "psykisk_helse",
                                         groupId: "bullying",
                                         groupTitle: "Bullying",
@@ -1821,7 +1821,7 @@ export const topics: Topic[] = [
                                       },
                                       {
                                         language: "en",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "psykisk_helse",
                                         groupId: "bullying",
                                         groupTitle: "Bullying",
@@ -1835,7 +1835,7 @@ export const topics: Topic[] = [
                                   
                                       {
                                         language: "en",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "kvinners_reproduktive_helse",
                                         groupId: "",
                                         groupTitle: "",
@@ -1847,7 +1847,7 @@ export const topics: Topic[] = [
                                       },
                                       {
                                         language: "en",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "kvinners_reproduktive_helse",
                                         groupId: "",
                                         groupTitle: "",
@@ -1859,7 +1859,7 @@ export const topics: Topic[] = [
                                       },
                                       {
                                         language: "en",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "kvinners_reproduktive_helse",
                                         groupId: "",
                                         groupTitle: "",
@@ -1871,7 +1871,7 @@ export const topics: Topic[] = [
                                       },
                                       {
                                         language: "en",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "kvinners_reproduktive_helse",
                                         groupId: "",
                                         groupTitle: "",
@@ -1885,7 +1885,7 @@ export const topics: Topic[] = [
                                       // Tyrkisk (skeiv_verden)
                                       {
                                         language: "tr",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "skeiv_verden",
                                         groupId: "",
                                         groupTitle: "",
@@ -1897,7 +1897,7 @@ export const topics: Topic[] = [
                                       },
                                       {
                                         language: "tr",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "skeiv_verden",
                                         groupId: "",
                                         groupTitle: "",
@@ -1909,7 +1909,7 @@ export const topics: Topic[] = [
                                       },
                                       {
                                         language: "tr",
-                                        category: "health",
+                                        category: "helse",
                                         theme: "skeiv_verden",
                                         groupId: "",
                                         groupTitle: "",
@@ -1921,7 +1921,7 @@ export const topics: Topic[] = [
                                       },
                                         {
                                           language: "tr",
-                                          category: "health",
+                                          category: "helse",
                                           theme: "vold_i_naere_relasjoner",
                                           groupId: "",
                                           groupTitle: "",
@@ -1933,7 +1933,7 @@ export const topics: Topic[] = [
                                         },
                                         {
                                           language: "tr",
-                                          category: "health",
+                                          category: "helse",
                                           theme: "vold_i_naere_relasjoner",
                                           groupId: "",
                                           groupTitle: "",
@@ -1945,7 +1945,7 @@ export const topics: Topic[] = [
                                         },
                                         {
                                           language: "tr",
-                                          category: "health",
+                                          category: "helse",
                                           theme: "vold_i_naere_relasjoner",
                                           groupId: "",
                                           groupTitle: "",
@@ -1957,7 +1957,7 @@ export const topics: Topic[] = [
                                         },
                                         {
                                           language: "tr",
-                                          category: "health",
+                                          category: "helse",
                                           theme: "vold_i_naere_relasjoner",
                                           groupId: "",
                                           groupTitle: "",
@@ -1969,7 +1969,7 @@ export const topics: Topic[] = [
                                         },
                                         {
                                           language: "tr",
-                                          category: "health",
+                                          category: "helse",
                                           theme: "vold_i_naere_relasjoner",
                                           groupId: "",
                                           groupTitle: "",
@@ -1981,7 +1981,7 @@ export const topics: Topic[] = [
                                         },
                                         {
                                           language: "tr",
-                                          category: "health",
+                                          category: "helse",
                                           theme: "vold_i_naere_relasjoner",
                                           groupId: "",
                                           groupTitle: "",
@@ -1993,7 +1993,7 @@ export const topics: Topic[] = [
                                         },
                                         {
                                           language: "tr",
-                                          category: "health",
+                                          category: "helse",
                                           theme: "vold_i_naere_relasjoner",
                                           groupId: "",
                                           groupTitle: "",
@@ -2005,7 +2005,7 @@ export const topics: Topic[] = [
                                         },
                                         {
                                           language: "tr",
-                                          category: "health",
+                                          category: "helse",
                                           theme: "vold_i_naere_relasjoner",
                                           groupId: "",
                                           groupTitle: "",
@@ -2017,7 +2017,7 @@ export const topics: Topic[] = [
                                         },
                                         {
                                           language: "tr",
-                                          category: "health",
+                                          category: "helse",
                                           theme: "vold_i_naere_relasjoner",
                                           groupId: "",
                                           groupTitle: "",
@@ -2029,7 +2029,7 @@ export const topics: Topic[] = [
                                         },
                                         {
                                           language: "tr",
-                                          category: "health",
+                                          category: "helse",
                                           theme: "vold_i_naere_relasjoner",
                                           groupId: "",
                                           groupTitle: "",
