@@ -22,7 +22,7 @@ button {
 /* Oslo-header */
 .oslo-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   padding: 8px 16px;
   background: #fff;
@@ -38,6 +38,8 @@ button {
 .brand-livsmestring__title {
   font-weight: 600;
   font-size: 18px;
+  margin-left: 40px;
+  margin-top: 6px;  
 }
 
 /* Spacer som dytter ikoner til høyre */
