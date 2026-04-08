@@ -1,14 +1,19 @@
 "use client";
-
 import "./globals.scss";
 import Link from "next/link";
 import { clearSelectedLanguage } from "@/lib/storage";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import FooterMenu from "./footerMenu";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
   return (
     <html lang="no">
       <head>
@@ -34,63 +39,87 @@ export default function RootLayout({
           </div>
 
           <div className="header-spacer" />
-        
 
-        <div className="header-icons">
-          <Link href="/category" aria-label="Gå til hjemsiden">
-            <img
-              src="https://punkt-cdn.oslo.kommune.no/16/icons/home.svg"
-              alt=""
-              className="header-icon"
-              width={24}
-              height={24}
-            />
-          </Link>
-        </div>
+          <div className="header-actions">
+            <button
+              type="button"
+              className="header-menu-toggle"
+              aria-controls="header-action-menu"
+              aria-expanded={menuOpen}
+              aria-label={menuOpen ? "Lukk meny" : "Åpne meny"}
+              onClick={() => setMenuOpen((prev) => !prev)}
+            >
+              <img
+                src="https://punkt-cdn.oslo.kommune.no/16/icons/menu.svg"
+                alt=""
+                width={24}
+                height={24}
+              />
+            </button>
 
-        <div className="header-icons">
-          <Link href="/category/helse" aria-label="Gå til helsesiden">
-            <img
-              src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
-              alt=""
-              className="header-icon"
-              width={24}
-              height={24}
-            />
-          </Link>
-        </div>
+            <div
+              id="header-action-menu"
+              className={`header-actions-menu ${menuOpen ? "is-open" : ""}`}
+            >
+              <div className="header-icons">
+                <Link href="/category" aria-label="Gå til hjemsiden" onClick={() => setMenuOpen(false)}>
+                  <img
+                    src="https://punkt-cdn.oslo.kommune.no/16/icons/home.svg"
+                    alt=""
+                    className="header-icon"
+                    width={24}
+                    height={24}
+                  />
+                </Link>
+              </div>
 
-        <div className="header-icons">
-          <Link href="/category/karriere" aria-label="Gå til karrieresiden">
-            <img
-              src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
-              alt=""
-              className="header-icon"
-              width={24}
-              height={24}
-            />
-          </Link>
-        </div>
+              <div className="header-icons">
+                <Link href="/category/helse" aria-label="Gå til helsesiden" onClick={() => setMenuOpen(false)}>
+                  <img
+                    src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
+                    alt=""
+                    className="header-icon"
+                    width={24}
+                    height={24}
+                  />
+                </Link>
+              </div>
 
-        <div className="header-icons">
-          <Link href="/language" aria-label="Gå til språksiden">
-            <img
-              src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg"
-              alt=""
-              className="header-icon"
-              width={24} onClick={clearSelectedLanguage}
-              height={24}
-            />
-          </Link>
-        </div>
+              <div className="header-icons">
+                <Link href="/category/karriere" aria-label="Gå til karrieresiden" onClick={() => setMenuOpen(false)}>
+                  <img
+                    src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
+                    alt=""
+                    className="header-icon"
+                    width={24}
+                    height={24}
+                  />
+                </Link>
+              </div>
 
-
-
-
-      
+              <div className="header-icons">
+                <Link href="/language" aria-label="Gå til språksiden" onClick={() => setMenuOpen(false)}>
+                  <img
+                    src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg"
+                    alt=""
+                    className="header-icon"
+                    width={24}
+                    height={24}
+                    onClick={clearSelectedLanguage}
+                  />
+                </Link>
+              </div>
+            </div>
+          </div>
         </header>
 
         <main>{children}</main>
+
+        {pathname !== '/language' && (
+          <div className="mobile-footer">
+            <FooterMenu />
+          </div>
+        )}
       </body>
     </html>
   );

@@ -5,7 +5,6 @@ import { getProgress, setProgress } from "@/lib/storage";
 import { healthThemes } from "@/lib/themes/health_themes";
 import { careerThemes } from "@/lib/themes/career_themes";
 import Link from 'next/link';
-import FooterMenu from "../../footerMenu";
 
 
 export default function Page() {
@@ -54,7 +53,6 @@ export default function Page() {
           ))}
         </div>
       </main>
-      <FooterMenu />
     </>
   );
 }
