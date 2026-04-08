@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 export default function Page() {
   const router = useRouter();
   const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const progress = getProgress();
@@ -44,16 +43,8 @@ export default function Page() {
       .sort((a, b) => Number(a.order) - Number(b.order));
 
     setFilteredTopics(filtered);
-    setReady(true);
   }, [router]);
 
-  if (!ready) {
-    return (
-      <main className="pkt-container">
-        <p>Laster...</p>
-      </main>
-    );
-  }
 
   return (
     <main className="pkt-container">

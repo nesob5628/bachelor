@@ -8,7 +8,6 @@ import FooterMenu from "../footerMenu";
 
 export default function CategoryPage() {
   const router = useRouter();
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const progress = getProgress();
@@ -17,8 +16,6 @@ export default function CategoryPage() {
       router.replace("/language");
       return;
     }
-
-    setReady(true);
   }, [router]);
 
   const handleChangeLanguage = () => {
@@ -26,14 +23,7 @@ export default function CategoryPage() {
     router.push("/language");
   };
 
-  if (!ready) {
-    return (
-      <main className="pkt-container">
-        <p>Laster...</p>
-      </main>
-    );
-  }
- 
+
   return (
     <><main className="pkt-container">
       <button
