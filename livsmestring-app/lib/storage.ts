@@ -8,7 +8,7 @@ export type LanguageProgress = {
 };
 
 
-export const setProgress = (progress: any) => {
+export const setProgress = (progress: Progress) => {
   if (typeof window === "undefined") return;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
 };

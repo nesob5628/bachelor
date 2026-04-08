@@ -9,12 +9,11 @@ import { useRouter } from "next/navigation";
 export default function Page() {
   const router = useRouter();
   const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const progress = getProgress();
 
-    // Hvis noe mangler → send tilbake
+
     if (!progress.selectedLanguage) {
       router.replace("/language");
       return;
@@ -33,7 +32,6 @@ export default function Page() {
       return;
     }
 
-    //  filtrer riktig data
     const filtered = topics
       .filter(
         (item) =>
@@ -44,16 +42,8 @@ export default function Page() {
       .sort((a, b) => Number(a.order) - Number(b.order));
 
     setFilteredTopics(filtered);
-    setReady(true);
   }, [router]);
 
-  if (!ready) {
-    return (
-      <main className="pkt-container">
-        <p>Laster...</p>
-      </main>
-    );
-  }
 
   return (
     <main className="pkt-container">

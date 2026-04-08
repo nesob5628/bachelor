@@ -1,88 +1,81 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { clearSelectedLanguage, getProgress, setCategory } from "@/lib/storage";
-import FooterMenu from "../footerMenu";
+import { translations } from "@/lib/translations";
 
 export default function CategoryPage() {
   const router = useRouter();
-  const [ready, setReady] = useState(false);
+  const progress = getProgress();
 
   useEffect(() => {
-    const progress = getProgress();
-
     if (!progress.selectedLanguage) {
       router.replace("/language");
-      return;
     }
+  }, [router, progress.selectedLanguage]);
 
-    setReady(true);
-  }, [router]);
+  const selectedLanguage = progress.selectedLanguage || "no";
+  const text = translations[selectedLanguage];
 
   const handleChangeLanguage = () => {
     clearSelectedLanguage();
     router.push("/language");
   };
 
-  if (!ready) {
-    return (
-      <main className="pkt-container">
-        <p>Laster...</p>
-      </main>
-    );
-  }
- 
   return (
-    <><main className="pkt-container">
-      <button
-        type="button"
-        onClick={handleChangeLanguage}
-        className="pkt-button pkt-button--white return-button"
-      >
-        <img
-          src="https://punkt-cdn.oslo.kommune.no/16/icons/arrow-return.svg"
-          alt="Tilbake"
-          className="return-icon" />
-        Bytt språk
-      </button>
-
-      <div className="category-grid">
-        <Link
-          href="/category/helse"
-          className="pkt-linkcard pkt-linkcard--blue"
-          onClick={() => setCategory("helse")}
+    <>
+      <main className="pkt-container">
+        <button
+          type="button"
+          onClick={handleChangeLanguage}
+          className="pkt-button pkt-button--white return-button"
         >
-          <div className="pkt-linkcard__title-wrapper">
-            <img
-              src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
-              alt="Helse"
-              className="pkt-linkcard__icon" />
-            <div className="pkt-linkcard__title">Helse</div>
-          </div>
-          <div className="pkt-linkcard__text">
-            Velg temaer og videoer innen helse.
-          </div>
-        </Link>
+          <img
+            src="https://punkt-cdn.oslo.kommune.no/16/icons/arrow-return.svg"
+            alt="Tilbake"
+            className="return-icon"
+          />
+          {text.category.changeLanguage}
+        </button>
 
-        <Link
-          href="/category/karriere"
-          className="pkt-linkcard pkt-linkcard--blue"
-          onClick={() => setCategory("karriere")}
-        >
-          <div className="pkt-linkcard__title-wrapper">
-            <img
-              src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
-              alt="Karriere"
-              className="pkt-linkcard__icon" />
-            <div className="pkt-linkcard__title">Karriere</div>
-          </div>
-          <div className="pkt-linkcard__text">
-            Velg temaer og videoer innen karriere.
-          </div>
-        </Link>
-      </div>
-    </main><FooterMenu /></>
+        <div className="category-grid">
+          <Link
+            href="/category/helse"
+            className="category-card category-card--health"
+            onClick={() => setCategory("helse")}
+          >
+            <div className="category-card__header">
+              <img
+                src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
+                alt=""
+                className="category-card__icon"
+              />
+              <h2 className="category-card__title">
+                {text.category.healthTitle}
+              </h2>
+            </div>
+          </Link>
+
+          <Link
+            href="/category/karriere"
+            className="category-card category-card--career"
+            onClick={() => setCategory("karriere")}
+          >
+            <div className="category-card__header">
+              <img
+                src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
+                alt=""
+                className="category-card__icon"
+              />
+              <h2 className="category-card__title">
+                {text.category.careerTitle}
+              </h2>
+            </div>
+          </Link>
+        </div>
+      </main>
+    </>
   );
-} 
+}
