@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clearSelectedLanguage, getProgress, setCategory } from "@/lib/storage";
-import FooterMenu from "../footerMenu";
 
 export default function CategoryPage() {
   const router = useRouter();
@@ -73,6 +72,6 @@ export default function CategoryPage() {
           </div>
         </Link>
       </div>
-    </main><FooterMenu /></>
+    </main></>
   );
 } 
