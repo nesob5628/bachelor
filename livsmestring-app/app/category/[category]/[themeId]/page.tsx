@@ -13,7 +13,7 @@ export default function Page() {
   useEffect(() => {
     const progress = getProgress();
 
-    // Hvis noe mangler → send tilbake
+
     if (!progress.selectedLanguage) {
       router.replace("/language");
       return;
@@ -32,7 +32,6 @@ export default function Page() {
       return;
     }
 
-    //  filtrer riktig data
     const filtered = topics
       .filter(
         (item) =>

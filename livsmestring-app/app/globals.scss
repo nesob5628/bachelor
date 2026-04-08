@@ -141,30 +141,60 @@ button {
   color: #fff;
 }
 
-/* Wrapper for tittel + ikon */
-.pkt-linkcard__title-wrapper {
+.category-card__header {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* luft mellom ikon og tittel */
+  justify-content: center;
+  gap: 0.75rem;
+  
 }
 
-/* Ikonet */
-.pkt-linkcard__icon {
-  width: 24px;
-  height: 24px;
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  padding-bottom: 9rem;
+  
 }
 
-/* Selve tittelen */
-.pkt-linkcard__title {
-  font-weight: 700;
-  font-size: 1.2rem;
+.category-card {
+  min-height: 88px;
+  padding: 3.5rem 1rem;
+  text-decoration: none;
+}
+.category-card--health {
+  background: var(--pkt-color-surface-strong-red);
+  color: var(--pkt-color-text-body-default);
 }
 
-/* Kortbeskrivelse under */
-.pkt-linkcard__text {
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-  color: #000000;
+.category-card--career {
+  background: var(--pkt-color-surface-strong-beige);
+  color: var(--pkt-color-text-body-default);
+}
+.category-card--health:hover {
+  background-color: var(--pkt-color-brand-red-600
+  );
+  border-color: var(--pkt-color-brand-red-1000);
+}
+
+.category-card--career:hover {
+  background-color: var(--pkt-color-surface-default-light-beige
+  );
+  border-color: var(--pkt-color-surface-strong-beige);
+}
+
+.category-card__title {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 2.2;
+  font-weight: 600;
+  color: var(--pkt-color-grays-gray-800);
+}
+
+.category-card__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
 }
 
 .return-icon {
@@ -191,12 +221,6 @@ button {
   flex-direction: row;
   justify-content: space-around; /* eller space-between, center, etc. */
   align-items: center;
-}
-
-.category-grid {  
-  display: grid;  
-  gap: 3rem; 
-  margin-top: 2rem;
 }
 
 .return-button {
@@ -234,6 +258,7 @@ button {
 }
 
 @media (max-width: 640px) {
+  
     .oslo-header {
     grid-template-columns: 1fr auto 1fr;
     padding: 0.5rem 0.75rem;
@@ -289,6 +314,21 @@ button {
     width: 100px;
     height: 54px;
   }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .category-card {
+    min-height: 60px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .category-grid .pkt-linkcard__title {
+    font-size: clamp(1.1rem, 8vw, 1.8rem);
+  }
+  
 }
 
 
