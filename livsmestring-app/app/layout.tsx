@@ -1,11 +1,8 @@
-import "./globals.scss";
-import type { Metadata } from "next";
-import Link from "next/link";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Livsmestring",
-  description: "Livsmestring-app",
-};
+import "./globals.scss";
+import Link from "next/link";
+import { clearSelectedLanguage } from "@/lib/storage";
 
 export default function RootLayout({
   children,
@@ -37,6 +34,60 @@ export default function RootLayout({
           </div>
 
           <div className="header-spacer" />
+        
+
+        <div className="header-icons">
+          <Link href="/category" aria-label="Gå til hjemsiden">
+            <img
+              src="https://punkt-cdn.oslo.kommune.no/16/icons/home.svg"
+              alt=""
+              className="header-icon"
+              width={24}
+              height={24}
+            />
+          </Link>
+        </div>
+
+        <div className="header-icons">
+          <Link href="/category/helse" aria-label="Gå til helsesiden">
+            <img
+              src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
+              alt=""
+              className="header-icon"
+              width={24}
+              height={24}
+            />
+          </Link>
+        </div>
+
+        <div className="header-icons">
+          <Link href="/category/karriere" aria-label="Gå til karrieresiden">
+            <img
+              src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
+              alt=""
+              className="header-icon"
+              width={24}
+              height={24}
+            />
+          </Link>
+        </div>
+
+        <div className="header-icons">
+          <Link href="/language" aria-label="Gå til språksiden">
+            <img
+              src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg"
+              alt=""
+              className="header-icon"
+              width={24} onClick={clearSelectedLanguage}
+              height={24}
+            />
+          </Link>
+        </div>
+
+
+
+
+      
         </header>
 
         <main>{children}</main>
