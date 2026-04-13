@@ -5,12 +5,8 @@ export type LanguageProgress = {
   theme?: string;
   subtopicId?: string;
   synthesiaId?: string;
-};
-
-
-export const setProgress = (progress: Progress) => {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  completedThemes?: string[];
+  completedVideos?: string[];
 };
 
 export type Progress = {
@@ -21,6 +17,11 @@ export type Progress = {
 const defaultProgress: Progress = {
   selectedLanguage: undefined,
   languages: {},
+};
+
+export const setProgress = (progress: Progress) => {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
 };
 
 export function getProgress(): Progress {
@@ -149,6 +150,54 @@ export function setCurrentVideo(synthesiaId: string) {
   });
 }
 
+export function markThemeCompleted(themeId: string) {
+  const progress = getProgress();
+  const language = progress.selectedLanguage;
+  const languages = progress.languages ?? {};
+
+  if (!language) return;
+
+  const currentLanguageProgress = languages[language] || {};
+  const completedThemes = currentLanguageProgress.completedThemes ?? [];
+
+  if (completedThemes.includes(themeId)) return;
+
+  saveProgress({
+    ...progress,
+    languages: {
+      ...languages,
+      [language]: {
+        ...currentLanguageProgress,
+        completedThemes: [...completedThemes, themeId],
+      },
+    },
+  });
+}
+
+export function isThemeCompleted(themeId: string): boolean {
+  const progress = getProgress();
+  const language = progress.selectedLanguage;
+
+  if (!language) return false;
+
+  const completedThemes =
+    progress.languages?.[language]?.completedThemes ?? [];
+
+  return completedThemes.includes(themeId);
+}
+
+export function getThemeProgress(totalThemes: number): number {
+  const progress = getProgress();
+  const language = progress.selectedLanguage;
+
+  if (!language || totalThemes === 0) return 0;
+
+  const completedThemes =
+    progress.languages?.[language]?.completedThemes ?? [];
+
+  return Math.round((completedThemes.length / totalThemes) * 100);
+}
+
 export function getCurrentLanguageProgress(): LanguageProgress | undefined {
   const progress = getProgress();
   const language = progress.selectedLanguage;
@@ -173,4 +222,49 @@ export function clearSelectedLanguage() {
     ...progress,
     selectedLanguage: undefined,
   });
+}
+
+export function markVideoCompleted(synthesiaId: string) {
+  const progress = getProgress();
+  const language = progress.selectedLanguage;
+  const languages = progress.languages ?? {};
+
+  if (!language) return;
+
+  const currentLanguageProgress = languages[language] || {};
+  const completedVideos = currentLanguageProgress.completedVideos ?? [];
+
+  if (completedVideos.includes(synthesiaId)) return;
+
+  saveProgress({
+    ...progress,
+    languages: {
+      ...languages,
+      [language]: {
+        ...currentLanguageProgress,
+        completedVideos: [...completedVideos, synthesiaId],
+      },
+    },
+  });
+}
+
+export function isVideoCompleted(synthesiaId: string): boolean {
+  const progress = getProgress();
+  const language = progress.selectedLanguage;
+
+  if (!language) return false;
+
+  const completedVideos =
+    progress.languages?.[language]?.completedVideos ?? [];
+
+  return completedVideos.includes(synthesiaId);
+}
+
+export function getCompletedVideos(): string[] {
+  const progress = getProgress();
+  const language = progress.selectedLanguage;
+
+  if (!language) return [];
+
+  return progress.languages?.[language]?.completedVideos ?? [];
 }

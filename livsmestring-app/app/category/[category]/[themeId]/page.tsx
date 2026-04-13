@@ -2,25 +2,74 @@
 
 import { topics } from "@/lib/data/videos";
 import { Topic } from "@/lib/types";
-import { getProgress } from "@/lib/storage";
+import {
+  getProgress,
+  markVideoCompleted,
+  isVideoCompleted,
+} from "@/lib/storage";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { healthThemes } from "@/lib/themes/health_themes";
+import { careerThemes } from "@/lib/themes/career_themes";
+
+type ThemeItem = {
+  id: string;
+  title: Record<string, string>;
+};
+
+const uiText: Record<
+  string,
+  {
+    empty: string;
+    markDone: string;
+    done: string;
+    themeFallback: string;
+  }
+> = {
+  no: {
+    empty: "Ingen videoer funnet",
+    markDone: "Marker som fullført",
+    done: "Fullført",
+    themeFallback: "Tema",
+  },
+  en: {
+    empty: "No videos found",
+    markDone: "Mark as completed",
+    done: "Completed",
+    themeFallback: "Theme",
+  },
+  ar: {
+    empty: "لم يتم العثور على فيديوهات",
+    markDone: "وضع علامة كمكتمل",
+    done: "مكتمل",
+    themeFallback: "الموضوع",
+  },
+  uk: {
+    empty: "Відео не знайдено",
+    markDone: "Позначити як завершено",
+    done: "Завершено",
+    themeFallback: "Тема",
+  },
+};
 
 export default function Page() {
   const router = useRouter();
+
   const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
+  const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
+  const [themeTitle, setThemeTitle] = useState("Tema");
+  const [language, setLanguage] = useState("no");
 
   useEffect(() => {
     const progress = getProgress();
-
 
     if (!progress.selectedLanguage) {
       router.replace("/language");
       return;
     }
 
-    const language = progress.selectedLanguage;
-    const languageProgress = progress.languages[language];
+    const selectedLanguage = progress.selectedLanguage;
+    const languageProgress = progress.languages[selectedLanguage];
 
     if (!languageProgress?.category) {
       router.replace("/category");
@@ -32,40 +81,85 @@ export default function Page() {
       return;
     }
 
+    setLanguage(selectedLanguage);
+
+    const { category, theme } = languageProgress;
+
+    const themeList: ThemeItem[] =
+      category === "helse" ? healthThemes : careerThemes;
+
+    const foundTheme = themeList.find((item) => item.id === theme);
+
+    setThemeTitle(
+      foundTheme?.title?.[selectedLanguage] ||
+        foundTheme?.title?.no ||
+        uiText[selectedLanguage]?.themeFallback ||
+        "Tema"
+    );
+
     const filtered = topics
       .filter(
         (item) =>
-          item.language === language &&
-          item.category === languageProgress.category &&
-          item.theme === languageProgress.theme
+          item.language === selectedLanguage &&
+          item.category === category &&
+          item.theme === theme
       )
       .sort((a, b) => Number(a.order) - Number(b.order));
 
     setFilteredTopics(filtered);
+
+    const completed =
+      progress.languages?.[selectedLanguage]?.completedVideos ?? [];
+    setCompletedVideoIds(completed);
   }, [router]);
 
+  const handleMarkCompleted = (synthesiaId: string) => {
+    markVideoCompleted(synthesiaId);
+
+    setCompletedVideoIds((prev) =>
+      prev.includes(synthesiaId) ? prev : [...prev, synthesiaId]
+    );
+  };
+
+  const text = uiText[language] || uiText.no;
 
   return (
     <main className="pkt-container">
-      <h1>Videoer</h1>
+      <h1>{themeTitle}</h1>
 
-      {filteredTopics.length === 0 && <p>Ingen videoer funnet</p>}
+      {filteredTopics.length === 0 && <p>{text.empty}</p>}
 
-      {filteredTopics.map((item, i) => (
-        <div key={item.synthesiaId || i} style={{ marginBottom: "2rem" }}>
-          <h3>{item.title}</h3>
+      {filteredTopics.map((item, i) => {
+        const completed =
+          completedVideoIds.includes(item.synthesiaId) ||
+          isVideoCompleted(item.synthesiaId);
 
-          {item.synthesiaId && (
-            <iframe
-              width="100%"
-              height="300"
-              src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
-              allow="encrypted-media; fullscreen;"
-              allowFullScreen
-            />
-          )}
-        </div>
-      ))}
+        return (
+          <div key={item.synthesiaId || i} className="video-card">
+            <h3>{item.title}</h3>
+
+            {item.synthesiaId && (
+              <iframe
+                width="100%"
+                height="300"
+                src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
+                title={item.title}
+                allow="encrypted-media; fullscreen;"
+                allowFullScreen
+              />
+            )}
+
+            <button
+              type="button"
+              className="pkt-button"
+              onClick={() => handleMarkCompleted(item.synthesiaId)}
+              disabled={completed}
+            >
+              {completed ? text.done : text.markDone}
+            </button>
+          </div>
+        );
+      })}
     </main>
   );
 }

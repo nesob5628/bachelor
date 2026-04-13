@@ -1,6 +1,8 @@
 "use client";
+
 import "./globals.scss";
 import Link from "next/link";
+import Script from "next/script";
 import { clearSelectedLanguage } from "@/lib/storage";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
@@ -23,6 +25,12 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <Script
+          src="https://punkt-cdn.oslo.kommune.no/16/elements/pkt-progressbar.js"
+          type="module"
+          strategy="afterInteractive"
+        />
+
         <header className="oslo-header">
           <div className="brand-header">
             <Link href="/category" aria-label="Gå til kategorisiden">
@@ -62,7 +70,11 @@ export default function RootLayout({
               className={`header-actions-menu ${menuOpen ? "is-open" : ""}`}
             >
               <div className="header-icons">
-                <Link href="/category" aria-label="Gå til hjemsiden" onClick={() => setMenuOpen(false)}>
+                <Link
+                  href="/category"
+                  aria-label="Gå til hjemsiden"
+                  onClick={() => setMenuOpen(false)}
+                >
                   <img
                     src="https://punkt-cdn.oslo.kommune.no/16/icons/home.svg"
                     alt=""
@@ -74,7 +86,11 @@ export default function RootLayout({
               </div>
 
               <div className="header-icons">
-                <Link href="/category/helse" aria-label="Gå til helsesiden" onClick={() => setMenuOpen(false)}>
+                <Link
+                  href="/category/helse"
+                  aria-label="Gå til helsesiden"
+                  onClick={() => setMenuOpen(false)}
+                >
                   <img
                     src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
                     alt=""
@@ -86,7 +102,11 @@ export default function RootLayout({
               </div>
 
               <div className="header-icons">
-                <Link href="/category/karriere" aria-label="Gå til karrieresiden" onClick={() => setMenuOpen(false)}>
+                <Link
+                  href="/category/karriere"
+                  aria-label="Gå til karrieresiden"
+                  onClick={() => setMenuOpen(false)}
+                >
                   <img
                     src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
                     alt=""
@@ -98,14 +118,20 @@ export default function RootLayout({
               </div>
 
               <div className="header-icons">
-                <Link href="/language" aria-label="Gå til språksiden" onClick={() => setMenuOpen(false)}>
+                <Link
+                  href="/language"
+                  aria-label="Gå til språksiden"
+                  onClick={() => {
+                    clearSelectedLanguage();
+                    setMenuOpen(false);
+                  }}
+                >
                   <img
                     src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg"
                     alt=""
                     className="header-icon"
                     width={24}
                     height={24}
-                    onClick={clearSelectedLanguage}
                   />
                 </Link>
               </div>
@@ -115,7 +141,7 @@ export default function RootLayout({
 
         <main>{children}</main>
 
-        {pathname !== '/language' && (
+        {pathname !== "/language" && (
           <div className="mobile-footer">
             <FooterMenu />
           </div>
