@@ -209,14 +209,18 @@ button {
 .category-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4rem;
-  padding-bottom: 9rem;
+  gap: 2rem;
+  padding: 3.5rem 4rem;
   
 }
 
+.category-card .progress-wrapper {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
 .category-card {
   min-height: 88px;
-  padding: 3.5rem 1rem;
+  padding: 3.5rem 5rem;
   text-decoration: none;
   border: 1px solid transparent;
 }
