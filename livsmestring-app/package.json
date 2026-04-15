@@ -13,7 +13,7 @@
     "@oslokommune/punkt-css": "^16.3.0",
     "@oslokommune/punkt-elements": "^16.1.0",
     "@oslokommune/punkt-react": "^16.3.0",
-    "next": "16.1.6",
+    "next": "^16.2.3",
     "papaparse": "^5.5.3",
     "react": "19.2.3",
     "react-dom": "19.2.3"
