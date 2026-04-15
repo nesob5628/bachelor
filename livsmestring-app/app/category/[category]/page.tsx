@@ -19,13 +19,6 @@ type ThemeItem = {
   title: Record<string, string>;
 };
 
-const returnButtonText = {
-  no: "Tilbake til kategorier",
-  en: "Back to categories",
-  tr: "Kategorilere geri dön",
-  ta: "வகைகளுக்குத் திரும்பவும்",
-};
-
 export default function Page() {
   const params = useParams();
   const router = useRouter();
