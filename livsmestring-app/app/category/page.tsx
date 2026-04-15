@@ -11,6 +11,7 @@ import {
 import { translations } from "@/lib/translations";
 import { topics } from "@/lib/data/videos";
 import ProgressBar from "@/components/ProgressBar";
+import ReturnBtn from "@/components/ReturnBtn";
 
 export default function CategoryPage() {
   const router = useRouter();
@@ -74,18 +75,11 @@ export default function CategoryPage() {
   if (!mounted) {
     return (
       <main className="pkt-container">
-        <button
-          type="button"
-          className="pkt-button pkt-button--white return-button"
+        <ReturnBtn
+          text={text.category.changeLanguage}
+          onClick={handleChangeLanguage}
           disabled
-        >
-          <img
-            src="https://punkt-cdn.oslo.kommune.no/16/icons/arrow-return.svg"
-            alt=""
-            className="return-icon"
-          />
-          ...
-        </button>
+        />
 
         <div className="category-grid">
           <div className="category-card category-card--health">
@@ -118,18 +112,10 @@ export default function CategoryPage() {
 
   return (
     <main className="pkt-container">
-      <button
-        type="button"
+      <ReturnBtn
+        text={text.category.changeLanguage}
         onClick={handleChangeLanguage}
-        className="pkt-button pkt-button--white return-button"
-      >
-        <img
-          src="https://punkt-cdn.oslo.kommune.no/16/icons/arrow-return.svg"
-          alt="Tilbake"
-          className="return-icon"
-        />
-        {text.category.changeLanguage}
-      </button>
+      />
 
       <div className="category-grid">
         <Link
