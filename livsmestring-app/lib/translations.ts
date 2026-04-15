@@ -6,6 +6,8 @@ export const translations: Record<
       changeLanguage: string;
       healthTitle: string;
       careerTitle: string;
+      backToCategories: string;
+      backToThemes: string;
     };
     menu: {
       home: string;
@@ -18,9 +20,11 @@ export const translations: Record<
   no: {
     loading: "Laster...",
     category: {
-      changeLanguage: "Bytt språk",
+      changeLanguage: "Tilbake til språk",
       healthTitle: "Helse",
       careerTitle: "Karriere",
+      backToCategories: "Tilbake til kategorier",
+      backToThemes: "Tilbake til temaer",
     },
     menu: {
       home: "Hjem",
@@ -33,9 +37,11 @@ export const translations: Record<
   en: {
     loading: "Loading...",
     category: {
-      changeLanguage: "Change language",
+      changeLanguage: "Back to language",
       healthTitle: "Health",
       careerTitle: "Career",
+      backToCategories: "Back to categories",
+      backToThemes: "Back to themes",
     },
     menu: {
       home: "Home",
@@ -51,6 +57,8 @@ export const translations: Record<
       changeLanguage: "Dili değiştir",
       healthTitle: "Sağlık",
       careerTitle: "Kariyer",
+      backToCategories: "Kategorilere geri dön",
+      backToThemes: "Temalara geri dön",
     },
     menu: {
       home: "Ana Sayfa",
@@ -66,6 +74,8 @@ export const translations: Record<
       changeLanguage: "மொழியை மாற்று",
       healthTitle: "உடல்நலம்",
       careerTitle: "தொழில்",
+      backToCategories: "வகைகளுக்குத் திரும்பவும்",
+      backToThemes: "தலைப்புக்களுக்குத் திரும்பவும்",
     },
     menu: {
       home: "முகப்பு",

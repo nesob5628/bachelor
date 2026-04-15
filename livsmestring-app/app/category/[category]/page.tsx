@@ -10,11 +10,20 @@ import {
 import { topics } from '@/lib/data/videos';
 import { healthThemes } from '@/lib/themes/health_themes';
 import { careerThemes } from '@/lib/themes/career_themes';
+import { translations } from "@/lib/translations";
 import ProgressBar from '@/components/ProgressBar';
+import ReturnBtn from '@/components/ReturnBtn';
 
 type ThemeItem = {
   id: string;
   title: Record<string, string>;
+};
+
+const returnButtonText = {
+  no: "Tilbake til kategorier",
+  en: "Back to categories",
+  tr: "Kategorilere geri dön",
+  ta: "வகைகளுக்குத் திரும்பவும்",
 };
 
 export default function Page() {
@@ -89,6 +98,10 @@ export default function Page() {
   if (!mounted) {
     return (
       <main className="pkt-container">
+        <ReturnBtn 
+          text={translations[language]?.category?.backToCategories || translations.no.category.backToCategories}
+          href="/category" />
+
         <div className="theme-grid">
           {themes.map((item) => (
             <div key={item.id} className={themeCardClass}>
@@ -105,6 +118,10 @@ export default function Page() {
 
   return (
     <main className="pkt-container">
+      <ReturnBtn 
+        text={translations[language]?.category?.backToCategories || translations.no.category.backToCategories}
+        href="/category" />
+
       <ProgressBar value={totalProgress} label="Tema-progresjon" />
 
       <div className="theme-grid">

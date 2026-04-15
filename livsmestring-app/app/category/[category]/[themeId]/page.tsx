@@ -8,9 +8,11 @@ import {
   isVideoCompleted,
 } from "@/lib/storage";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { healthThemes } from "@/lib/themes/health_themes";
 import { careerThemes } from "@/lib/themes/career_themes";
+import ReturnBtn from "@/components/ReturnBtn";
+import { translations } from "@/lib/translations";
 
 type ThemeItem = {
   id: string;
@@ -50,10 +52,24 @@ const uiText: Record<
     done: "Завершено",
     themeFallback: "Тема",
   },
+  tr: {
+    empty: "Video bulunamadı",
+    markDone: "Tamamlandı olarak işaretle",
+    done: "Tamamlandı",
+    themeFallback: "Tema",
+  },
+  ta: {
+    empty: "வீடியோக்கள் எதுவும் கிடைக்கவில்லை",
+    markDone: "முடிந்தது என குறிக்கவும்",
+    done: "முடிந்தது",
+    themeFallback: "தலைப்பு",
+  },
 };
 
 export default function Page() {
   const router = useRouter();
+  const params = useParams();
+  const category = params.category as 'helse' | 'karriere';
 
   const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
   const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
@@ -125,6 +141,10 @@ export default function Page() {
 
   return (
     <main className="pkt-container">
+      <ReturnBtn 
+        text={translations[language]?.category?.backToThemes || translations.no.category.backToThemes}
+        href={`/category/${category}`} />
+
       <h1>{themeTitle}</h1>
 
       {filteredTopics.length === 0 && <p>{text.empty}</p>}
