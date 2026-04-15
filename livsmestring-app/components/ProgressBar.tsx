@@ -17,7 +17,7 @@ export default function ProgressBar({
         title={label}
         valueCurrent={value}
         valueMax={100}
-        statusType="none"
+        statusType="percentage"
       ></pkt-progressbar>
     </div>
   );
