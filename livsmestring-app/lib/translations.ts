@@ -6,8 +6,12 @@ export const translations: Record<
       changeLanguage: string;
       healthTitle: string;
       careerTitle: string;
-      healthDescription: string;
-      careerDescription: string;
+    };
+    menu: {
+      home: string;
+      health: string;
+      career: string;
+      language: string;
     };
   }
 > = {
@@ -17,8 +21,12 @@ export const translations: Record<
       changeLanguage: "Bytt språk",
       healthTitle: "Helse",
       careerTitle: "Karriere",
-      healthDescription: "Utforsk temaer om fysisk og psykisk helse.",
-      careerDescription: "Utforsk temaer om valg, muligheter og arbeidsliv.",
+    },
+    menu: {
+      home: "Hjem",
+      health: "Helse",
+      career: "Karriere",
+      language: "Språk",
     },
   },
 
@@ -28,8 +36,27 @@ export const translations: Record<
       changeLanguage: "Change language",
       healthTitle: "Health",
       careerTitle: "Career",
-      healthDescription: "Explore topics about physical and mental health.",
-      careerDescription: "Explore topics about choices, opportunities and working life.",
+    },
+    menu: {
+      home: "Home",
+      health: "Health",
+      career: "Career",
+      language: "Language",
+    },
+  },
+
+  tr: {
+    loading: "Yüklüyor...",
+    category: {
+      changeLanguage: "Dili değiştir",
+      healthTitle: "Sağlık",
+      careerTitle: "Kariyer",
+    },
+    menu: {
+      home: "Ana Sayfa",
+      health: "Sağlık",
+      career: "Kariyer",
+      language: "Dil",
     },
   },
 
@@ -39,8 +66,12 @@ export const translations: Record<
       changeLanguage: "மொழியை மாற்று",
       healthTitle: "உடல்நலம்",
       careerTitle: "தொழில்",
-      healthDescription: "உடல் மற்றும் மனநலத்தைப் பற்றிய தலைப்புகளை ஆராயுங்கள்.",
-      careerDescription: "தேர்வுகள், வாய்ப்புகள் மற்றும் வேலை வாழ்க்கையைப் பற்றிய தலைப்புகளை ஆராயுங்கள்.",
+    },
+    menu: {
+      home: "முகப்பு",
+      health: "உடல்நலம்",
+      career: "தொழில்",
+      language: "மொழி",
     },
   },
 };
