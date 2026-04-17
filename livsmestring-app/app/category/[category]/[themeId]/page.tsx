@@ -175,6 +175,11 @@ export default function Page() {
 
   const text = uiText[language] || uiText.no;
 
+  const subthemeCardClass =
+    category === "helse"
+      ? "subtheme-card subtheme-card--health"
+      : "subtheme-card subtheme-card--career";
+
   return (
     <main className="pkt-container">
       <ReturnBtn
@@ -187,24 +192,25 @@ export default function Page() {
 
       <h1>{themeTitle}</h1>
 
-      {hasGroups && (
-        <>
-          <h2>{text.chooseSubtheme}</h2>
-          <div className="category-grid">
-            {groups.map((group) => (
-              <Link
-                key={group.id}
-                href={`/category/${category}/${themeFromUrl}/${group.id}`}
-                className="pkt-linkcard pkt-linkcard-green"
-              >
-                <div className="pkt-linkcard__content">
-                  <h3>{group.title}</h3>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </>
-      )}
+        {hasGroups && (
+          <>
+            <h2 className="page-title">{text.chooseSubtheme}</h2>
+
+            <div className="subtheme-grid">
+              {groups.map((group) => (
+                <Link
+                  key={group.id}
+                  href={`/category/${category}/${themeFromUrl}/${group.id}`}
+                  className={subthemeCardClass}
+                >
+                  <div className="subtheme-card__header">
+                    <span className="subtheme-card__title">{group.title}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </>
+        )}
 
       {!hasGroups && filteredTopics.length === 0 && <p>{text.empty}</p>}
 
