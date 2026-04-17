@@ -1319,6 +1319,99 @@ export const healthThemes = [
         // her skal PSYKISK HELSE ligge, men usikker på strukturen pga undertemaene, så ventet med å legge det inn.
     },
     {
+        id: "psykisk_helse",
+        title: {
+          no: "Psykisk helse",
+          en: "Mental health",
+          ar: "",
+          fa: "",
+          ku: "",
+          so: "",
+          es: "",
+          sw: "",
+          ta: "",
+          ti: "",
+          tr: "",
+          uk: "",
+          ur: "",
+        },
+        subthemes: [
+          {
+            id: "psykisk_helse",
+            title: {
+              no: "Psykisk helse",
+              en: "Mental health",
+              ar: "",
+              fa: "",
+              ku: "",
+              so: "",
+              es: "",
+              sw: "",
+              ta: "",
+              ti: "",
+              tr: "",
+              uk: "",
+              ur: "",
+            }
+          },
+          {
+            id: "fastlege",
+            title: {
+              no: "Fastlege",
+              en: "General practitioner",
+              ar: "",
+              fa: "",
+              ku: "",
+              so: "",
+              es: "",
+              sw: "",
+              ta: "",
+              ti: "",
+              tr: "",
+              uk: "",
+              ur: "",
+            }
+          },
+          {
+            id: "stress",
+            title: {
+              no: "Stress",
+              en: "Stress",
+              ar: "",
+              fa: "",
+              ku: "",
+              so: "",
+              es: "",
+              sw: "",
+              ta: "",
+              ti: "",
+              tr: "",
+              uk: "",
+              ur: "",
+            }
+          },
+          {
+            id: "mobbing",
+            title: {
+              no: "Mobbing",
+              en: "Bullying",
+              ar: "",
+              fa: "",
+              ku: "",
+              so: "",
+              es: "",
+              sw: "",
+              ta: "",
+              ti: "",
+              tr: "",
+              uk: "",
+              ur: "",
+            }
+          }
+        ]
+      },
+
+    {
         id: "kvinnens_helse",
         title: {
             no: "Kvinnens reproduktive helse",
