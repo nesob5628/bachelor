@@ -1,1413 +1,334 @@
-/* 
+/*
 Countries and their languagecodes:
-    Norway: no
-    English: en
-    Arabic: ar
-    Farsi: fa
-    Kurmanji: ku
-    Somali: so
-    Spanish: es
-    Swahili: sw
-    Tamil: ta
-    Tigrinya: ti
-    Turkish: tr
-    Ukrainian: uk
-    Urdu: ur
+Norway: no
+English: en
+Arabic: ar
+Farsi: fa
+Kurmanji: ku
+Somali: so
+Spanish: es
+Swahili: sw
+Tamil: ta
+Tigrinya: ti
+Turkish: tr
+Ukrainian: uk
+Urdu: ur
 */
-export const healthThemes = [
-    {
-        id: "skeiv_verden",
-        title: {
-            no: "Skeiv verden",
-            en: "Queer world",
-            ar: "",
-            fa: "",
-            ku: "",
-            so: "",
-            es: "",
-            sw: "",
-            ta: "",
-            ti: "",
-            tr: "",
-            uk: "",
-            ur: "",
 
-        },
-        subthemes: [
-            {
-                id: "valgfrihet",
-                title: {
-                    no: "Valgfrihet",
-                    en: "Freedom of choice",
-                    ar: "حرية الاختيار",
-                    fa: "آزادی انتخاب",
-                    ku: "Azadiya hilbijartinê",
-                    so: "Xorriyada-doorashada",
-                    es: "La Libertad de Elección",
-                    sw: "Uhuru wa kuchagua",
-                    ta: "",
-                    ti: "ናይ ምምራጽ ናጽነት",
-                    tr: "Tercih Özgürlüğü",
-                    uk: "Свобода вибору",
-                    ur: "اختیار کا حق", 
-                }
-            }, {
-                id: "sosiale_normer",
-                title: {
-                    no: "Sosiale normer",
-                    en: "Social norms",
-                    ar: "الأعراف الاجتماعية",
-                    fa: "نورم‌های اجتماعی",
-                    ku: "Adatên civakî",
-                    so: "Xeerarka Bulshada",
-                    es: "Normas sociales",
-                    sw: "Kanuni za kijamii",
-                    ta: "",
-                    ti: "ማሕበራዊ ስርዓታት",
-                    tr: "Sosyal normlar",
-                    uk: "Соціальні норми",
-                    ur: "معاشرتی اصول", 
-                }
-            }, {
-                id: "mangfold",
-                title: {
-                    no: "Mangfold",
-                    en: "Diversity",
-                    ar: "التنوع",
-                    fa: "تنوع",
-                    ku: "Pir-rengî",
-                    so: "Kala duwanaansho",
-                    es: "La Diversidad",
-                    sw: "Kutafautiana",
-                    ta: "",
-                    ti: "ብዙሕነት (ፍልልይነት)",
-                    tr: "Toplumsal Çeşitlilik",
-                    uk: "Різноманітність",
-                    ur: "تنوع",
-            }
-        }, {
-                id: "diskriminering",
-                title: {
-                    no: "Diskriminring",
-                    en: "Discrimination",
-                    ar: "التمييز العنصري",
-                    fa: "تبعیض",
-                    ku: "Cudakarî",
-                    so: "Takoorid (Kala eexasho)",
-                    es: "La Discriminación",
-                    sw: "Ubaguzi",
-                    ta: "",
-                    ti: "ምግላል",
-                    tr: "Ayrımcılık",
-                    uk: "Дискримінація",
-                    ur: "امتیازی سلوک",
-            }
-        }
-        ]
+type Translation = {
+  no: string;
+  en: string;
+  ar: string;
+  fa: string;
+  ku: string;
+  so: string;
+  es: string;
+  sw: string;
+  ta: string;
+  ti: string;
+  tr: string;
+  uk: string;
+  ur: string;
+};
+
+type Subtopic = {
+  id: string;
+  title: Translation;
+};
+
+type ThemeGroup = {
+  id: string;
+  title: Translation;
+  subtopics: Subtopic[];
+};
+
+type HealthTheme = {
+  id: string;
+  title: Translation;
+  subtopics?: Subtopic[];
+  groups?: ThemeGroup[];
+};
+
+const emptyTranslations = (): Omit<Translation, "no" | "en"> => ({
+  ar: "",
+  fa: "",
+  ku: "",
+  so: "",
+  es: "",
+  sw: "",
+  ta: "",
+  ti: "",
+  tr: "",
+  uk: "",
+  ur: "",
+});
+
+export const healthThemes: HealthTheme[] = [
+  {
+    id: "skeiv_verden",
+    title: {
+      no: "Skeiv verden",
+      en: "Queer world",
+      ...emptyTranslations(),
     },
-    {
-        id: "vold_i_naere_relasjoner",
+    subtopics: [
+      {
+        id: "valgfrihet",
         title: {
-            no: "Vold i nære relasjoner",
-            en: "Violence in close relationships ",
-            ar: "",
-            fa: "",
-            ku: "",
-            so: "",
-            es: "",
-            sw: "", 
-            ta: "",
-            ti: "",
-            tr: "",
-            uk: "",
-            ur: "",
+          no: "Valgfrihet",
+          en: "Freedom of choice",
+          ar: "حرية الاختيار",
+          fa: "آزادی انتخاب",
+          ku: "Azadiya hilbijartinê",
+          so: "Xorriyadda doorashada",
+          es: "Libertad de elección",
+          sw: "Uhuru wa kuchagua",
+          ta: "",
+          ti: "ናይ ምምራጽ ናጽነት",
+          tr: "Tercih özgürlüğü",
+          uk: "Свобода вибору",
+          ur: "اختیار کا حق",
         },
-        subthemes: [
-            {
-                id: "vold_introduksjon",
-                title: {
-                    no: "Introduksjon",
-                    en: "Introduction ",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "", 
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }, 
-            {
-                id: "vold_nye_ord", // vi må muligens finne en bedre løsning på id-navn, da mange av de samme ordene går igjen i flere temaer. Kanskje id kan være en kombinasjon av tema og ord som skrevet nå, slik at det blir unikt?
-                title: {
-                    no: "Nye ord",
-                    en: "New Words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "", 
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "typer_vold",
-                title: {
-                    no: "Typer vold",
-                    en: "Types of Violence",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "", 
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }, 
-            {
-                id: "naere_relasjoner",
-                title: {
-                    no: "Nære relasjoner",
-                    en: "Close Relationships",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "", 
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }, 
-            {
-                id: "avvergingsplikt",
-                title: {
-                    no: "Avvergingsplikt",
-                    en: "Duty to Prevent Harm",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "", 
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }, 
-            {
-                id: "taushetsplikt",
-                title: {
-                    no: "Taushetsplikt",
-                    en: "Duty of Confidentiality",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "", 
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }, 
-            {
-                id: "tegn_paa_vold",
-                title: {
-                    no: "Tegn på vold",
-                    en: "Signs of Violence",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "", 
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }, 
-            {
-                id: "hvem_kan_hjelpe_1",
-                title: {
-                    no: "Hvem kan hjelpe, 1",
-                    en: "Who Can Help, Part 1",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "", 
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }, 
-            {
-                id: "hvem_kan_hjelpe_2",
-                title: {
-                    no: "Hvem kan hjelpe, 2",
-                    en: "Who Can Help, Part 2",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "", 
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }, 
-            {
-                id: "vold_case",
-                title: {
-                    no: "Case",
-                    en: "Case",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "", 
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }
-        ]
+      },
+      {
+        id: "sosiale_normer",
+        title: {
+          no: "Sosiale normer",
+          en: "Social norms",
+          ar: "الأعراف الاجتماعية",
+          fa: "هنجارهای اجتماعی",
+          ku: "Normên civakî",
+          so: "Xeerarka bulshada",
+          es: "Normas sociales",
+          sw: "Kanuni za kijamii",
+          ta: "",
+          ti: "ማሕበራዊ ስርዓታት",
+          tr: "Sosyal normlar",
+          uk: "Соціальні норми",
+          ur: "معاشرتی اصول",
+        },
+      },
+      {
+        id: "mangfold",
+        title: {
+          no: "Mangfold",
+          en: "Diversity",
+          ar: "التنوع",
+          fa: "تنوع",
+          ku: "Cûrbecûrî",
+          so: "Kala duwanaansho",
+          es: "Diversidad",
+          sw: "Tofauti",
+          ta: "",
+          ti: "ብዙሕነት",
+          tr: "Çeşitlilik",
+          uk: "Різноманітність",
+          ur: "تنوع",
+        },
+      },
+      {
+        id: "diskriminering",
+        title: {
+          no: "Diskriminering",
+          en: "Discrimination",
+          ar: "التمييز",
+          fa: "تبعیض",
+          ku: "Cudakirin",
+          so: "Takoorid",
+          es: "Discriminación",
+          sw: "Ubaguzi",
+          ta: "",
+          ti: "ምግላል",
+          tr: "Ayrımcılık",
+          uk: "Дискримінація",
+          ur: "امتیازی سلوک",
+        },
+      },
+    ],
+  },
+
+  {
+    id: "vold_i_naere_relasjoner",
+    title: {
+      no: "Vold i nære relasjoner",
+      en: "Violence in close relationships",
+      ...emptyTranslations(),
     },
-    {
-        id: "mat_og_helse",
-        title: {
-            no: "Mat og helse",
-            en: "",
-            ar: "",
-            fa: "",
-            ku: "",
-            so: "",
-            es: "",
-            sw: "", 
-            ta: "",
-            ti: "",
-            tr: "",
-            uk: "",
-            ur: "",
-        },
-        subthemes: [
-            {
-                id: "mat_og_helse_introduksjon",
-                title: {
-                    no: "Introduksjon",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_2_1",
-                title: {
-                    no: "2.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_matkultur",
-                title: {
-                    no: "2.2 Matkultur",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_3_1",
-                title: {
-                    no: "3.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_naering_i_mat_del_1",
-                title: {
-                    no: "3.2 Næring i mat, del 1",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_4_1",
-                title: {
-                    no: "4.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_naering_i_mat_del_2",
-                title: {
-                    no: "4.2 Næring i mat, del 2",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_5_1",
-                title: {
-                    no: "5.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_frukt_og_gront",
-                title: {
-                    no: "5.2 Frukt og grønt",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_6_1",
-                title: {
-                    no: "6.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_unnga_sukker",
-                title: {
-                    no: "6.2 Unngå sukker",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_case_1",
-                title: {
-                    no: "Case",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_8_1",
-                title: {
-                    no: "8.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_diabetes",
-                title: {
-                    no: "8.2 Diabetes",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_9_1",
-                title: {
-                    no: "9.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_munnhelse",
-                title: {
-                    no: "9.2 Munnhelse",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_10_1",
-                title: {
-                    no: "10.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_matfett",
-                title: {
-                    no: "10.2 Matfett",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_11_1",
-                title: {
-                    no: "11.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_sjomat",
-                title: {
-                    no: "11.2 Sjømat",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_melkeprodukter",
-                title: {
-                    no: "Melkeprodukter",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_korn",
-                title: {
-                    no: "Korn",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_14_1",
-                title: {
-                    no: "14.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_salt",
-                title: {
-                    no: "14.2 Salt",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_nye_ord_15_1",
-                title: {
-                    no: "15.1 Nye ord",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_hygiene",
-                title: {
-                    no: "15.2 Hygiene",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_case_2",
-                title: {
-                    no: "Case",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "mat_og_helse_oppsummering",
-                title: {
-                    no: "Oppsummering",
-                    en: "",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }
-        ]
+    subtopics: [
+      { id: "introduksjon", title: { no: "Introduksjon", en: "Introduction", ...emptyTranslations() } },
+      { id: "nye_ord", title: { no: "Nye ord", en: "New words", ...emptyTranslations() } },
+      { id: "typer_vold", title: { no: "Typer vold", en: "Types of violence", ...emptyTranslations() } },
+      { id: "naere_relasjoner", title: { no: "Nære relasjoner", en: "Close relationships", ...emptyTranslations() } },
+      { id: "avvergingsplikt", title: { no: "Avvergingsplikt", en: "Duty to prevent harm", ...emptyTranslations() } },
+      { id: "taushetsplikt", title: { no: "Taushetsplikt", en: "Duty of confidentiality", ...emptyTranslations() } },
+      { id: "tegn_paa_vold", title: { no: "Tegn på vold", en: "Signs of violence", ...emptyTranslations() } },
+      { id: "hvem_kan_hjelpe_1", title: { no: "Hvem kan hjelpe, 1", en: "Who can help, part 1", ...emptyTranslations() } },
+      { id: "hvem_kan_hjelpe_2", title: { no: "Hvem kan hjelpe, 2", en: "Who can help, part 2", ...emptyTranslations() } },
+      { id: "case", title: { no: "Case", en: "Case", ...emptyTranslations() } },
+    ],
+  },
+
+  {
+    id: "mat_og_helse",
+    title: {
+      no: "Mat og helse",
+      en: "Food and health",
+      ...emptyTranslations(),
     },
-    {
-        id: "fysisk_aktivitet",
-        title: {
-            no: "Fysisk aktivitet",
-            en: "Physical activity ",
-            ar: "",
-            fa: "",
-            ku: "",
-            so: "",
-            es: "",
-            sw: "",
-            ta: "",
-            ti: "",
-            tr: "",
-            uk: "",
-            ur: "",
-        },
-        subthemes: [
-            {
-                id: "fysisk_aktivitet_introduksjon",
-                title: {
-                    no: "Introduksjon",
-                    en: "Introduction",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_2_1",
-                title: {
-                    no: "2.1 Nye ord",
-                    en: "2.1 New words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_vaer_fysisk_aktiv",
-                title: {
-                    no: "2.2 Vær fysisk aktiv",
-                    en: "2.2 Be physically active",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_3_1",
-                title: {
-                    no: "3.1 Nye ord",
-                    en: "3.1 New words ",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_intensivtrening",
-                title: {
-                    no: "3.2 Intensivtrening",
-                    en: "3.2 High-intensity training",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_4_1",
-                title: {
-                    no: "4.1 Nye ord",
-                    en: "4.1 New words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_styrketrening",
-                title: {
-                    no: "4.2 Styrketrening",
-                    en: "4.2 Strength training",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_5_1",
-                title: {
-                    no: "5.1 Nye ord",
-                    en: "5.1 New words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_energiinntak_og_energiforbruk",
-                title: {
-                    no: "5.2 Energiinntak og energiforbruk",
-                    en: "5.2 Intake and  expenditure",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_6_1",
-                title: {
-                    no: "6.1 Nye ord",
-                    en: "6.1 New words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_blodsukker",
-                title: {
-                    no: "6.2 Blodsukker",
-                    en: "6.2 Blood sugar",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_7_1",
-                title: {
-                    no: "7.1 Nye ord",
-                    en: "7.1 New words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_kolesterol",
-                title: {
-                    no: "7.2 Kolesterol",
-                    en: "7.2 Cholesterol",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_8_1",
-                title: {
-                    no: "8.1 Nye ord",
-                    en: "8.1 New words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_blodtrykk",
-                title: {
-                    no: "8.2 Blodtrykk",
-                    en: "8.2 Blood pressure",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_9_1",
-                title: {
-                    no: "9.1 Nye ord",
-                    en: "9.1 New words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_kreft",
-                title: {
-                    no: "9.2 Kreft",
-                    en: "9.2 Cancer ",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_10_1",
-                title: {
-                    no: "10.1  Nye ord",
-                    en: "10.1 New words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_hjernen",
-                title: {
-                    no: "10.2 Hjernen",
-                    en: "10.2 The brain",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_11_1",
-                title: {
-                    no: "11.1 Nye ord",
-                    en: "11.1 New words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_smerte",
-                title: {
-                    no: "11.2 Smerte",
-                    en: "11.2 Pain",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_nye_ord_12_1",
-                title: {
-                    no: "12.1 Nye ord",
-                    en: "12.1 New words",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_muskler_og_skjelett",
-                title: {
-                    no: "12.2 Muskler og skjelett",
-                    en: "12.2 Muscles and skeleton",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_andre_aspekter",
-                title: {
-                    no: "13. Andre aspekter",
-                    en: "13. Other aspects",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_caser",
-                title: {
-                    no: "14. Caser",
-                    en: "14. Cases ",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "fysisk_aktivitet_oppsummering",
-                title: {
-                    no: "Oppsummering",
-                    en: "15. Summary",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }
-        ]
-        // her skal PSYKISK HELSE ligge, men usikker på strukturen pga undertemaene, så ventet med å legge det inn.
+    subtopics: [
+      { id: "introduksjon", title: { no: "Introduksjon", en: "Introduction", ...emptyTranslations() } },
+      { id: "kosthold", title: { no: "Kosthold", en: "Diet", ...emptyTranslations() } },
+      { id: "naering_1", title: { no: "Næring i mat, del 1", en: "Nutrition in food, part 1", ...emptyTranslations() } },
+      { id: "naering_2", title: { no: "Næring i mat, del 2", en: "Nutrition in food, part 2", ...emptyTranslations() } },
+      { id: "frukt_og_gront", title: { no: "Frukt og grønt", en: "Fruit and vegetables", ...emptyTranslations() } },
+      { id: "sukker", title: { no: "Sukker", en: "Sugar", ...emptyTranslations() } },
+      { id: "case", title: { no: "Case", en: "Case", ...emptyTranslations() } },
+      { id: "diabetes", title: { no: "Diabetes", en: "Diabetes", ...emptyTranslations() } },
+      { id: "munnhelse", title: { no: "Munnhelse", en: "Oral health", ...emptyTranslations() } },
+      { id: "matfett", title: { no: "Matfett", en: "Dietary fat", ...emptyTranslations() } },
+      { id: "sjomat", title: { no: "Sjømat", en: "Seafood", ...emptyTranslations() } },
+      { id: "melkeprodukter", title: { no: "Melkeprodukter", en: "Dairy products", ...emptyTranslations() } },
+      { id: "korn", title: { no: "Korn", en: "Grains", ...emptyTranslations() } },
+      { id: "salt", title: { no: "Salt", en: "Salt", ...emptyTranslations() } },
+      { id: "hygiene", title: { no: "Hygiene", en: "Hygiene", ...emptyTranslations() } },
+      { id: "oppsummering", title: { no: "Oppsummering", en: "Summary", ...emptyTranslations() } },
+    ],
+  },
+
+  {
+    id: "fysisk_aktivitet",
+    title: {
+      no: "Fysisk aktivitet",
+      en: "Physical activity",
+      ...emptyTranslations(),
     },
-    {
-        id: "kvinnens_helse",
+    subtopics: [
+      { id: "introduksjon", title: { no: "Introduksjon", en: "Introduction", ...emptyTranslations() } },
+      { id: "vaer_fysisk_aktiv", title: { no: "Vær fysisk aktiv", en: "Be physically active", ...emptyTranslations() } },
+      { id: "intensivtrening", title: { no: "Intensivtrening", en: "High-intensity training", ...emptyTranslations() } },
+      { id: "styrketrening", title: { no: "Styrketrening", en: "Strength training", ...emptyTranslations() } },
+      { id: "energiinntak_og_energiforbruk", title: { no: "Energiinntak og energiforbruk", en: "Energy intake and expenditure", ...emptyTranslations() } },
+      { id: "blodsukker", title: { no: "Blodsukker", en: "Blood sugar", ...emptyTranslations() } },
+      { id: "kolesterol", title: { no: "Kolesterol", en: "Cholesterol", ...emptyTranslations() } },
+      { id: "blodtrykk", title: { no: "Blodtrykk", en: "Blood pressure", ...emptyTranslations() } },
+      { id: "kreft", title: { no: "Kreft", en: "Cancer", ...emptyTranslations() } },
+      { id: "hjernen", title: { no: "Hjernen", en: "The brain", ...emptyTranslations() } },
+      { id: "smerte", title: { no: "Smerte", en: "Pain", ...emptyTranslations() } },
+      { id: "muskler_og_skjelett", title: { no: "Muskler og skjelett", en: "Muscles and skeleton", ...emptyTranslations() } },
+      { id: "andre_aspekter", title: { no: "Andre aspekter", en: "Other aspects", ...emptyTranslations() } },
+      { id: "caser", title: { no: "Caser", en: "Cases", ...emptyTranslations() } },
+      { id: "oppsummering", title: { no: "Oppsummering", en: "Summary", ...emptyTranslations() } },
+    ],
+  },
+
+  {
+    id: "munnhelse",
+    title: {
+      no: "Munnhelse",
+      en: "Oral health",
+      ...emptyTranslations(),
+    },
+    subtopics: [
+      { id: "introduksjon", title: { no: "Introduksjon", en: "Introduction", ...emptyTranslations() } },
+      { id: "nye_ord", title: { no: "Nye ord", en: "New words", ...emptyTranslations() } },
+      { id: "rettigheter", title: { no: "Rettigheter", en: "Rights", ...emptyTranslations() } },
+      { id: "hold_tennene_rene", title: { no: "Hold tennene rene", en: "Keep your teeth clean", ...emptyTranslations() } },
+      { id: "tannhelsekontroll", title: { no: "Gå til tannhelsekontroll", en: "Go to a dental check-up", ...emptyTranslations() } },
+      { id: "kostraad_munnhelse", title: { no: "Kostråd for munnhelsen", en: "Dietary advice for oral health", ...emptyTranslations() } },
+      { id: "munnhelse_hos_barn", title: { no: "Munnhelse hos barn", en: "Oral health in children", ...emptyTranslations() } },
+    ],
+  },
+
+  {
+    id: "psykisk_helse",
+    title: {
+      no: "Psykisk helse",
+      en: "Mental health",
+      ...emptyTranslations(),
+    },
+    groups: [
+      {
+        id: "psykisk_helse",
         title: {
-            no: "Kvinnens reproduktive helse",
-            en: "Women's reproductive health ",
-            ar: "",
-            fa: "",
-            ku: "",
-            so: "",
-            es: "",
-            sw: "",
-            ta: "",
-            ti: "",
-            tr: "",
-            uk: "",
-            ur: "",
+          no: "Psykisk helse",
+          en: "Mental health",
+          ...emptyTranslations(),
         },
-        subthemes: [
-            {
-                id: "kvinnens_helse_ytre_kjonnsorganer",
-                title: {
-                    no: "Kvinnens ytre kjønnsorganer",
-                    en: "Women’s external genitalia",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "kvinnens_helse_indre_kjonnsorganer",
-                title: {
-                    no: "Kvinnens indre kjønnsorganer",
-                    en: "Women’s internal reproductive organs ",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "kvinnens__helse_menstruasjon",
-                title: {
-                    no: "Menstruasjon",
-                    en: "Menstruation ",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            },
-            {
-                id: "kvinnens_helse_prevensjon",
-                title: {
-                    no: "Prevensjon",
-                    en: "Contraception",
-                    ar: "",
-                    fa: "",
-                    ku: "",
-                    so: "",
-                    es: "",
-                    sw: "",
-                    ta: "",
-                    ti: "",
-                    tr: "",
-                    uk: "",
-                    ur: "",
-                }
-            }
-        ]
-    }
-]
+        subtopics: [
+          { id: "introduksjon", title: { no: "Introduksjon", en: "Introduction", ...emptyTranslations() } },
+          { id: "nye_ord", title: { no: "Nye ord", en: "New words", ...emptyTranslations() } },
+          { id: "psykisk_helse", title: { no: "Psykisk helse", en: "Mental health", ...emptyTranslations() } },
+          { id: "psykiske_helseplager", title: { no: "Psykisk helseplager", en: "Mental health challenges", ...emptyTranslations() } },
+          { id: "psykiske_lidelser", title: { no: "Psykiske lidelser", en: "Mental disorders", ...emptyTranslations() } },
+          { id: "hvordan_ta_vare_paa_din_psykiske_helse", title: { no: "Hvordan ta vare på din psykiske helse", en: "How to take care of your mental health", ...emptyTranslations() } },
+          { id: "hvor_faa_hjelp", title: { no: "Hvor få hjelp", en: "Where to get help", ...emptyTranslations() } },
+          { id: "oppsummering", title: { no: "Oppsummering", en: "Summary", ...emptyTranslations() } },
+        ],
+      },
+      {
+        id: "fastlege",
+        title: {
+          no: "Fastlege",
+          en: "General practitioner",
+          ...emptyTranslations(),
+        },
+        subtopics: [
+          { id: "introduksjon", title: { no: "Introduksjon", en: "Introduction", ...emptyTranslations() } },
+          { id: "nye_ord", title: { no: "Nye ord", en: "New words", ...emptyTranslations() } },
+          { id: "fastlege", title: { no: "Fastlege", en: "General practitioner", ...emptyTranslations() } },
+          { id: "rettigheter", title: { no: "Rettigheter", en: "Rights", ...emptyTranslations() } },
+          { id: "oppsummering", title: { no: "Oppsummering", en: "Summary", ...emptyTranslations() } },
+        ],
+      },
+      {
+        id: "stress",
+        title: {
+          no: "Stress",
+          en: "Stress",
+          ...emptyTranslations(),
+        },
+        subtopics: [
+          { id: "introduksjon", title: { no: "Introduksjon", en: "Introduction", ...emptyTranslations() } },
+          { id: "nye_ord", title: { no: "Nye ord", en: "New words", ...emptyTranslations() } },
+          { id: "stress", title: { no: "Stress", en: "Stress", ...emptyTranslations() } },
+          { id: "stress_norge", title: { no: "Stress som ny i Norge", en: "Stress as a newcomer in Norway", ...emptyTranslations() } },
+          { id: "haandtere_stress", title: { no: "Håndtere stress", en: "Managing stress", ...emptyTranslations() } },
+          { id: "oppsummering", title: { no: "Oppsummering", en: "Summary", ...emptyTranslations() } },
+        ],
+      },
+      {
+        id: "mobbing",
+        title: {
+          no: "Mobbing",
+          en: "Bullying",
+          ...emptyTranslations(),
+        },
+        subtopics: [
+          { id: "introduksjon", title: { no: "Introduksjon", en: "Introduction", ...emptyTranslations() } },
+          { id: "nye_ord", title: { no: "Nye ord", en: "New words", ...emptyTranslations() } },
+          { id: "mobbing", title: { no: "Mobbing", en: "Bullying", ...emptyTranslations() } },
+          { id: "konsekvenser", title: { no: "Konsekvenser", en: "Consequences", ...emptyTranslations() } },
+          { id: "mobberen", title: { no: "Mobberen", en: "The bully", ...emptyTranslations() } },
+          { id: "hvor_faa_stotte", title: { no: "Hvor få støtte", en: "Where to get support", ...emptyTranslations() } },
+          { id: "har_du_mobbet_noen", title: { no: "Har du mobbet noen", en: "Have you bullied someone", ...emptyTranslations() } },
+          { id: "oppsummering", title: { no: "Oppsummering", en: "Summary", ...emptyTranslations() } },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "kvinnens_helse",
+    title: {
+      no: "Kvinnens reproduktive helse",
+      en: "Women's reproductive health",
+      ...emptyTranslations(),
+    },
+    subtopics: [
+      { id: "ytre_kjonnsorganer", title: { no: "Kvinnens ytre kjønnsorganer", en: "Women’s external genitalia", ...emptyTranslations() } },
+      { id: "indre_kjonnsorganer", title: { no: "Kvinnens indre kjønnsorganer", en: "Women’s internal reproductive organs", ...emptyTranslations() } },
+      { id: "menstruasjon", title: { no: "Menstruasjon", en: "Menstruation", ...emptyTranslations() } },
+      { id: "prevensjon", title: { no: "Prevensjon", en: "Contraception", ...emptyTranslations() } },
+    ],
+  },
+];
