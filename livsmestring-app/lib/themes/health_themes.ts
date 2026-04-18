@@ -274,8 +274,6 @@ export const healthThemes: HealthTheme[] = [
               uk: "",
               ur: "",
             }
-          }
-        ]
       },
 
         
