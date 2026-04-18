@@ -201,8 +201,91 @@ export const healthThemes: HealthTheme[] = [
       no: "Fysisk aktivitet",
       en: "Physical activity",
       ...emptyTranslations(),
+    }
     },
-    subtopics: [
+          {
+            id: "psykisk_helse",
+            title: {
+              no: "Psykisk helse",
+              en: "Mental health",
+              ar: "",
+              fa: "",
+              ku: "",
+              so: "",
+              es: "",
+              sw: "",
+              ta: "",
+              ti: "",
+              tr: "",
+              uk: "",
+              ur: "",
+            }
+          },
+          {
+            id: "fastlege",
+            title: {
+              no: "Fastlege",
+              en: "General practitioner",
+              ar: "",
+              fa: "",
+              ku: "",
+              so: "",
+              es: "",
+              sw: "",
+              ta: "",
+              ti: "",
+              tr: "",
+              uk: "",
+              ur: "",
+            }
+          },
+          {
+            id: "stress",
+            title: {
+              no: "Stress",
+              en: "Stress",
+              ar: "",
+              fa: "",
+              ku: "",
+              so: "",
+              es: "",
+              sw: "",
+              ta: "",
+              ti: "",
+              tr: "",
+              uk: "",
+              ur: "",
+            }
+          },
+          {
+            id: "mobbing",
+            title: {
+              no: "Mobbing",
+              en: "Bullying",
+              ar: "",
+              fa: "",
+              ku: "",
+              so: "",
+              es: "",
+              sw: "",
+              ta: "",
+              ti: "",
+              tr: "",
+              uk: "",
+              ur: "",
+            }
+      },
+
+        
+        
+        {
+            id: "kvinnens_helse",
+            title: {
+              no: "Kvinnens reproduktive helse",
+              en: "Women's reproductive health",
+              ...emptyTranslations()
+            },
+        subtopics:[
       { id: "introduksjon", title: { no: "Introduksjon", en: "Introduction", ...emptyTranslations() } },
       { id: "vaer_fysisk_aktiv", title: { no: "Vær fysisk aktiv", en: "Be physically active", ...emptyTranslations() } },
       { id: "intensivtrening", title: { no: "Intensivtrening", en: "High-intensity training", ...emptyTranslations() } },
@@ -249,6 +332,7 @@ export const healthThemes: HealthTheme[] = [
     groups: [
       {
         id: "psykisk_helse",
+
         title: {
           no: "Psykisk helse",
           en: "Mental health",
