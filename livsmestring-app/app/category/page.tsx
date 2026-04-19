@@ -65,8 +65,7 @@ export default function CategoryPage() {
     setMounted(true);
   }, [router]);
 
-  const text =
-  translations[selectedLanguage] || translations.en || translations.no;
+  const text = translations[selectedLanguage];
 
   const handleChangeLanguage = () => {
     clearSelectedLanguage();

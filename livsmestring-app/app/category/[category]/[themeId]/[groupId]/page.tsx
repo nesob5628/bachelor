@@ -5,6 +5,7 @@ import { Topic } from "@/lib/types";
 import {
   getProgress,
   markVideoCompleted,
+  isVideoCompleted,
 } from "@/lib/storage";
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
@@ -67,13 +68,13 @@ export default function Page() {
   return (
     <main className="pkt-container">
       <ReturnBtn
-        text={text.category.backToThemes}
+        text={text?.category?.backToThemes || "Tilbake"}
         href={`/category/${category}/${theme}`}
       />
 
       <h1>{groupId.replaceAll("_", " ")}</h1>
 
-      {filteredTopics.length === 0 && <p>{text.subtheme.empty}</p> }
+      {filteredTopics.length === 0 && <p>Ingen videoer funnet</p>}
 
       {filteredTopics.length > 0 && (
         <Stepper
@@ -83,8 +84,8 @@ export default function Page() {
           setCurrentStep={setCurrentStep}
           handleMarkCompleted={handleMarkCompleted}
           text={{
-            done: text.done,
-            markDone: text.markDone,
+            done: text.done || "Fullført",
+            markDone: text.markDone || "Marker som fullført",
           }}
         />
       )}
