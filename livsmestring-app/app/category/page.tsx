@@ -65,7 +65,7 @@ export default function CategoryPage() {
     setMounted(true);
   }, [router]);
 
-  const text = translations[selectedLanguage];
+const text = translations[selectedLanguage] ?? translations.no;
 
   const handleChangeLanguage = () => {
     clearSelectedLanguage();

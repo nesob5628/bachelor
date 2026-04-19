@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import {
   getProgress,
   setProgress,
-  getCompletedVideos,
 } from "@/lib/storage";
 import { topics } from "@/lib/data/videos";
 import { healthThemes } from "@/lib/themes/health_themes";
@@ -27,13 +26,26 @@ export default function Page() {
   const themes: ThemeItem[] =
     category === "helse" ? healthThemes : careerThemes;
 
+  const [mounted, setMounted] = useState(false);
   const [language, setLanguage] = useState("no");
+  const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
 
   useEffect(() => {
     const progress = getProgress();
-    const selectedLanguage = progress.selectedLanguage || "no";
+
+    if (!progress.selectedLanguage) {
+      router.replace("/language");
+      return;
+    }
+
+    const selectedLanguage = progress.selectedLanguage;
+    const completed =
+      progress.languages?.[selectedLanguage]?.completedVideos ?? [];
+
     setLanguage(selectedLanguage);
-  }, []);
+    setCompletedVideoIds(completed);
+    setMounted(true);
+  }, [router]);
 
   const handleClick = (themeId: string) => {
     const progress = getProgress();
@@ -54,10 +66,8 @@ export default function Page() {
   };
 
   const getSingleThemeProgress = (themeId: string) => {
-    const completedVideos = getCompletedVideos();
-
     const themeVideos = topics.filter(
-      (video: any) =>
+      (video) =>
         video.language === language &&
         video.category === category &&
         video.theme === themeId
@@ -65,8 +75,8 @@ export default function Page() {
 
     if (themeVideos.length === 0) return 0;
 
-    const completedCount = themeVideos.filter((video: any) =>
-      completedVideos.includes(video.synthesiaId)
+    const completedCount = themeVideos.filter((video) =>
+      completedVideoIds.includes(video.synthesiaId)
     ).length;
 
     return Math.round((completedCount / themeVideos.length) * 100);
@@ -87,20 +97,48 @@ export default function Page() {
       ? "theme-card theme-card--health"
       : "theme-card theme-card--career";
 
-
-  const text = translations[language] || translations.no;
+  const text = translations[language] ?? translations.no;
+  const categoryText = text.category ?? translations.no.category;
 
   const siteTitle =
     category === "helse"
-      ? text.category.healthTitle
-      : text.category.careerTitle;
+      ? categoryText.healthTitle
+      : categoryText.careerTitle;
+
+  if (!mounted) {
+    return (
+      <main className="pkt-container">
+        <ReturnBtn
+          text={translations.no.category.backToCategories}
+          href="/category"
+          disabled
+        />
+
+        <h1 className="theme-heading">...</h1>
+
+        <div className="theme-progress">
+          <ProgressBar value={0} label="Tema-progresjon" />
+        </div>
+
+        <div className="theme-grid">
+          {themes.map((item) => (
+            <div key={item.id} className={themeCardClass}>
+              <div className="theme-card__header">
+                <span className="theme-card__title">...</span>
+              </div>
+
+              <ProgressBar value={0} small />
+            </div>
+          ))}
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="pkt-container">
       <ReturnBtn
-        text={
-          text.category.backToCategories
-        }
+        text={categoryText.backToCategories}
         href="/category"
       />
 

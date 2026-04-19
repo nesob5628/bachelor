@@ -2,11 +2,7 @@
 
 import { topics } from "@/lib/data/videos";
 import { Topic } from "@/lib/types";
-import {
-  getProgress,
-  markVideoCompleted,
-  isVideoCompleted,
-} from "@/lib/storage";
+import { getProgress, markVideoCompleted } from "@/lib/storage";
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { healthThemes } from "@/lib/themes/health_themes";
@@ -39,6 +35,7 @@ export default function Page() {
   const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
   const [themeTitle, setThemeTitle] = useState("Tema");
   const [language, setLanguage] = useState("no");
+  const [dataLanguage, setDataLanguage] = useState("no");
   const [hasGroups, setHasGroups] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -53,6 +50,13 @@ export default function Page() {
     const selectedLanguage = progress.selectedLanguage;
     setLanguage(selectedLanguage);
 
+    const selectedTranslation =
+      translations[selectedLanguage] ?? translations.no;
+    const categoryText =
+      selectedTranslation.category ?? translations.no.category;
+    const subthemeText =
+      selectedTranslation.subtheme ?? translations.no.subtheme;
+
     const themeList: ThemeItem[] =
       category === "helse" ? healthThemes : careerThemes;
 
@@ -61,14 +65,25 @@ export default function Page() {
     setThemeTitle(
       foundTheme?.title?.[selectedLanguage] ||
         foundTheme?.title?.no ||
-        translations[selectedLanguage]?.subtheme?.themeFallback ||
-        translations.no.subtheme.themeFallback
+        subthemeText.themeFallback
     );
+
+    const topicsInSelectedLanguage = topics.filter(
+      (item) =>
+        item.language === selectedLanguage &&
+        item.category === category &&
+        item.theme === themeFromUrl
+    );
+
+    const fallbackLanguage =
+      topicsInSelectedLanguage.length > 0 ? selectedLanguage : "no";
+
+    setDataLanguage(fallbackLanguage);
 
     const themeTopics = topics
       .filter(
         (item) =>
-          item.language === selectedLanguage &&
+          item.language === fallbackLanguage &&
           item.category === category &&
           item.theme === themeFromUrl
       )
@@ -127,8 +142,9 @@ export default function Page() {
     );
   };
 
-  // 🔥 viktig: bruk translations
-  const text = translations[language] || translations.no;
+  const text = translations[language] ?? translations.no;
+  const categoryText = text.category ?? translations.no.category;
+  const subthemeText = text.subtheme ?? translations.no.subtheme;
 
   const subthemeCardClass =
     category === "helse"
@@ -138,7 +154,7 @@ export default function Page() {
   const getThemeProgress = () => {
     const allVideos = topics.filter(
       (item) =>
-        item.language === language &&
+        item.language === dataLanguage &&
         item.category === category &&
         item.theme === themeFromUrl
     );
@@ -155,7 +171,7 @@ export default function Page() {
   const getGroupProgress = (groupId: string) => {
     const allVideos = topics.filter(
       (item) =>
-        item.language === language &&
+        item.language === dataLanguage &&
         item.category === category &&
         item.theme === themeFromUrl &&
         item.groupId === groupId
@@ -175,10 +191,7 @@ export default function Page() {
   return (
     <main className="pkt-container">
       <ReturnBtn
-        text={
-          translations[language]?.category?.backToThemes ||
-          translations.no.category.backToThemes
-        }
+        text={categoryText.backToThemes}
         href={`/category/${category}`}
       />
 
@@ -213,7 +226,7 @@ export default function Page() {
       )}
 
       {!hasGroups && filteredTopics.length === 0 && (
-        <p>{text.subtheme.empty}</p>
+        <p>{subthemeText.empty}</p>
       )}
 
       {!hasGroups && filteredTopics.length > 0 && (
