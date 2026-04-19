@@ -35,7 +35,6 @@ export default function Page() {
     const selectedLanguage = progress.selectedLanguage;
     setLanguage(selectedLanguage);
 
-    // 🔥 filtrer på groupId (DETTE ER HOVEDPOENGET)
     const filtered = topics
       .filter(
         (item) =>
@@ -82,14 +81,14 @@ export default function Page() {
 
         return (
           <div key={item.synthesiaId || i} className="video-card">
-            <h3>{item.title}</h3>
+            <h3>{item.subtopicId}</h3>
 
             {item.synthesiaId && (
               <iframe
                 width="100%"
                 height="300"
                 src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
-                title={item.title}
+                title={item.subtopicId}
                 allow="encrypted-media; fullscreen;"
                 allowFullScreen
               />
