@@ -93,6 +93,8 @@ export default function Page() {
   const [language, setLanguage] = useState("no");
   const [hasGroups, setHasGroups] = useState(false);
 
+  const [currentStep, setCurrentStep] = useState(0);
+
   useEffect(() => {
     const progress = getProgress();
 
@@ -124,11 +126,6 @@ export default function Page() {
           item.theme === themeFromUrl
       )
       .sort((a, b) => Number(a.order) - Number(b.order));
-      console.log("selectedLanguage:", selectedLanguage);
-      console.log("category:", category);
-      console.log("themeFromUrl:", themeFromUrl);
-      console.log("topics:", topics);
-      console.log("themeTopics:", themeTopics);
 
     const groupedTopics = themeTopics.filter(
       (item) => item.groupId && item.groupId.trim() !== ""
@@ -163,6 +160,17 @@ export default function Page() {
     setCompletedVideoIds(completed);
   }, [router, category, themeFromUrl]);
 
+  useEffect(() => {
+    if (filteredTopics.length === 0) return;
+
+    const firstIncomplete = filteredTopics.findIndex(
+      (item) =>
+        !completedVideoIds.includes(item.synthesiaId || "")
+    );
+
+    setCurrentStep(firstIncomplete === -1 ? 0 : firstIncomplete);
+  }, [filteredTopics, completedVideoIds]);
+
   const handleMarkCompleted = (synthesiaId: string) => {
     if (!synthesiaId) return;
 
@@ -192,63 +200,117 @@ export default function Page() {
 
       <h1>{themeTitle}</h1>
 
-        {hasGroups && (
-          <>
-            <h2 className="page-title">{text.chooseSubtheme}</h2>
+      {hasGroups && (
+        <>
+          <h2 className="page-title">{text.chooseSubtheme}</h2>
 
-            <div className="subtheme-grid">
-              {groups.map((group) => (
-                <Link
-                  key={group.id}
-                  href={`/category/${category}/${themeFromUrl}/${group.id}`}
-                  className={subthemeCardClass}
-                >
-                  <div className="subtheme-card__header">
-                    <span className="subtheme-card__title">{group.title}</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </>
-        )}
+          <div className="subtheme-grid">
+            {groups.map((group) => (
+              <Link
+                key={group.id}
+                href={`/category/${category}/${themeFromUrl}/${group.id}`}
+                className={subthemeCardClass}
+              >
+                <div className="subtheme-card__header">
+                  <span className="subtheme-card__title">{group.title}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
 
       {!hasGroups && filteredTopics.length === 0 && <p>{text.empty}</p>}
 
-      {!hasGroups &&
-        filteredTopics.map((item, i) => {
-          const completed =
-            !!item.synthesiaId &&
-            (completedVideoIds.includes(item.synthesiaId) ||
-              isVideoCompleted(item.synthesiaId));
+      
+      {!hasGroups && filteredTopics.length > 0 && (
+        <ol className="pkt-stepper pkt-stepper--vertical">
+          {filteredTopics.map((item, i) => {
+            const completed =
+              !!item.synthesiaId &&
+              (completedVideoIds.includes(item.synthesiaId) ||
+                isVideoCompleted(item.synthesiaId));
 
-          return (
-            <div key={item.synthesiaId || i} className="video-card">
-              <h3>{item.title}</h3>
+            let stepClass = "pkt-step";
 
-              {item.synthesiaId && (
-                <iframe
-                  width="100%"
-                  height="300"
-                  src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
-                  title={item.title}
-                  allow="encrypted-media; fullscreen;"
-                  allowFullScreen
-                />
-              )}
+            if (completed) stepClass += " pkt-step--completed";
+            else if (i === currentStep) stepClass += " pkt-step--current";
+            else stepClass += " pkt-step--incomplete";
 
-              {item.synthesiaId && (
-                <button
-                  type="button"
-                  className="pkt-button"
-                  onClick={() => handleMarkCompleted(item.synthesiaId)}
-                  disabled={completed}
-                >
-                  {completed ? text.done : text.markDone}
-                </button>
-              )}
-            </div>
-          );
-        })}
+            return (
+              <li key={item.synthesiaId || i} className={stepClass}>
+                <span className="pkt-step__line pkt-step__line--1" aria-hidden="true" />
+                <span className="pkt-step__line pkt-step__line--2" aria-hidden="true" />
+
+                <span className="pkt-step__indicator">
+                  {completed ? (
+                    <svg width="24" height="24" fill="none">
+                      <path fill="#2A2859" d="M3 3h18v18H3z" />
+                      <path
+                        d="m10.34 16-1.11-1.14L7 12.58l1.11-1.15 2.23 2.28L15.88 8 17 9.15l-5.55 5.71L10.34 16Z"
+                        fill="#F1FDFF"
+                      />
+                    </svg>
+                  ) : i === currentStep ? (
+                    <svg width="24" height="24" fill="none">
+                      <circle opacity=".15" cx="12" cy="12" r="12" fill="#2A2859" />
+                      <circle cx="12" cy="12" r="6" fill="#2A2859" />
+                    </svg>
+                  ) : (
+                    <svg width="24" height="24" fill="none">
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="7"
+                        style={{ fill: "var(--pkt-color-grays-grey-200, #CCC)" }}
+                      />
+                    </svg>
+                  )}
+                </span>
+
+                <span className="pkt-step__line pkt-step__line--3" aria-hidden="true" />
+
+                <div className="pkt-step__wrapper">
+                  <div
+                    className="pkt-step__title"
+                    onClick={() => setCurrentStep(i)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {item.title}
+                  </div>
+
+                  {i === currentStep && (
+                    <div className="pkt-step__content">
+                      {item.synthesiaId && (
+                        <iframe
+                          width="100%"
+                          height="300"
+                          src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
+                          title={item.title}
+                          allow="encrypted-media; fullscreen;"
+                          allowFullScreen
+                        />
+                      )}
+
+                      {item.synthesiaId && (
+                        <button
+                          className="pkt-button"
+                          onClick={() =>
+                            handleMarkCompleted(item.synthesiaId!)
+                          }
+                          disabled={completed}
+                        >
+                          {completed ? text.done : text.markDone}
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      )}
     </main>
   );
 }
