@@ -6,7 +6,6 @@ export interface Topic {
   groupTitle?: string;
   subtopicId?: string;
   subtopicTitle?: string;
-  title: string;
   synthesiaId: string;
   order: number | "";
 }
