@@ -1,6 +1,8 @@
 export const translations: Record<
   string,
   {
+    markDone: string;
+    done: string;
     loading: string;
     category: {
       changeLanguage: string;
