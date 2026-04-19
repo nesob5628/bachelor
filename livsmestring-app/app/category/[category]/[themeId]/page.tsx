@@ -15,6 +15,7 @@ import ReturnBtn from "@/components/ReturnBtn";
 import { translations } from "@/lib/translations";
 import Link from "next/link";
 import Stepper from "@/components/Stepper";
+import ProgressBar from "@/components/ProgressBar";
 
 type ThemeItem = {
   id: string;
@@ -24,60 +25,6 @@ type ThemeItem = {
 type GroupItem = {
   id: string;
   title: string;
-};
-
-const uiText: Record<
-  string,
-  {
-    empty: string;
-    markDone: string;
-    done: string;
-    themeFallback: string;
-    chooseSubtheme: string;
-  }
-> = {
-  no: {
-    empty: "Ingen videoer funnet",
-    markDone: "Marker som fullført",
-    done: "Fullført",
-    themeFallback: "Tema",
-    chooseSubtheme: "Velg undertema",
-  },
-  en: {
-    empty: "No videos found",
-    markDone: "Mark as completed",
-    done: "Completed",
-    themeFallback: "Theme",
-    chooseSubtheme: "Choose subtopic",
-  },
-  ar: {
-    empty: "لم يتم العثور على فيديوهات",
-    markDone: "وضع علامة كمكتمل",
-    done: "مكتمل",
-    themeFallback: "الموضوع",
-    chooseSubtheme: "اختر موضوعًا فرعيًا",
-  },
-  uk: {
-    empty: "Відео не знайдено",
-    markDone: "Позначити як завершено",
-    done: "Завершено",
-    themeFallback: "Тема",
-    chooseSubtheme: "Оберіть підтему",
-  },
-  tr: {
-    empty: "Video bulunamadı",
-    markDone: "Tamamlandı olarak işaretle",
-    done: "Tamamlandı",
-    themeFallback: "Tema",
-    chooseSubtheme: "Alt konu seç",
-  },
-  ta: {
-    empty: "வீடியோக்கள் எதுவும் கிடைக்கவில்லை",
-    markDone: "முடிந்தது என குறிக்கவும்",
-    done: "முடிந்தது",
-    themeFallback: "தலைப்பு",
-    chooseSubtheme: "துணைத்தலைப்பை தேர்வு செய்க",
-  },
 };
 
 export default function Page() {
@@ -93,7 +40,6 @@ export default function Page() {
   const [themeTitle, setThemeTitle] = useState("Tema");
   const [language, setLanguage] = useState("no");
   const [hasGroups, setHasGroups] = useState(false);
-
   const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
@@ -115,8 +61,8 @@ export default function Page() {
     setThemeTitle(
       foundTheme?.title?.[selectedLanguage] ||
         foundTheme?.title?.no ||
-        uiText[selectedLanguage]?.themeFallback ||
-        "Tema"
+        translations[selectedLanguage]?.subtheme?.themeFallback ||
+        translations.no.subtheme.themeFallback
     );
 
     const themeTopics = topics
@@ -165,8 +111,7 @@ export default function Page() {
     if (filteredTopics.length === 0) return;
 
     const firstIncomplete = filteredTopics.findIndex(
-      (item) =>
-        !completedVideoIds.includes(item.synthesiaId || "")
+      (item) => !completedVideoIds.includes(item.synthesiaId || "")
     );
 
     setCurrentStep(firstIncomplete === -1 ? 0 : firstIncomplete);
@@ -182,12 +127,50 @@ export default function Page() {
     );
   };
 
-  const text = uiText[language] || uiText.no;
+  // 🔥 viktig: bruk translations
+  const text = translations[language] || translations.no;
 
   const subthemeCardClass =
     category === "helse"
       ? "subtheme-card subtheme-card--health"
       : "subtheme-card subtheme-card--career";
+
+  const getThemeProgress = () => {
+    const allVideos = topics.filter(
+      (item) =>
+        item.language === language &&
+        item.category === category &&
+        item.theme === themeFromUrl
+    );
+
+    if (allVideos.length === 0) return 0;
+
+    const completed = allVideos.filter((item) =>
+      completedVideoIds.includes(item.synthesiaId || "")
+    ).length;
+
+    return Math.round((completed / allVideos.length) * 100);
+  };
+
+  const getGroupProgress = (groupId: string) => {
+    const allVideos = topics.filter(
+      (item) =>
+        item.language === language &&
+        item.category === category &&
+        item.theme === themeFromUrl &&
+        item.groupId === groupId
+    );
+
+    if (allVideos.length === 0) return 0;
+
+    const completed = allVideos.filter((item) =>
+      completedVideoIds.includes(item.synthesiaId || "")
+    ).length;
+
+    return Math.round((completed / allVideos.length) * 100);
+  };
+
+  const themeProgress = getThemeProgress();
 
   return (
     <main className="pkt-container">
@@ -199,13 +182,18 @@ export default function Page() {
         href={`/category/${category}`}
       />
 
-      <h1 style={{ textAlign: 'center', margin: '24px 0 40px 0', fontSize: '2rem', fontWeight: 600 }}>{themeTitle}</h1>
+      <h1 className="theme-heading">{themeTitle}</h1>
+
+      <div className="theme-progress">
+        <ProgressBar value={themeProgress} label="Fremdrift" />
+      </div>
 
       {hasGroups && (
-        <>
+        <div className="subtheme-grid">
+          {groups.map((group) => {
+            const progress = getGroupProgress(group.id);
 
-          <div className="subtheme-grid">
-            {groups.map((group) => (
+            return (
               <Link
                 key={group.id}
                 href={`/category/${category}/${themeFromUrl}/${group.id}`}
@@ -214,15 +202,20 @@ export default function Page() {
                 <div className="subtheme-card__header">
                   <span className="subtheme-card__title">{group.title}</span>
                 </div>
+
+                <div className="subtheme-card__progress">
+                  <ProgressBar value={progress} small />
+                </div>
               </Link>
-            ))}
-          </div>
-        </>
+            );
+          })}
+        </div>
       )}
 
-      {!hasGroups && filteredTopics.length === 0 && <p>{text.empty}</p>}
+      {!hasGroups && filteredTopics.length === 0 && (
+        <p>{text.subtheme.empty}</p>
+      )}
 
-      
       {!hasGroups && filteredTopics.length > 0 && (
         <Stepper
           topics={filteredTopics}

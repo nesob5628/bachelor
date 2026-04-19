@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   getProgress,
   setProgress,
   getCompletedVideos,
-} from '@/lib/storage';
-import { topics } from '@/lib/data/videos';
-import { healthThemes } from '@/lib/themes/health_themes';
-import { careerThemes } from '@/lib/themes/career_themes';
+} from "@/lib/storage";
+import { topics } from "@/lib/data/videos";
+import { healthThemes } from "@/lib/themes/health_themes";
+import { careerThemes } from "@/lib/themes/career_themes";
 import { translations } from "@/lib/translations";
-import ProgressBar from '@/components/ProgressBar';
-import ReturnBtn from '@/components/ReturnBtn';
+import ProgressBar from "@/components/ProgressBar";
+import ReturnBtn from "@/components/ReturnBtn";
 
 type ThemeItem = {
   id: string;
@@ -23,19 +23,16 @@ export default function Page() {
   const params = useParams();
   const router = useRouter();
 
-  const category = params.category as 'helse' | 'karriere';
+  const category = params.category as "helse" | "karriere";
   const themes: ThemeItem[] =
-    category === 'helse' ? healthThemes : careerThemes;
+    category === "helse" ? healthThemes : careerThemes;
 
-  const [mounted, setMounted] = useState(false);
-  const [language, setLanguage] = useState('no');
+  const [language, setLanguage] = useState("no");
 
   useEffect(() => {
     const progress = getProgress();
-    const selectedLanguage = progress.selectedLanguage || 'no';
-
+    const selectedLanguage = progress.selectedLanguage || "no";
     setLanguage(selectedLanguage);
-    setMounted(true);
   }, []);
 
   const handleClick = (themeId: string) => {
@@ -86,44 +83,32 @@ export default function Page() {
       : 0;
 
   const themeCardClass =
-    category === 'helse' ? 'theme-card theme-card--health' : 'theme-card theme-card--career';
+    category === "helse"
+      ? "theme-card theme-card--health"
+      : "theme-card theme-card--career";
 
 
-  // Titles in different languages
-  const siteTitles: Record<string, { helse: string; karriere: string }> = {
-    no: { helse: 'Helse', karriere: 'Karriere' },
-    en: { helse: 'Health', karriere: 'Career' },
-    tr: { helse: 'Sağlık', karriere: 'Kariyer' },
-    ta: { helse: 'ஆரோக்கியம்', karriere: 'தொழில்' },
-  };
-  const siteTitle = siteTitles[language]?.[category] || siteTitles.no[category];
-  
-  const siteImage = category === 'helse'
-    ? '/icons/health--icon.jpg'
-    : '/icons/career--icon.png';
+  const text = translations[language] || translations.no;
 
-  const Title = () => (
-    <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: '24px 0'
-    }}>
-      <h1 style={{ margin: 0, fontSize: '2rem', fontWeight: 600, lineHeight: 1 }}>
-        {siteTitle}
-      </h1>
-    </div>
-  );
+  const siteTitle =
+    category === "helse"
+      ? text.category.healthTitle
+      : text.category.careerTitle;
 
   return (
     <main className="pkt-container">
-      <ReturnBtn 
-        text={translations[language]?.category?.backToCategories || translations.no.category.backToCategories}
-        href="/category" />
+      <ReturnBtn
+        text={
+          text.category.backToCategories
+        }
+        href="/category"
+      />
 
-      <Title />
+      <h1 className="theme-heading">{siteTitle}</h1>
 
-      <ProgressBar value={totalProgress} label="Tema-progresjon" />
+      <div className="theme-progress">
+        <ProgressBar value={totalProgress} label="Tema-progresjon" />
+      </div>
 
       <div className="theme-grid">
         {themes.map((item) => {
