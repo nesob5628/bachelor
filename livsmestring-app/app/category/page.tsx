@@ -9,7 +9,7 @@ import {
   setCategory,
 } from "@/lib/storage";
 import { translations } from "@/lib/translations";
-import { topics } from "@/lib/data/videos";
+import { videos} from "@/lib/data/videos";
 import ProgressBar from "@/components/ProgressBar";
 import ReturnBtn from "@/components/ReturnBtn";
 
@@ -33,11 +33,11 @@ export default function CategoryPage() {
     const completedVideos =
       progress.languages?.[language]?.completedVideos ?? [];
 
-    const healthVideos = topics.filter(
+    const healthVideos = videos.filter(
       (item) => item.language === language && item.category === "helse"
     );
 
-    const careerVideos = topics.filter(
+    const careerVideos = videos.filter(
       (item) => item.language === language && item.category === "karriere"
     );
 
