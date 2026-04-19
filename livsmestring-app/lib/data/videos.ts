@@ -69,7 +69,6 @@ export const topics: Topic[] = [
       theme: "vold_i_naere_relasjoner",
       subtopicId: "naere_relasjoner",
       subtopicTitle: "Nære relasjoner",
-      title: "Nære relasjoner",
       synthesiaId: "3bf7dfba-8418-4b9f-b899-ebf1ef8efbc8",
       order: 4
     },
