@@ -198,7 +198,7 @@ export default function Page() {
         href={`/category/${category}`}
       />
 
-      <h1>{themeTitle}</h1>
+      <h1 style={{ textAlign: 'center', margin: '24px 0 40px 0', fontSize: '2rem', fontWeight: 600 }}>{themeTitle}</h1>
 
       {hasGroups && (
         <>

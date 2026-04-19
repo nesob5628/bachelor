@@ -88,32 +88,40 @@ export default function Page() {
   const themeCardClass =
     category === 'helse' ? 'theme-card theme-card--health' : 'theme-card theme-card--career';
 
-  if (!mounted) {
-    return (
-      <main className="pkt-container">
-        <ReturnBtn 
-          text={translations[language]?.category?.backToCategories || translations.no.category.backToCategories}
-          href="/category" />
 
-        <div className="theme-grid">
-          {themes.map((item) => (
-            <div key={item.id} className={themeCardClass}>
-              <div className="theme-card__header">
-                <span className="theme-card__title">{item.title.no}</span>
-              </div>
-              <ProgressBar value={0} small />
-            </div>
-          ))}
-        </div>
-      </main>
-    );
-  }
+  // Titles in different languages
+  const siteTitles: Record<string, { helse: string; karriere: string }> = {
+    no: { helse: 'Helse', karriere: 'Karriere' },
+    en: { helse: 'Health', karriere: 'Career' },
+    tr: { helse: 'Sağlık', karriere: 'Kariyer' },
+    ta: { helse: 'ஆரோக்கியம்', karriere: 'தொழில்' },
+  };
+  const siteTitle = siteTitles[language]?.[category] || siteTitles.no[category];
+  
+  const siteImage = category === 'helse'
+    ? '/icons/health--icon.jpg'
+    : '/icons/career--icon.png';
+
+  const Title = () => (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: '24px 0'
+    }}>
+      <h1 style={{ margin: 0, fontSize: '2rem', fontWeight: 600, lineHeight: 1 }}>
+        {siteTitle}
+      </h1>
+    </div>
+  );
 
   return (
     <main className="pkt-container">
       <ReturnBtn 
         text={translations[language]?.category?.backToCategories || translations.no.category.backToCategories}
         href="/category" />
+
+      <Title />
 
       <ProgressBar value={totalProgress} label="Tema-progresjon" />
 
