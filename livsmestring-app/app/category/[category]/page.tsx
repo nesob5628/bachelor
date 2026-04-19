@@ -27,12 +27,14 @@ export default function Page() {
   const themes: ThemeItem[] =
     category === "helse" ? healthThemes : careerThemes;
 
-  const [language, setLanguage] = useState("no");
+const [language, setLanguage] = useState("no");
+const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const progress = getProgress();
     const selectedLanguage = progress.selectedLanguage || "no";
     setLanguage(selectedLanguage);
+    setReady(true);
   }, []);
 
   const handleClick = (themeId: string) => {
@@ -88,12 +90,16 @@ export default function Page() {
       : "theme-card theme-card--career";
 
 
-  const text = translations[language] || translations.no;
+const text = translations[language] || translations.en || translations.no;
 
   const siteTitle =
     category === "helse"
       ? text.category.healthTitle
       : text.category.careerTitle;
+
+  if (!ready) {
+  return null;
+}    
 
   return (
     <main className="pkt-container">

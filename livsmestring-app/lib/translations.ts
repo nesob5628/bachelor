@@ -19,6 +19,8 @@ export const translations: Record<
     };
     subtheme: {
       empty: string;
+    };
+    common: {
       themeFallback: string;
     };
   }
@@ -42,6 +44,8 @@ export const translations: Record<
     },
     subtheme: {
       empty: "Ingen videoer funnet",
+    },
+    common: {
       themeFallback: "Tema",
     },
   },
@@ -65,6 +69,8 @@ export const translations: Record<
     },
     subtheme: {
       empty: "No videos found",
+    },
+    common: {
       themeFallback: "Theme",
     },
   },
@@ -74,7 +80,7 @@ export const translations: Record<
     done: "Tamamlandı",
     loading: "Yükleniyor...",
     category: {
-      changeLanguage: "Dile geri dön",
+      changeLanguage: "Dil seçimine geri dön",
       healthTitle: "Sağlık",
       careerTitle: "Kariyer",
       backToCategories: "Kategorilere geri dön",
@@ -88,6 +94,8 @@ export const translations: Record<
     },
     subtheme: {
       empty: "Video bulunamadı",
+    },
+    common: {
       themeFallback: "Tema",
     },
   },
@@ -97,7 +105,7 @@ export const translations: Record<
     done: "முடிந்தது",
     loading: "ஏற்றுகிறது...",
     category: {
-      changeLanguage: "மொழிக்குத் திரும்பு",
+      changeLanguage: "மொழி தேர்வுக்கு திரும்பவும்", // litt bedre tamil
       healthTitle: "உடல்நலம்",
       careerTitle: "தொழில்",
       backToCategories: "வகைகளுக்குத் திரும்பவும்",
@@ -111,6 +119,8 @@ export const translations: Record<
     },
     subtheme: {
       empty: "வீடியோக்கள் எதுவும் கிடைக்கவில்லை",
+    },
+    common: {
       themeFallback: "தலைப்பு",
     },
   },
