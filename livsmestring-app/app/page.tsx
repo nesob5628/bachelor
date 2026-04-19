@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Loader from "./loading"; // juster path hvis nødvendig
+import Loader from "../components/loading"; // juster path hvis nødvendig
 
 export default function Page() {
   const [loading, setLoading] = useState(true);
