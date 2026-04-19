@@ -276,7 +276,7 @@ export default function Page() {
                     onClick={() => setCurrentStep(i)}
                     style={{ cursor: "pointer" }}
                   >
-                    {item.title}
+                    {item.subtopicTitle}
                   </div>
 
                   {i === currentStep && (
@@ -286,7 +286,7 @@ export default function Page() {
                           width="100%"
                           height="300"
                           src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
-                          title={item.title}
+                          title={item.subtopicTitle}
                           allow="encrypted-media; fullscreen;"
                           allowFullScreen
                         />
