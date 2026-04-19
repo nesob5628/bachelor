@@ -1,6 +1,6 @@
 "use client";
 
-import { topics } from "@/lib/data/videos";
+import { videos } from "@/lib/data/videos";
 import { Topic } from "@/lib/types";
 import {
   getProgress,
@@ -119,7 +119,7 @@ export default function Page() {
         "Tema"
     );
 
-    const themeTopics = topics
+    const themeTopics = videos
       .filter(
         (item) =>
           item.language === selectedLanguage &&

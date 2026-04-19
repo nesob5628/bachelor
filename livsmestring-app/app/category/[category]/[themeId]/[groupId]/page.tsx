@@ -1,6 +1,6 @@
 "use client";
 
-import { topics } from "@/lib/data/videos";
+import { videos } from "@/lib/data/videos";
 import { Topic } from "@/lib/types";
 import {
   getProgress,
@@ -37,7 +37,7 @@ export default function Page() {
     const selectedLanguage = progress.selectedLanguage;
     setLanguage(selectedLanguage);
 
-    const filtered = topics
+    const filtered = videos
       .filter(
         (item) =>
           item.language === selectedLanguage &&

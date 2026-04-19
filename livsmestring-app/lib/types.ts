@@ -7,5 +7,5 @@ export interface Topic {
   subtopicId?: string;
   subtopicTitle?: string;
   synthesiaId: string;
-  order: number | "";
+  order: number;
 }
