@@ -203,7 +203,6 @@ export default function Page() {
 
       {hasGroups && (
         <>
-          <h2 className="page-title">{text.chooseSubtheme}</h2>
 
           <div className="subtheme-grid">
             {groups.map((group) => (
