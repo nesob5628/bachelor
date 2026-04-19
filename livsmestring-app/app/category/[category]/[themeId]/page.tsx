@@ -1,108 +1,231 @@
 "use client";
 
+import { topics } from "@/lib/data/videos";
+import { Topic } from "@/lib/types";
+import {
+  getProgress,
+  markVideoCompleted,
+  isVideoCompleted,
+} from "@/lib/storage";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { setSelectedLanguage, getProgress } from "@/lib/storage";
+import { useRouter, useParams } from "next/navigation";
+import { healthThemes } from "@/lib/themes/health_themes";
+import { careerThemes } from "@/lib/themes/career_themes";
+import ReturnBtn from "@/components/ReturnBtn";
+import { translations } from "@/lib/translations";
+import Link from "next/link";
+import Stepper from "@/components/Stepper";
+import ProgressBar from "@/components/ProgressBar";
 
-const languages = [
-  { code: "no", name: "Norsk" },
-  { code: "en", name: "English" },
-  { code: "ar", name: "العربية" },
-  { code: "fa", name: "فارسی" },
-  { code: "ku", name: "Kurdî" },
-  { code: "so", name: "Somali" },
-  { code: "es", name: "Español" },
-  { code: "sw", name: "Kiswahili" },
-  { code: "ta", name: "தமிழ்" },
-  { code: "ti", name: "ትግርኛ" },
-  { code: "tr", name: "Türkçe" },
-  { code: "ur", name: "اردو" },
-];
+type ThemeItem = {
+  id: string;
+  title: Record<string, string>;
+};
 
-// 🔥 kun språk dere faktisk støtter
-const supportedLanguages = ["no", "en", "tr", "ta"];
+type GroupItem = {
+  id: string;
+  title: string;
+};
 
-const selectLanguageTexts = [
-  "Velg språk",
-  "Choose language",
-  "اختر اللغة",
-  "انتخاب زبان",
-  "Ziman hilbijêre",
-  "Dooro luqadda",
-  "Elige idioma",
-  "Chagua lugha",
-  "மொழியைத் தேர்ந்தெடுக்கவும்",
-  "ቋንቋ ምረጽ",
-  "Dil seçin",
-  "زبان منتخب کریں",
-];
-
-export default function LanguagePage() {
+export default function Page() {
   const router = useRouter();
-  const [headingIndex, setHeadingIndex] = useState(0);
-  const [fade, setFade] = useState(true);
+  const params = useParams();
+
+  const category = params.category as "helse" | "karriere";
+  const themeFromUrl = params.themeId as string;
+
+  const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
+  const [groups, setGroups] = useState<GroupItem[]>([]);
+  const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
+  const [themeTitle, setThemeTitle] = useState("Tema");
+  const [language, setLanguage] = useState("no");
+  const [hasGroups, setHasGroups] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     const progress = getProgress();
-    if (progress.selectedLanguage) {
-      router.replace("/category");
+
+    if (!progress.selectedLanguage) {
+      router.replace("/language");
+      return;
     }
-  }, [router]);
+
+    const selectedLanguage = progress.selectedLanguage;
+    setLanguage(selectedLanguage);
+
+    const themeList: ThemeItem[] =
+      category === "helse" ? healthThemes : careerThemes;
+
+    const foundTheme = themeList.find((item) => item.id === themeFromUrl);
+
+    setThemeTitle(
+      foundTheme?.title?.[selectedLanguage] ||
+        foundTheme?.title?.no ||
+        translations[selectedLanguage]?.common?.themeFallback ||
+        translations.no.common.themeFallback
+    );
+
+    const themeTopics = topics
+      .filter(
+        (item) =>
+          item.language === selectedLanguage &&
+          item.category === category &&
+          item.theme === themeFromUrl
+      )
+      .sort((a, b) => Number(a.order) - Number(b.order));
+
+    const groupedTopics = themeTopics.filter(
+      (item) => item.groupId && item.groupId.trim() !== ""
+    );
+
+    if (groupedTopics.length > 0) {
+      setHasGroups(true);
+
+      const uniqueGroups: GroupItem[] = Array.from(
+        new Map(
+          groupedTopics.map((item) => [
+            item.groupId!,
+            {
+              id: item.groupId!,
+              title:
+                item.groupTitle?.trim() || item.groupId!.replaceAll("_", " "),
+            },
+          ])
+        ).values()
+      );
+
+      setGroups(uniqueGroups);
+      setFilteredTopics([]);
+    } else {
+      setHasGroups(false);
+      setGroups([]);
+      setFilteredTopics(themeTopics);
+    }
+
+    const completed =
+      progress.languages?.[selectedLanguage]?.completedVideos ?? [];
+    setCompletedVideoIds(completed);
+  }, [router, category, themeFromUrl]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(false);
+    if (filteredTopics.length === 0) return;
 
-      setTimeout(() => {
-        setHeadingIndex((prev) => (prev + 1) % selectLanguageTexts.length);
-        setFade(true);
-      }, 250);
-    }, 2200);
+    const firstIncomplete = filteredTopics.findIndex(
+      (item) => !completedVideoIds.includes(item.synthesiaId || "")
+    );
 
-    return () => clearInterval(interval);
-  }, []);
+    setCurrentStep(firstIncomplete === -1 ? 0 : firstIncomplete);
+  }, [filteredTopics, completedVideoIds]);
 
-  const selectLanguage = (code: string) => {
-    const mappedLanguage = supportedLanguages.includes(code)
-      ? code
-      : "en"; // fallback
+  const handleMarkCompleted = (synthesiaId: string) => {
+    if (!synthesiaId) return;
 
-    setSelectedLanguage(mappedLanguage);
-    router.push("/category");
+    markVideoCompleted(synthesiaId);
+
+    setCompletedVideoIds((prev) =>
+      prev.includes(synthesiaId) ? prev : [...prev, synthesiaId]
+    );
   };
 
+
+  const text = translations[language] || translations.no;
+
+  const subthemeCardClass =
+    category === "helse"
+      ? "subtheme-card subtheme-card--health"
+      : "subtheme-card subtheme-card--career";
+
+  const getThemeProgress = () => {
+    const allVideos = topics.filter(
+      (item) =>
+        item.language === language &&
+        item.category === category &&
+        item.theme === themeFromUrl
+    );
+
+    if (allVideos.length === 0) return 0;
+
+    const completed = allVideos.filter((item) =>
+      completedVideoIds.includes(item.synthesiaId || "")
+    ).length;
+
+    return Math.round((completed / allVideos.length) * 100);
+  };
+
+  const getGroupProgress = (groupId: string) => {
+    const allVideos = topics.filter(
+      (item) =>
+        item.language === language &&
+        item.category === category &&
+        item.theme === themeFromUrl &&
+        item.groupId === groupId
+    );
+
+    if (allVideos.length === 0) return 0;
+
+    const completed = allVideos.filter((item) =>
+      completedVideoIds.includes(item.synthesiaId || "")
+    ).length;
+
+    return Math.round((completed / allVideos.length) * 100);
+  };
+
+  const themeProgress = getThemeProgress();
+
   return (
-    <div className="pkt-container">
-      <section className="pkt-section">
-        <div className="pkt-section__content">
+    <main className="pkt-container">
+      <ReturnBtn
+        text={
+          translations[language]?.category?.backToThemes ||
+          translations.no.category.backToThemes
+        }
+        href={`/category/${category}`}
+      />
 
-          {/* Heading */}
-          <header className="language-header">
-            <div className="language-heading-wrap">
-              <h1 className={`language-title ${fade ? "is-visible" : "is-hidden"}`}>
-                {selectLanguageTexts[headingIndex]}
-              </h1>
-            </div>
-          </header>
+      <h1 className="theme-heading">{themeTitle}</h1>
 
-          {/* Grid */}
-          <div className="language-grid">
-            {languages.map((lang) => (
-              <button
-                key={lang.code}
-                type="button"
-                onClick={() => selectLanguage(lang.code)}
-                className="pkt-linkcard language-card"
+      <div className="theme-progress">
+        <ProgressBar value={themeProgress} label="Fremdrift" />
+      </div>
+
+      {hasGroups && (
+        <div className="subtheme-grid">
+          {groups.map((group) => {
+            const progress = getGroupProgress(group.id);
+
+            return (
+              <Link
+                key={group.id}
+                href={`/category/${category}/${themeFromUrl}/${group.id}`}
+                className={subthemeCardClass}
               >
-                <span className="pkt-linkcard__title">
-                  {lang.name}
-                </span>
-              </button>
-            ))}
-          </div>
+                <div className="subtheme-card__header">
+                  <span className="subtheme-card__title">{group.title}</span>
+                </div>
 
+                <div className="subtheme-card__progress">
+                  <ProgressBar value={progress} small />
+                </div>
+              </Link>
+            );
+          })}
         </div>
-      </section>
-    </div>
+      )}
+
+      {!hasGroups && filteredTopics.length === 0 && (
+        <p>{text.subtheme.empty}</p>
+      )}
+
+      {!hasGroups && filteredTopics.length > 0 && (
+        <Stepper
+          topics={filteredTopics}
+          completedVideoIds={completedVideoIds}
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          handleMarkCompleted={handleMarkCompleted}
+          text={text}
+        />
+      )}
+    </main>
   );
 }
