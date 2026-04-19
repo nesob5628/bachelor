@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import ReturnBtn from "@/components/ReturnBtn";
 import { translations } from "@/lib/translations";
+import Stepper from "@/components/Stepper";
 
 export default function Page() {
   const router = useRouter();
@@ -23,6 +24,7 @@ export default function Page() {
   const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
   const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
   const [language, setLanguage] = useState("no");
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     const progress = getProgress();
@@ -74,37 +76,19 @@ export default function Page() {
 
       {filteredTopics.length === 0 && <p>Ingen videoer funnet</p>}
 
-      {filteredTopics.map((item, i) => {
-        const completed =
-          completedVideoIds.includes(item.synthesiaId) ||
-          isVideoCompleted(item.synthesiaId);
-
-        return (
-          <div key={item.synthesiaId || i} className="video-card">
-            <h3>{item.subtopicId}</h3>
-
-            {item.synthesiaId && (
-              <iframe
-                width="100%"
-                height="300"
-                src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
-                title={item.subtopicId}
-                allow="encrypted-media; fullscreen;"
-                allowFullScreen
-              />
-            )}
-
-            <button
-              type="button"
-              className="pkt-button"
-              onClick={() => handleMarkCompleted(item.synthesiaId)}
-              disabled={completed}
-            >
-              {completed ? "Fullført" : "Marker som fullført"}
-            </button>
-          </div>
-        );
-      })}
+      {filteredTopics.length > 0 && (
+        <Stepper
+          topics={filteredTopics}
+          completedVideoIds={completedVideoIds}
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          handleMarkCompleted={handleMarkCompleted}
+          text={{
+            done: text.done || "Fullført",
+            markDone: text.markDone || "Marker som fullført",
+          }}
+        />
+      )}
     </main>
   );
 }
