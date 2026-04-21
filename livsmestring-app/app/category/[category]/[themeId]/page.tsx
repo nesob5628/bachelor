@@ -48,14 +48,14 @@ export default function Page() {
     }
 
     const selectedLanguage = progress.selectedLanguage;
-    setLanguage(selectedLanguage);
+    const safeLanguage = translations[selectedLanguage]
+      ? selectedLanguage
+      : "no";
 
-    const selectedTranslation =
-      translations[selectedLanguage] ?? translations.no;
-    const categoryText =
-      selectedTranslation.category ?? translations.no.category;
-    const subthemeText =
-      selectedTranslation.subtheme ?? translations.no.subtheme;
+    setLanguage(safeLanguage);
+
+    const selectedTranslation = translations[safeLanguage];
+    const subthemeText = selectedTranslation.subtheme;
 
     const themeList: ThemeItem[] =
       category === "helse" ? healthThemes : careerThemes;
@@ -63,22 +63,20 @@ export default function Page() {
     const foundTheme = themeList.find((item) => item.id === themeFromUrl);
 
     setThemeTitle(
-      foundTheme?.title?.[selectedLanguage] ||
+      foundTheme?.title?.[safeLanguage] ||
         foundTheme?.title?.no ||
         subthemeText.themeFallback
     );
 
-
-    const themeVideos = videos
     const topicsInSelectedLanguage = videos.filter(
       (item) =>
-        item.language === selectedLanguage &&
+        item.language === safeLanguage &&
         item.category === category &&
         item.theme === themeFromUrl
     );
 
     const fallbackLanguage =
-      topicsInSelectedLanguage.length > 0 ? selectedLanguage : "no";
+      topicsInSelectedLanguage.length > 0 ? safeLanguage : "no";
 
     setDataLanguage(fallbackLanguage);
 
@@ -144,9 +142,10 @@ export default function Page() {
     );
   };
 
-  const text = translations[language] ?? translations.no;
-  const categoryText = text.category ?? translations.no.category;
-  const subthemeText = text.subtheme ?? translations.no.subtheme;
+  const safeLanguage = translations[language] ? language : "no";
+  const text = translations[safeLanguage];
+  const categoryText = text.category;
+  const subthemeText = text.subtheme;
 
   const subthemeCardClass =
     category === "helse"

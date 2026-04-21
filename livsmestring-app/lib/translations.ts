@@ -1,28 +1,27 @@
-export const translations: Record<
-  string,
-  {
-    markDone: string;
-    done: string;
-    loading: string;
-    category: {
-      changeLanguage: string;
-      healthTitle: string;
-      careerTitle: string;
-      backToCategories: string;
-      backToThemes: string;
-    };
-    menu: {
-      home: string;
-      health: string;
-      career: string;
-      language: string;
-    };
-    subtheme: {
-      empty: string;
-      themeFallback: string;
-    };
-  }
-> = {
+type Translation = {
+  markDone: string;
+  done: string;
+  loading: string;
+  category: {
+    changeLanguage: string;
+    healthTitle: string;
+    careerTitle: string;
+    backToCategories: string;
+    backToThemes: string;
+  };
+  menu: {
+    home: string;
+    health: string;
+    career: string;
+    language: string;
+  };
+  subtheme: {
+    empty: string;
+    themeFallback: string;
+  };
+};
+
+export const translations: Record<string, Translation> = {
   no: {
     markDone: "Marker som fullført",
     done: "Fullført",
@@ -81,7 +80,7 @@ export const translations: Record<
       backToThemes: "Temalara geri dön",
     },
     menu: {
-      home: "Ana Sayfa",
+      home: "Ana sayfa",
       health: "Sağlık",
       career: "Kariyer",
       language: "Dil",
@@ -95,22 +94,22 @@ export const translations: Record<
   ta: {
     markDone: "முடிந்தது என குறிக்கவும்",
     done: "முடிந்தது",
-    loading: "ஏற்றுகிறது...",
+    loading: "ஏற்றப்படுகிறது...",
     category: {
-      changeLanguage: "மொழிக்குத் திரும்பு",
-      healthTitle: "உடல்நலம்",
+      changeLanguage: "மொழிக்கு திரும்பு",
+      healthTitle: "ஆரோக்கியம்",
       careerTitle: "தொழில்",
-      backToCategories: "வகைகளுக்குத் திரும்பவும்",
-      backToThemes: "தலைப்புகளுக்குத் திரும்பவும்",
+      backToCategories: "பிரிவுகளுக்கு திரும்பு",
+      backToThemes: "தலைப்புகளுக்கு திரும்பு",
     },
     menu: {
       home: "முகப்பு",
-      health: "உடல்நலம்",
+      health: "ஆரோக்கியம்",
       career: "தொழில்",
       language: "மொழி",
     },
     subtheme: {
-      empty: "வீடியோக்கள் எதுவும் கிடைக்கவில்லை",
+      empty: "வீடியோக்கள் இல்லை",
       themeFallback: "தலைப்பு",
     },
   },
