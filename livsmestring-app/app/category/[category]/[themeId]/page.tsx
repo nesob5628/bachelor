@@ -35,7 +35,6 @@ export default function Page() {
   const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
   const [themeTitle, setThemeTitle] = useState("Tema");
   const [language, setLanguage] = useState("no");
-  const [dataLanguage, setDataLanguage] = useState("no");
   const [hasGroups, setHasGroups] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -48,15 +47,11 @@ export default function Page() {
     }
 
     const selectedLanguage = progress.selectedLanguage;
-    const safeLanguage = translations[selectedLanguage]
-      ? selectedLanguage
-      : "no";
+    const safeLanguage = translations[selectedLanguage] ? selectedLanguage : "no";
 
-    setLanguage(safeLanguage);
+    setLanguage(selectedLanguage);
 
     const selectedTranslation = translations[safeLanguage];
-    const subthemeText = selectedTranslation.subtheme;
-
     const themeList: ThemeItem[] =
       category === "helse" ? healthThemes : careerThemes;
 
@@ -65,25 +60,13 @@ export default function Page() {
     setThemeTitle(
       foundTheme?.title?.[safeLanguage] ||
         foundTheme?.title?.no ||
-        subthemeText.themeFallback
+        selectedTranslation.subtheme.themeFallback
     );
-
-    const topicsInSelectedLanguage = videos.filter(
-      (item) =>
-        item.language === safeLanguage &&
-        item.category === category &&
-        item.theme === themeFromUrl
-    );
-
-    const fallbackLanguage =
-      topicsInSelectedLanguage.length > 0 ? safeLanguage : "no";
-
-    setDataLanguage(fallbackLanguage);
 
     const themeTopics = videos
       .filter(
         (item) =>
-          item.language === fallbackLanguage &&
+          item.language === selectedLanguage &&
           item.category === category &&
           item.theme === themeFromUrl
       )
@@ -143,9 +126,10 @@ export default function Page() {
   };
 
   const safeLanguage = translations[language] ? language : "no";
-  const text = translations[safeLanguage];
-  const categoryText = text.category;
-  const subthemeText = text.subtheme;
+  const text = translations[safeLanguage] ?? translations.no;
+
+  const categoryText = text.category ?? translations.no.category;
+  const subthemeText = text.subtheme ?? translations.no.subtheme;
 
   const subthemeCardClass =
     category === "helse"
@@ -155,7 +139,7 @@ export default function Page() {
   const getThemeProgress = () => {
     const allVideos = videos.filter(
       (item) =>
-        item.language === dataLanguage &&
+        item.language === language &&
         item.category === category &&
         item.theme === themeFromUrl
     );
@@ -172,7 +156,7 @@ export default function Page() {
   const getGroupProgress = (groupId: string) => {
     const allVideos = videos.filter(
       (item) =>
-        item.language === dataLanguage &&
+        item.language === language &&
         item.category === category &&
         item.theme === themeFromUrl &&
         item.groupId === groupId

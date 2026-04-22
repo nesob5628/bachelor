@@ -2,11 +2,7 @@
 
 import { videos } from "@/lib/data/videos";
 import { Topic } from "@/lib/types";
-import {
-  getProgress,
-  markVideoCompleted,
-  isVideoCompleted,
-} from "@/lib/storage";
+import { getProgress, markVideoCompleted } from "@/lib/storage";
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import ReturnBtn from "@/components/ReturnBtn";
@@ -35,6 +31,8 @@ export default function Page() {
     }
 
     const selectedLanguage = progress.selectedLanguage;
+    const safeLanguage = translations[selectedLanguage] ? selectedLanguage : "no";
+
     setLanguage(selectedLanguage);
 
     const filtered = videos
@@ -54,7 +52,19 @@ export default function Page() {
     setCompletedVideoIds(completed);
   }, [router, category, theme, groupId]);
 
+  useEffect(() => {
+    if (filteredTopics.length === 0) return;
+
+    const firstIncomplete = filteredTopics.findIndex(
+      (item) => !completedVideoIds.includes(item.synthesiaId || "")
+    );
+
+    setCurrentStep(firstIncomplete === -1 ? 0 : firstIncomplete);
+  }, [filteredTopics, completedVideoIds]);
+
   const handleMarkCompleted = (synthesiaId: string) => {
+    if (!synthesiaId) return;
+
     markVideoCompleted(synthesiaId);
 
     setCompletedVideoIds((prev) =>
@@ -62,19 +72,19 @@ export default function Page() {
     );
   };
 
-  const text =
-    translations[language] || translations.no;
+  const safeLanguage = translations[language] ? language : "no";
+  const text = translations[safeLanguage];
 
   return (
     <main className="pkt-container">
       <ReturnBtn
-        text={text?.category?.backToThemes || "Tilbake"}
+        text={text.category.backToThemes}
         href={`/category/${category}/${theme}`}
       />
 
       <h1>{groupId.replaceAll("_", " ")}</h1>
 
-      {filteredTopics.length === 0 && <p>Ingen videoer funnet</p>}
+      {filteredTopics.length === 0 && <p>{text.subtheme.empty}</p>}
 
       {filteredTopics.length > 0 && (
         <Stepper
@@ -83,10 +93,7 @@ export default function Page() {
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
           handleMarkCompleted={handleMarkCompleted}
-          text={{
-            done: text.done || "Fullført",
-            markDone: text.markDone || "Marker som fullført",
-          }}
+          text={text}
         />
       )}
     </main>

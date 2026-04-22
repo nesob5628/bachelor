@@ -40,7 +40,7 @@ export const translations: Record<string, Translation> = {
       language: "Språk",
     },
     subtheme: {
-      empty: "Ingen videoer funnet",
+      empty: "Det finnes ingen videoer her enda",
       themeFallback: "Tema",
     },
   },
@@ -63,7 +63,7 @@ export const translations: Record<string, Translation> = {
       language: "Language",
     },
     subtheme: {
-      empty: "No videos found",
+      empty: "There are no videos here yet",
       themeFallback: "Theme",
     },
   },
@@ -86,7 +86,7 @@ export const translations: Record<string, Translation> = {
       language: "Dil",
     },
     subtheme: {
-      empty: "Video bulunamadı",
+      empty: "Burada henüz video yok",
       themeFallback: "Tema",
     },
   },
@@ -109,7 +109,7 @@ export const translations: Record<string, Translation> = {
       language: "மொழி",
     },
     subtheme: {
-      empty: "வீடியோக்கள் இல்லை",
+      empty: "இங்கே இன்னும் வீடியோக்கள் இல்லை",
       themeFallback: "தலைப்பு",
     },
   },
