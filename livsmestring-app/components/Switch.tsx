@@ -9,7 +9,6 @@ export default function Switch({
 }) {
   return (
     <pkt-checkbox
-      label="Fullført video"
       isSwitch
       checked={checked}
       onChange={(e: any) => onChange(e.target.checked)}
