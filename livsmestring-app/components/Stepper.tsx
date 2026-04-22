@@ -1,4 +1,5 @@
 import React from "react";
+import Switch from "./Switch";
 
 type Topic = {
   synthesiaId?: string;
@@ -92,13 +93,14 @@ const Stepper: React.FC<StepperProps> = ({
                   )}
 
                   {item.synthesiaId && (
-                    <button
-                      className="pkt-button"
-                      onClick={() => handleMarkCompleted(item.synthesiaId!)}
-                      disabled={completed}
-                    >
-                      {completed ? text.done : text.markDone}
-                    </button>
+                    <Switch
+                    checked={completed}
+                      onChange={(checked) => {
+                        if (checked) {
+                          handleMarkCompleted(item.synthesiaId!);
+                        }
+                      }}
+                    />
                   )}
                 </div>
               )}

@@ -21,6 +21,30 @@ declare module "react" {
         role?: string;
         ariaLive?: string;
       };
+           "pkt-messagebox": DetailedHTMLProps<
+        HTMLAttributes<HTMLElement>,
+        HTMLElement
+      > & {
+        title?: string;
+        skin?: string;
+      };
+      "pkt-checkbox": DetailedHTMLProps<
+        HTMLAttributes<HTMLElement>,
+        HTMLElement
+      > & {
+        isSwitch?: boolean;
+        checked?: boolean;
+        onChange?: (e: any) => void;
+        disabled?: boolean;
+        name?: string;
+        value?: string;
+        required?: boolean;
+        label?: string;
+        indeterminate?: boolean;
+        ariaLabel?: string;
+        ariaLabelledby?: string;
+        ariaChecked?: boolean | "mixed";
+      };
     }
   }
 }
