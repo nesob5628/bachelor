@@ -28,6 +28,12 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
 
+          <Script
+            src="https://punkt-cdn.oslo.kommune.no/16/elements/pkt-messagebox.js"
+            type="module"
+            strategy="afterInteractive"
+          />
+
         <Header />
 
         <main>{children}</main>

@@ -15,8 +15,13 @@ type Translation = {
     career: string;
     language: string;
   };
+  theme: {
+    empty: string;
+    emptyDescription: string;
+  };
   subtheme: {
     empty: string;
+    emptyDescription: string;
     themeFallback: string;
   };
 };
@@ -39,8 +44,15 @@ export const translations: Record<string, Translation> = {
       career: "Karriere",
       language: "Språk",
     },
+    theme: {
+      empty: "Det finnes ingen videoer her enda",
+      emptyDescription:
+        "Det finnes foreløpig ingen videoer på dette språket for dette temaet.",
+    },
     subtheme: {
       empty: "Det finnes ingen videoer her enda",
+      emptyDescription:
+        "Det finnes foreløpig ingen videoer på dette språket for dette undertemaet.",
       themeFallback: "Tema",
     },
   },
@@ -62,8 +74,15 @@ export const translations: Record<string, Translation> = {
       career: "Career",
       language: "Language",
     },
+    theme: {
+      empty: "There are no videos here yet",
+      emptyDescription:
+        "There are currently no videos in this language for this topic.",
+    },
     subtheme: {
       empty: "There are no videos here yet",
+      emptyDescription:
+        "There are currently no videos in this language for this subtopic.",
       themeFallback: "Theme",
     },
   },
@@ -85,8 +104,15 @@ export const translations: Record<string, Translation> = {
       career: "Kariyer",
       language: "Dil",
     },
+    theme: {
+      empty: "Burada henüz video yok",
+      emptyDescription:
+        "Bu konu için bu dilde şu anda video bulunmamaktadır.",
+    },
     subtheme: {
       empty: "Burada henüz video yok",
+      emptyDescription:
+        "Bu alt konu için bu dilde şu anda video bulunmamaktadır.",
       themeFallback: "Tema",
     },
   },
@@ -108,8 +134,15 @@ export const translations: Record<string, Translation> = {
       career: "தொழில்",
       language: "மொழி",
     },
+    theme: {
+      empty: "இங்கே இன்னும் வீடியோக்கள் இல்லை",
+      emptyDescription:
+        "இந்த தலைப்பிற்கு இந்த மொழியில் தற்போது வீடியோக்கள் இல்லை.",
+    },
     subtheme: {
       empty: "இங்கே இன்னும் வீடியோக்கள் இல்லை",
+      emptyDescription:
+        "இந்த உட்தலைப்பிற்கு இந்த மொழியில் தற்போது வீடியோக்கள் இல்லை.",
       themeFallback: "தலைப்பு",
     },
   },
