@@ -82,6 +82,8 @@ main.pkt-container {
   gap: 12px;
 }
 
+
+
 .header-actions-menu .header-icons {
   display: flex;
 }
@@ -100,6 +102,31 @@ main.pkt-container {
   width: 24px;
   height: 24px;
   display: block;
+  
+}
+
+.header-actions-menu.is-open {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* venstre */
+  position: fixed;
+  top: 72px; 
+  right: 0;
+  height: calc(100vh - 72px); 
+  min-height: 0;
+  max-height: none;
+  z-index: 1001;
+}
+
+.header-actions-menu.is-open .header-icons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* venstre */
+}
+
+.header-actions-menu.is-open a {
+  width: 100%;
+  justify-content: flex-start; 
 }
 
 /* Mobile footer */
