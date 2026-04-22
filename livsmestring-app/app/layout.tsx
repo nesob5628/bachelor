@@ -33,6 +33,11 @@ export default function RootLayout({
             type="module"
             strategy="afterInteractive"
           />
+          <Script
+            src="https://punkt-cdn.oslo.kommune.no/16/elements/pkt-checkbox.js"
+            type="module"
+            strategy="afterInteractive"
+          />
 
         <Header />
 
