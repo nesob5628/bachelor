@@ -28,7 +28,7 @@ type Translation = {
 
 export const translations: Record<string, Translation> = {
   no: {
-    markDone: "Marker som fullført",
+    markDone: "Fullført video",
     done: "Fullført",
     loading: "Laster...",
     category: {
@@ -58,7 +58,7 @@ export const translations: Record<string, Translation> = {
   },
 
   en: {
-    markDone: "Mark as completed",
+    markDone: "Completed video",
     done: "Completed",
     loading: "Loading...",
     category: {
@@ -88,7 +88,7 @@ export const translations: Record<string, Translation> = {
   },
 
   tr: {
-    markDone: "Tamamlandı olarak işaretle",
+    markDone: "Video tamamlandı",
     done: "Tamamlandı",
     loading: "Yükleniyor...",
     category: {
@@ -118,7 +118,7 @@ export const translations: Record<string, Translation> = {
   },
 
   ta: {
-    markDone: "முடிந்தது என குறிக்கவும்",
+    markDone: "வீடியோ முடிந்தது",
     done: "முடிந்தது",
     loading: "ஏற்றப்படுகிறது...",
     category: {
