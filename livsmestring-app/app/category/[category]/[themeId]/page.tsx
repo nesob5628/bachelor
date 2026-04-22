@@ -12,6 +12,7 @@ import { translations } from "@/lib/translations";
 import Link from "next/link";
 import Stepper from "@/components/Stepper";
 import ProgressBar from "@/components/ProgressBar";
+import MessageBox from "@/components/MessageBox";
 
 type ThemeItem = {
   id: string;
@@ -130,6 +131,7 @@ export default function Page() {
 
   const categoryText = text.category ?? translations.no.category;
   const subthemeText = text.subtheme ?? translations.no.subtheme;
+  const themeText = text.theme ?? translations.no.theme;
 
   const subthemeCardClass =
     category === "helse"
@@ -211,9 +213,10 @@ export default function Page() {
       )}
 
       {!hasGroups && filteredTopics.length === 0 && (
-        <p>{subthemeText.empty}</p>
-      )}
-
+      <MessageBox title={themeText.empty}>
+        {themeText.emptyDescription}
+      </MessageBox>
+    )}
       {!hasGroups && filteredTopics.length > 0 && (
         <Stepper
           topics={filteredTopics}

@@ -8,6 +8,7 @@ import { useRouter, useParams } from "next/navigation";
 import ReturnBtn from "@/components/ReturnBtn";
 import { translations } from "@/lib/translations";
 import Stepper from "@/components/Stepper";
+import MessageBox from "@/components/MessageBox";
 
 export default function Page() {
   const router = useRouter();
@@ -84,7 +85,11 @@ export default function Page() {
 
       <h1>{groupId.replaceAll("_", " ")}</h1>
 
-      {filteredTopics.length === 0 && <p>{text.subtheme.empty}</p>}
+      {filteredTopics.length === 0 && (
+      <MessageBox title={text.subtheme.empty}>
+        {text.subtheme.emptyDescription}
+      </MessageBox>
+    )}
 
       {filteredTopics.length > 0 && (
         <Stepper
