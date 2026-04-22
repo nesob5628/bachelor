@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Loader from "@/components/loading";
+import Loader from "@/components/Loading";
 export default function Page() {
   const [loading, setLoading] = useState(true);
 
