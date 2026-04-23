@@ -1,6 +1,6 @@
 "use client";
 
-import { videos } from "@/lib/data/videos";
+import { topics } from "@/lib/videos";
 import { Topic } from "@/lib/types";
 import { getProgress, markVideoCompleted } from "@/lib/storage";
 import { useEffect, useState } from "react";
@@ -14,14 +14,16 @@ import Stepper from "@/components/Stepper";
 import ProgressBar from "@/components/ProgressBar";
 import MessageBox from "@/components/MessageBox";
 
-type ThemeItem = {
-  id: string;
-  title: Record<string, string>;
-};
-
 type GroupItem = {
   id: string;
   title: string;
+};
+
+const getTitle = (
+  title: { no: string } & Record<string, string>,
+  language: string
+) => {
+  return title[language] || title.no;
 };
 
 export default function Page() {
@@ -39,6 +41,17 @@ export default function Page() {
   const [hasGroups, setHasGroups] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
+  const safeLanguage = translations[language] ? language : "no";
+
+  const getGroupTitle = (groupId: string, lang: string) => {
+    const theme = healthThemes.find((item) => item.id === themeFromUrl);
+    const group = theme?.groups?.find((item) => item.id === groupId);
+
+    return group
+      ? getTitle(group.title, lang)
+      : groupId.replaceAll("_", " ");
+  };
+
   useEffect(() => {
     const progress = getProgress();
 
@@ -48,23 +61,22 @@ export default function Page() {
     }
 
     const selectedLanguage = progress.selectedLanguage;
-    const safeLanguage = translations[selectedLanguage] ? selectedLanguage : "no";
+    const safeLang = translations[selectedLanguage] ? selectedLanguage : "no";
 
     setLanguage(selectedLanguage);
 
-    const selectedTranslation = translations[safeLanguage];
-    const themeList: ThemeItem[] =
-      category === "helse" ? healthThemes : careerThemes;
+    const selectedTranslation = translations[safeLang];
 
+    const themeList = category === "helse" ? healthThemes : careerThemes;
     const foundTheme = themeList.find((item) => item.id === themeFromUrl);
 
     setThemeTitle(
-      foundTheme?.title?.[safeLanguage] ||
-        foundTheme?.title?.no ||
-        selectedTranslation.subtheme.themeFallback
+      foundTheme
+        ? getTitle(foundTheme.title, safeLang)
+        : selectedTranslation.subtopic.themeFallback
     );
 
-    const themeTopics = videos
+    const themeTopics = topics
       .filter(
         (item) =>
           item.language === selectedLanguage &&
@@ -86,8 +98,7 @@ export default function Page() {
             item.groupId!,
             {
               id: item.groupId!,
-              title:
-                item.groupTitle?.trim() || item.groupId!.replaceAll("_", " "),
+              title: getGroupTitle(item.groupId!, safeLang),
             },
           ])
         ).values()
@@ -103,6 +114,7 @@ export default function Page() {
 
     const completed =
       progress.languages?.[selectedLanguage]?.completedVideos ?? [];
+
     setCompletedVideoIds(completed);
   }, [router, category, themeFromUrl]);
 
@@ -110,7 +122,7 @@ export default function Page() {
     if (filteredTopics.length === 0) return;
 
     const firstIncomplete = filteredTopics.findIndex(
-      (item) => !completedVideoIds.includes(item.synthesiaId || "")
+      (item) => !completedVideoIds.includes(item.synthesiaId)
     );
 
     setCurrentStep(firstIncomplete === -1 ? 0 : firstIncomplete);
@@ -126,20 +138,17 @@ export default function Page() {
     );
   };
 
-  const safeLanguage = translations[language] ? language : "no";
   const text = translations[safeLanguage] ?? translations.no;
-
   const categoryText = text.category ?? translations.no.category;
-  const subthemeText = text.subtheme ?? translations.no.subtheme;
   const themeText = text.theme ?? translations.no.theme;
 
-  const subthemeCardClass =
+  const subtopicCardClass =
     category === "helse"
-      ? "subtheme-card subtheme-card--health"
-      : "subtheme-card subtheme-card--career";
+      ? "subtopic-card subtopic-card--health"
+      : "subtopic-card subtopic-card--career";
 
   const getThemeProgress = () => {
-    const allVideos = videos.filter(
+    const allVideos = topics.filter(
       (item) =>
         item.language === language &&
         item.category === category &&
@@ -149,14 +158,14 @@ export default function Page() {
     if (allVideos.length === 0) return 0;
 
     const completed = allVideos.filter((item) =>
-      completedVideoIds.includes(item.synthesiaId || "")
+      completedVideoIds.includes(item.synthesiaId)
     ).length;
 
     return Math.round((completed / allVideos.length) * 100);
   };
 
   const getGroupProgress = (groupId: string) => {
-    const allVideos = videos.filter(
+    const allVideos = topics.filter(
       (item) =>
         item.language === language &&
         item.category === category &&
@@ -167,7 +176,7 @@ export default function Page() {
     if (allVideos.length === 0) return 0;
 
     const completed = allVideos.filter((item) =>
-      completedVideoIds.includes(item.synthesiaId || "")
+      completedVideoIds.includes(item.synthesiaId)
     ).length;
 
     return Math.round((completed / allVideos.length) * 100);
@@ -189,7 +198,7 @@ export default function Page() {
       </div>
 
       {hasGroups && (
-        <div className="subtheme-grid">
+        <div className="subtopic-grid">
           {groups.map((group) => {
             const progress = getGroupProgress(group.id);
 
@@ -197,13 +206,13 @@ export default function Page() {
               <Link
                 key={group.id}
                 href={`/category/${category}/${themeFromUrl}/${group.id}`}
-                className={subthemeCardClass}
+                className={subtopicCardClass}
               >
-                <div className="subtheme-card__header">
-                  <span className="subtheme-card__title">{group.title}</span>
+                <div className="subtopic-card__header">
+                  <span className="subtopic-card__title">{group.title}</span>
                 </div>
 
-                <div className="subtheme-card__progress">
+                <div className="subtopic-card__progress">
                   <ProgressBar value={progress} small />
                 </div>
               </Link>
@@ -213,10 +222,11 @@ export default function Page() {
       )}
 
       {!hasGroups && filteredTopics.length === 0 && (
-      <MessageBox title={themeText.empty}>
-        {themeText.emptyDescription}
-      </MessageBox>
-    )}
+        <MessageBox title={themeText.empty}>
+          {themeText.emptyDescription}
+        </MessageBox>
+      )}
+
       {!hasGroups && filteredTopics.length > 0 && (
         <Stepper
           topics={filteredTopics}

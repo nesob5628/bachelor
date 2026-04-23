@@ -1,10 +1,10 @@
 export interface Topic {
   language: string;
-  category: string;
+  category: "helse" | "karriere";
   theme: string;
-  groupId?: string;
+  groupId: string | null;
   groupTitle?: string;
-  subtopicId?: string;
+  subtopicId: string;
   subtopicTitle?: string;
   synthesiaId: string;
   order: number;

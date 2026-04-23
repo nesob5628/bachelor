@@ -427,7 +427,7 @@ main.pkt-container {
 }
 
 
-.subtheme-grid {
+.subtopic-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
@@ -435,7 +435,7 @@ main.pkt-container {
   margin: 2rem auto 0;
 }
 
-.subtheme-card {
+.subtopic-card {
   min-height: 190px;
   padding: 2rem;
   display: flex;
@@ -448,35 +448,35 @@ main.pkt-container {
   color: inherit;
 }
 
-.subtheme-card__header {
+.subtopic-card__header {
   width: 100%;
 }
 
-.subtheme-card__title {
+.subtopic-card__title {
   font-size: 1.35rem;
   font-weight: 500;
   line-height: 1.3;
   text-decoration: none;
 }
 
-.subtheme-card__progress {
+.subtopic-card__progress {
   width: 100%;
   max-width: 300px;
   margin: 0 auto;
 }
 
-.subtheme-card__progress .pkt-progressbar,
-.subtheme-card__progress pkt-progressbar {
+.subtopic-card__progress .pkt-progressbar,
+.subtopic-card__progress pkt-progressbar {
   display: block;
   width: 100%;
 }
 
-.subtheme-card--health {
+.subtopic-card--health {
   background: var(--pkt-color-brand-red-600);
   border-color: var(--pkt-color-brand-red-600);
 }
 
-.subtheme-card--career {
+.subtopic-card--career {
   background: var(--pkt-color-surface-strong-beige);
   border-color: var(--pkt-color-surface-strong-beige);
 }
@@ -639,11 +639,11 @@ main.pkt-container {
     background: #fff;
   }
 
-  .subtheme-grid {
+  .subtopic-grid {
     grid-template-columns: 1fr;
   }
 
-  .subtheme-card {
+  .subtopic-card {
     min-height: 120px;
   }
 

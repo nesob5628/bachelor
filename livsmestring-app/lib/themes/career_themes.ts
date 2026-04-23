@@ -10,7 +10,6 @@ type Translation = {
   ta: string;
   ti: string;
   tr: string;
-  uk: string;
   ur: string;
 };
 
@@ -33,7 +32,6 @@ const emptyTranslations = (): Omit<Translation, "no" | "en" | "ta" | "tr"> => ({
   es: "",
   sw: "",
   ti: "",
-  uk: "",
   ur: "",
 });
 

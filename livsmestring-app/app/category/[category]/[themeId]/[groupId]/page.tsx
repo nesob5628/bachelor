@@ -1,6 +1,6 @@
 "use client";
 
-import { videos } from "@/lib/data/videos";
+import { topics } from "@/lib/videos";
 import { Topic } from "@/lib/types";
 import { getProgress, markVideoCompleted } from "@/lib/storage";
 import { useEffect, useState } from "react";
@@ -9,12 +9,20 @@ import ReturnBtn from "@/components/ReturnBtn";
 import { translations } from "@/lib/translations";
 import Stepper from "@/components/Stepper";
 import MessageBox from "@/components/MessageBox";
+import { healthThemes } from "@/lib/themes/health_themes";
+
+const getTitle = (
+  title: { no: string } & Record<string, string>,
+  language: string
+) => {
+  return title[language] || title.no;
+};
 
 export default function Page() {
   const router = useRouter();
   const params = useParams();
 
-  const category = params.category as string;
+  const category = params.category as "helse" | "karriere";
   const theme = params.themeId as string;
   const groupId = params.groupId as string;
 
@@ -22,6 +30,18 @@ export default function Page() {
   const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
   const [language, setLanguage] = useState("no");
   const [currentStep, setCurrentStep] = useState(0);
+
+  const safeLanguage = translations[language] ? language : "no";
+  const text = translations[safeLanguage] ?? translations.no;
+
+  const getGroupTitle = () => {
+    const themeData = healthThemes.find((item) => item.id === theme);
+    const group = themeData?.groups?.find((item) => item.id === groupId);
+
+    return group
+      ? getTitle(group.title, safeLanguage)
+      : groupId.replaceAll("_", " ");
+  };
 
   useEffect(() => {
     const progress = getProgress();
@@ -32,11 +52,9 @@ export default function Page() {
     }
 
     const selectedLanguage = progress.selectedLanguage;
-    const safeLanguage = translations[selectedLanguage] ? selectedLanguage : "no";
-
     setLanguage(selectedLanguage);
 
-    const filtered = videos
+    const filtered = topics
       .filter(
         (item) =>
           item.language === selectedLanguage &&
@@ -50,6 +68,7 @@ export default function Page() {
 
     const completed =
       progress.languages?.[selectedLanguage]?.completedVideos ?? [];
+
     setCompletedVideoIds(completed);
   }, [router, category, theme, groupId]);
 
@@ -57,7 +76,7 @@ export default function Page() {
     if (filteredTopics.length === 0) return;
 
     const firstIncomplete = filteredTopics.findIndex(
-      (item) => !completedVideoIds.includes(item.synthesiaId || "")
+      (item) => !completedVideoIds.includes(item.synthesiaId)
     );
 
     setCurrentStep(firstIncomplete === -1 ? 0 : firstIncomplete);
@@ -73,9 +92,6 @@ export default function Page() {
     );
   };
 
-  const safeLanguage = translations[language] ? language : "no";
-  const text = translations[safeLanguage];
-
   return (
     <main className="pkt-container">
       <ReturnBtn
@@ -83,13 +99,13 @@ export default function Page() {
         href={`/category/${category}/${theme}`}
       />
 
-      <h1>{groupId.replaceAll("_", " ")}</h1>
+      <h1 className="theme-heading">{getGroupTitle()}</h1>
 
       {filteredTopics.length === 0 && (
-      <MessageBox title={text.subtheme.empty}>
-        {text.subtheme.emptyDescription}
-      </MessageBox>
-    )}
+        <MessageBox title={text.subtopic.empty}>
+          {text.subtopic.emptyDescription}
+        </MessageBox>
+      )}
 
       {filteredTopics.length > 0 && (
         <Stepper

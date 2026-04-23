@@ -7,7 +7,7 @@ import {
   setProgress,
   getCompletedVideos,
 } from "@/lib/storage";
-import { videos } from "@/lib/data/videos";
+import { topics } from "@/lib/videos";
 import { healthThemes } from "@/lib/themes/health_themes";
 import { careerThemes } from "@/lib/themes/career_themes";
 import { translations } from "@/lib/translations";
@@ -69,7 +69,7 @@ export default function Page() {
   const getSingleThemeProgress = (themeId: string) => {
     const completedVideos = getCompletedVideos();
   
-    const themeVideos = videos.filter(
+    const themeVideos = topics.filter(
       (video: any) =>
         video.language === language &&
         video.category === category &&

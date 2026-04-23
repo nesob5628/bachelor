@@ -19,7 +19,7 @@ type Translation = {
     empty: string;
     emptyDescription: string;
   };
-  subtheme: {
+  subtopic: {
     empty: string;
     emptyDescription: string;
     themeFallback: string;
@@ -28,7 +28,7 @@ type Translation = {
 
 export const translations: Record<string, Translation> = {
   no: {
-    markDone: "Fullført video",
+    markDone: "Marker som fullført",
     done: "Fullført",
     loading: "Laster...",
     category: {
@@ -49,7 +49,7 @@ export const translations: Record<string, Translation> = {
       emptyDescription:
         "Det finnes foreløpig ingen videoer på dette språket for dette temaet.",
     },
-    subtheme: {
+    subtopic: {
       empty: "Det finnes ingen videoer her enda",
       emptyDescription:
         "Det finnes foreløpig ingen videoer på dette språket for dette undertemaet.",
@@ -58,7 +58,7 @@ export const translations: Record<string, Translation> = {
   },
 
   en: {
-    markDone: "Completed video",
+    markDone: "Mark as completed",
     done: "Completed",
     loading: "Loading...",
     category: {
@@ -79,7 +79,7 @@ export const translations: Record<string, Translation> = {
       emptyDescription:
         "There are currently no videos in this language for this topic.",
     },
-    subtheme: {
+    subtopic: {
       empty: "There are no videos here yet",
       emptyDescription:
         "There are currently no videos in this language for this subtopic.",
@@ -88,7 +88,7 @@ export const translations: Record<string, Translation> = {
   },
 
   tr: {
-    markDone: "Video tamamlandı",
+    markDone: "Tamamlandı olarak işaretle",
     done: "Tamamlandı",
     loading: "Yükleniyor...",
     category: {
@@ -109,7 +109,7 @@ export const translations: Record<string, Translation> = {
       emptyDescription:
         "Bu konu için bu dilde şu anda video bulunmamaktadır.",
     },
-    subtheme: {
+    subtopic: {
       empty: "Burada henüz video yok",
       emptyDescription:
         "Bu alt konu için bu dilde şu anda video bulunmamaktadır.",
@@ -133,13 +133,14 @@ export const translations: Record<string, Translation> = {
       health: "ஆரோக்கியம்",
       career: "தொழில்",
       language: "மொழி", 
+      
     },
     theme: {
       empty: "இங்கே இன்னும் காணொளிகள் இல்லை",
       emptyDescription:
         "இந்த தலைப்பிற்கு தமிழ் மொழியில் தற்போது எந்த காணொளிகளும் இல்லை.",
     },
-    subtheme: {
+    subtopic: {
       empty: "இங்கே இன்னும் காணொளிகள் இல்லை",
       emptyDescription:
         "இந்த உட்தலைப்பிற்கு தமிழ் மொழியில் தற்போது எந்த காணொளிகளும் இல்லை.",
