@@ -413,7 +413,7 @@ main.pkt-container {
 .theme-card__title {
   font-size: 1.35rem;
   line-height: 1.3;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--pkt-color-grays-gray-800);
   white-space: normal;
   overflow-wrap: break-word;
@@ -457,6 +457,7 @@ main.pkt-container {
   font-weight: 500;
   line-height: 1.3;
   text-decoration: none;
+  color: var(--pkt-color-grays-gray-800);
 }
 
 .subtopic-card__progress {
