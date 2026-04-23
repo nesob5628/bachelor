@@ -94,7 +94,7 @@ const Stepper: React.FC<StepperProps> = ({
 
                   {item.synthesiaId && (
                     <Switch
-                    checked={completed}
+                      checked={completed}
                       onChange={(checked) => {
                         if (checked) {
                           handleMarkCompleted(item.synthesiaId!);
