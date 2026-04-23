@@ -122,7 +122,7 @@ export default function Page() {
         <h1 className="theme-heading">...</h1>
 
         <div className="theme-progress">
-          <ProgressBar value={0} label="Tema-progresjon" />
+          <ProgressBar value={0}/>
         </div>
 
         <div className="theme-grid">
@@ -150,7 +150,7 @@ export default function Page() {
       <h1 className="theme-heading">{siteTitle}</h1>
 
       <div className="theme-progress">
-        <ProgressBar value={totalProgress} label="Tema-progresjon" />
+        <ProgressBar value={totalProgress} />
       </div>
 
       <div className="theme-grid">

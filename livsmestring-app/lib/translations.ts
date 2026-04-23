@@ -32,7 +32,7 @@ export const translations: Record<string, Translation> = {
     done: "Fullført",
     loading: "Laster...",
     category: {
-      changeLanguage: "Tilbake til språk",
+      changeLanguage: "Bytt språk",
       healthTitle: "Helse",
       careerTitle: "Karriere",
       backToCategories: "Tilbake til kategorier",
@@ -118,32 +118,32 @@ export const translations: Record<string, Translation> = {
   },
 
   ta: {
-    markDone: "முடிந்தது என குறிக்கவும்",
+    markDone: "முடிந்ததாக குறிக்கவும்",
     done: "முடிந்தது",
     loading: "ஏற்றப்படுகிறது...",
     category: {
-      changeLanguage: "மொழிக்கு திரும்பு",
+      changeLanguage: "மொழியை மாற்று",
       healthTitle: "ஆரோக்கியம்",
       careerTitle: "தொழில்",
       backToCategories: "பிரிவுகளுக்கு திரும்பு",
-      backToThemes: "தலைப்புகளுக்கு திரும்பு",
+      backToThemes: "கருப்பொருள்களுக்கு திரும்பு",
     },
     menu: {
       home: "முகப்பு",
       health: "ஆரோக்கியம்",
       career: "தொழில்",
-      language: "மொழி",
+      language: "மொழி", 
     },
     theme: {
-      empty: "இங்கே இன்னும் வீடியோக்கள் இல்லை",
+      empty: "இங்கே இன்னும் காணொளிகள் இல்லை",
       emptyDescription:
-        "இந்த தலைப்பிற்கு இந்த மொழியில் தற்போது வீடியோக்கள் இல்லை.",
+        "இந்த தலைப்பிற்கு தமிழ் மொழியில் தற்போது எந்த காணொளிகளும் இல்லை.",
     },
     subtheme: {
-      empty: "இங்கே இன்னும் வீடியோக்கள் இல்லை",
+      empty: "இங்கே இன்னும் காணொளிகள் இல்லை",
       emptyDescription:
-        "இந்த உட்தலைப்பிற்கு இந்த மொழியில் தற்போது வீடியோக்கள் இல்லை.",
+        "இந்த உட்தலைப்பிற்கு தமிழ் மொழியில் தற்போது எந்த காணொளிகளும் இல்லை.",
       themeFallback: "தலைப்பு",
     },
-  },
+  }
 };

@@ -211,8 +211,8 @@ main.pkt-container {
 }
 
 .language-card {
-  background-color: var(--pkt-color-brand-red-600);
-  border: 1px solid var(--pkt-color-brand-red-600);
+  background-color: var(--pkt-color-brand-dark-blue-1000);
+  border: 1px solid var(--pkt-color-brand-dark-blue-1000);
   transition: all 0.2s ease;
 }
 
@@ -221,7 +221,7 @@ main.pkt-container {
 }
 
 .language-card .pkt-linkcard__title {
-  color: var(--pkt-color-grays-gray-800);
+  color: var(--pkt-color-brand-neutrals-white);
 }
 
 /* Category */
@@ -481,8 +481,6 @@ main.pkt-container {
   border-color: var(--pkt-color-surface-strong-beige);
 }
 
-
-
 /* Tablet */
 @media (max-width: 900px) {
   .header-menu-toggle {
@@ -589,6 +587,16 @@ main.pkt-container {
     height: 54px;
   }
 
+  .return-button {
+    font-size: 0.8rem;
+    padding: 0.5rem 0;
+  }
+
+  .return-icon {
+    width: 18px;
+    height: 18px;
+  }
+
   .category-grid {
     grid-template-columns: 1fr;
     gap: 3.5rem;
@@ -629,7 +637,6 @@ main.pkt-container {
     right: 0;
     z-index: 1000;
     background: #fff;
-    border-top: 1px solid #eee;
   }
 
   .subtheme-grid {
