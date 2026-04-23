@@ -194,7 +194,7 @@ export default function Page() {
       <h1 className="theme-heading">{themeTitle}</h1>
 
       <div className="theme-progress">
-        <ProgressBar value={themeProgress} label="Fremdrift" />
+        <ProgressBar value={themeProgress}/>
       </div>
 
       {hasGroups && (
