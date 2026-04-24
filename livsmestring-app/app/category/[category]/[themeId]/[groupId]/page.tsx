@@ -54,15 +54,30 @@ export default function Page() {
     const selectedLanguage = progress.selectedLanguage;
     setLanguage(selectedLanguage);
 
-    const filtered = topics
-      .filter(
-        (item) =>
-          item.language === selectedLanguage &&
-          item.category === category &&
-          item.theme === theme &&
-          item.groupId === groupId
-      )
-      .sort((a, b) => Number(a.order) - Number(b.order));
+    const themeData = healthThemes.find((item) => item.id === theme);
+const groupData = themeData?.groups?.find((item) => item.id === groupId);
+
+const filtered = topics
+  .filter(
+    (item) =>
+      item.language === selectedLanguage &&
+      item.category === category &&
+      item.theme === theme &&
+      item.groupId === groupId
+  )
+  .map((item) => {
+    const subtopic = groupData?.subtopics?.find(
+      (sub) => sub.id === item.subtopicId
+    );
+
+    return {
+      ...item,
+      subtopicTitle: subtopic
+        ? getTitle(subtopic.title, selectedLanguage)
+        : item.subtopicTitle,
+    };
+  })
+  .sort((a, b) => Number(a.order) - Number(b.order));
 
     setFilteredTopics(filtered);
 

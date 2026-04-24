@@ -77,13 +77,25 @@ export default function Page() {
     );
 
     const themeTopics = topics
-      .filter(
-        (item) =>
-          item.language === selectedLanguage &&
-          item.category === category &&
-          item.theme === themeFromUrl
-      )
-      .sort((a, b) => Number(a.order) - Number(b.order));
+  .filter(
+    (item) =>
+      item.language === selectedLanguage &&
+      item.category === category &&
+      item.theme === themeFromUrl
+  )
+  .map((item) => {
+    const subtopic = foundTheme?.subtopics?.find(
+      (sub) => sub.id === item.subtopicId
+    );
+
+    return {
+      ...item,
+      subtopicTitle: subtopic
+        ? getTitle(subtopic.title, safeLang)
+        : item.subtopicTitle,
+    };
+  })
+  .sort((a, b) => Number(a.order) - Number(b.order));
 
     const groupedTopics = themeTopics.filter(
       (item) => item.groupId && item.groupId.trim() !== ""
@@ -142,10 +154,10 @@ export default function Page() {
   const categoryText = text.category ?? translations.no.category;
   const themeText = text.theme ?? translations.no.theme;
 
-  const subtopicCardClass =
+  const subthemeCardClass =
     category === "helse"
-      ? "subtopic-card subtopic-card--health"
-      : "subtopic-card subtopic-card--career";
+      ? "subtheme-card subtheme-card--health"
+      : "subtheme-card subtheme-card--career";
 
   const getThemeProgress = () => {
     const allVideos = topics.filter(
@@ -198,7 +210,7 @@ export default function Page() {
       </div>
 
       {hasGroups && (
-        <div className="subtopic-grid">
+        <div className="subtheme-grid">
           {groups.map((group) => {
             const progress = getGroupProgress(group.id);
 
@@ -206,13 +218,13 @@ export default function Page() {
               <Link
                 key={group.id}
                 href={`/category/${category}/${themeFromUrl}/${group.id}`}
-                className={subtopicCardClass}
+                className={subthemeCardClass}
               >
-                <div className="subtopic-card__header">
-                  <span className="subtopic-card__title">{group.title}</span>
+                <div className="subtheme-card__header">
+                  <span className="subtheme-card__title">{group.title}</span>
                 </div>
 
-                <div className="subtopic-card__progress">
+                <div className="subtheme-card__progress">
                   <ProgressBar value={progress} small />
                 </div>
               </Link>
