@@ -222,6 +222,16 @@ export default function Page() {
               >
                 <div className="subtheme-card__header">
                   <span className="subtheme-card__title">{group.title}</span>
+
+                  {progress === 100 && (
+                    <img
+                      src="https://punkt-cdn.oslo.kommune.no/16/icons/check-medium.svg"
+                      alt="Fullført undertema"
+                      className="theme-card__check"
+                      width={24}
+                      height={24}
+                    />
+                  )}
                 </div>
 
                 <div className="subtheme-card__progress">

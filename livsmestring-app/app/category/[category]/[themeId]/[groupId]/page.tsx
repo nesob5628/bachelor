@@ -10,6 +10,7 @@ import { translations } from "@/lib/translations";
 import Stepper from "@/components/Stepper";
 import MessageBox from "@/components/MessageBox";
 import { healthThemes } from "@/lib/themes/health_themes";
+import ProgressBar from "@/components/ProgressBar";
 
 const getTitle = (
   title: { no: string } & Record<string, string>,
@@ -107,6 +108,18 @@ const filtered = topics
     );
   };
 
+  const getGroupProgress = () => {
+  if (filteredTopics.length === 0) return 0;
+
+  const completed = filteredTopics.filter((item) =>
+    completedVideoIds.includes(item.synthesiaId)
+  ).length;
+
+  return Math.round((completed / filteredTopics.length) * 100);
+};
+
+const groupProgress = getGroupProgress();
+
   return (
     <main className="pkt-container">
       <ReturnBtn
@@ -115,6 +128,10 @@ const filtered = topics
       />
 
       <h1 className="theme-heading">{getGroupTitle()}</h1>
+
+      <div className="theme-progress">
+        <ProgressBar value={groupProgress} />
+      </div>
 
       {filteredTopics.length === 0 && (
         <MessageBox title={text.subtopic.empty}>
