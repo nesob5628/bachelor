@@ -27,6 +27,7 @@ const Stepper: React.FC<StepperProps> = ({
   text,
 }) => {
   return (
+  <div className="stepper-container">
     <ol className="pkt-stepper pkt-stepper--vertical">
       {topics.map((item, i) => {
         const completed =
@@ -83,8 +84,6 @@ const Stepper: React.FC<StepperProps> = ({
                 <div className="pkt-step__content">
                   {item.synthesiaId && (
                     <iframe
-                      width="100%"
-                      height="300"
                       src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
                       title={item.subtopicTitle}
                       allow="encrypted-media; fullscreen;"
@@ -109,6 +108,7 @@ const Stepper: React.FC<StepperProps> = ({
         );
       })}
     </ol>
+  </div>
   );
 };
 

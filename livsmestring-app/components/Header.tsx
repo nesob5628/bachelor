@@ -1,11 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { clearSelectedLanguage } from "@/lib/storage";
+import { useState, useEffect } from "react";
+import { clearSelectedLanguage, getProgress } from "@/lib/storage";
+import { translations } from "@/lib/translations";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [language, setLanguage] = useState("no");
+
+  useEffect(() => {
+    const progress = getProgress();
+    setLanguage(progress.selectedLanguage || "no");
+  }, []);
+
+  const text = translations[language] || translations.no;
 
   return (
     <header className="oslo-header">
@@ -34,12 +43,12 @@ export default function Header() {
           aria-label={menuOpen ? "Lukk meny" : "Åpne meny"}
           onClick={() => setMenuOpen((prev) => !prev)}
         >
-          <img
-            src="https://punkt-cdn.oslo.kommune.no/16/icons/menu.svg"
-            alt=""
-            width={24}
-            height={24}
-          />
+          <div className={`hamburger ${menuOpen ? "is-open" : ""}`} aria-hidden="true">
+            <span className="hamburger__part hamburger__part--top" />
+            <span className="hamburger__part hamburger__part--x1" />
+            <span className="hamburger__part hamburger__part--x2" />
+            <span className="hamburger__part hamburger__part--bottom" />
+          </div>
         </button>
 
         <div
@@ -47,69 +56,37 @@ export default function Header() {
           className={`header-actions-menu ${menuOpen ? "is-open" : ""}`}
         >
           <div className="header-icons">
-            <Link
-              href="/category"
-              aria-label="Gå til hjemsiden"
-              onClick={() => setMenuOpen(false)}
-            >
-              <img
-                src="https://punkt-cdn.oslo.kommune.no/16/icons/home.svg"
-                alt=""
-                className="header-icon"
-                width={24}
-                height={24}
-              />
+            <Link href="/category" onClick={() => setMenuOpen(false)} className="menu-item">
+              <img src="https://punkt-cdn.oslo.kommune.no/16/icons/home.svg" alt="" className="header-icon" />
+              <span>{text.menu.home}</span>
             </Link>
           </div>
 
           <div className="header-icons">
-            <Link
-              href="/category/helse"
-              aria-label="Gå til helsesiden"
-              onClick={() => setMenuOpen(false)}
-            >
-              <img
-                src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
-                alt=""
-                className="header-icon"
-                width={24}
-                height={24}
-              />
+            <Link href="/category/helse" onClick={() => setMenuOpen(false)} className="menu-item">
+              <img src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg" alt="" className="header-icon" />
+              <span>{text.menu.health}</span>
             </Link>
           </div>
 
           <div className="header-icons">
-            <Link
-              href="/category/karriere"
-              aria-label="Gå til karrieresiden"
-              onClick={() => setMenuOpen(false)}
-            >
-              <img
-                src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
-                alt=""
-                className="header-icon"
-                width={24}
-                height={24}
-              />
+            <Link href="/category/karriere" onClick={() => setMenuOpen(false)} className="menu-item">
+              <img src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg" alt="" className="header-icon" />
+              <span>{text.menu.career}</span>
             </Link>
           </div>
 
           <div className="header-icons">
             <Link
               href="/language"
-              aria-label="Gå til språksiden"
               onClick={() => {
                 clearSelectedLanguage();
                 setMenuOpen(false);
               }}
+              className="menu-item"
             >
-              <img
-                src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg"
-                alt=""
-                className="header-icon"
-                width={24}
-                height={24}
-              />
+              <img src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg" alt="" className="header-icon" />
+              <span>{text.menu.language}</span>
             </Link>
           </div>
         </div>

@@ -62,7 +62,7 @@ export const translations: Record<string, Translation> = {
     done: "Completed",
     loading: "Loading...",
     category: {
-      changeLanguage: "Back to language",
+      changeLanguage: "Change language",
       healthTitle: "Health",
       careerTitle: "Career",
       backToCategories: "Back to categories",

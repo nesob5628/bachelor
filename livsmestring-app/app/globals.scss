@@ -105,29 +105,6 @@ main.pkt-container {
   
 }
 
-.header-actions-menu.is-open {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* venstre */
-  position: fixed;
-  top: 72px; 
-  right: 0;
-  height: calc(100vh - 72px); 
-  min-height: 0;
-  max-height: none;
-  z-index: 1001;
-}
-
-.header-actions-menu.is-open .header-icons {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start; /* venstre */
-}
-
-.header-actions-menu.is-open a {
-  width: 100%;
-  justify-content: flex-start; 
-}
 
 /* Mobile footer */
 .mobile-footer {
@@ -492,42 +469,135 @@ main.pkt-container {
   border-color: var(--pkt-color-surface-strong-beige);
 }
 
-/* Tablet */
+.hamburger {
+  width: 32px;
+  height: 28px;
+  position: relative;
+}
+
+.hamburger__part {
+  position: absolute;
+  left: 0;
+  width: 32px;
+  height: 3px;
+  background: #2a2859;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.hamburger__part--top {
+  top: 3px;
+}
+
+.hamburger__part--x1,
+.hamburger__part--x2 {
+  top: 12px;
+}
+
+.hamburger__part--bottom {
+  top: 21px;
+}
+
+.hamburger.is-open .hamburger__part--top,
+.hamburger.is-open .hamburger__part--bottom {
+  opacity: 0;
+}
+
+.hamburger.is-open .hamburger__part--x1 {
+  transform: rotate(45deg);
+}
+
+.hamburger.is-open .hamburger__part--x2 {
+  transform: rotate(-45deg);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--pkt-color-grays-gray-800);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.75rem 0.5rem;
+  border-radius: 8px;
+}
+
+.menu-item span {
+  display: inline-block;
+}
+
+.menu-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.stepper-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-left: 24px;
+}
+
+.stepper-container .pkt-stepper {
+  width: 100%;
+  max-width: 850px;
+  padding: 0 16px;
+}
+.stepper-container .pkt-step__content iframe {
+  width: 250%;
+  max-width: none;
+  aspect-ratio: 16 / 9;
+  border: none;
+  display: block;
+  margin-left: -5%;
+}
+
 @media (max-width: 900px) {
-  .header-menu-toggle {
-    display: inline-flex;
-  }
+.header-menu-toggle {
+  display: inline-flex;
+  position: relative;
+  z-index: 3003;
+}
 
   .header-actions-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
+    display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-    width: min(220px, calc(100vw - 32px));
-    padding: 12px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(70vw, 360px);
+    height: 100vh;
+    padding: 6rem 2rem 2rem;
     background: #ffffff;
-    border: 1px solid #eee;
-    border-radius: 14px;
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-    z-index: 10;
+    border-left: 1px solid #e5e5e5;
+    box-shadow: -12px 0 32px rgba(0, 0, 0, 0.12);
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    z-index: 3000;
   }
 
   .header-actions-menu.is-open {
-    display: flex;
+    transform: translateX(0);
   }
 
   .header-actions-menu .header-icons {
     width: 100%;
-    justify-content: flex-end;
+    margin-bottom: 1.25rem;
   }
 
   .header-actions-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     width: 100%;
-    justify-content: flex-end;
+    padding: 0.75rem 0;
   }
+  .stepper-container .pkt-stepper {
+    max-width: 750px;
+  }
+  .stepper-container .pkt-step__content iframe {
+  width: 200%;
+}
+
 }
 
 /* Mobile */
@@ -550,10 +620,6 @@ main.pkt-container {
     justify-self: center;
   }
 
-  .header-actions {
-    justify-self: end;
-    display: flex;
-  }
 
   .brand-livsmestring__title {
     margin: 0;
@@ -636,9 +702,12 @@ main.pkt-container {
     margin-top: 0.75rem;
   }
 
-  .header-actions {
-    display: none;
-  }
+.header-actions {
+  justify-self: end;
+  display: flex;
+  position: relative;
+  z-index: 3002;
+}
 
   .mobile-footer {
     display: block;
@@ -661,4 +730,14 @@ main.pkt-container {
   .return-button {
     padding: 1.5rem 0;
   }
+
+  .stepper-container .pkt-stepper {
+  width: 100%;
+  max-width: 600px;
+  padding: 0 16px;
+}
+
+  .stepper-container .pkt-step__content iframe {
+  width: 110%;
+}
 }
