@@ -247,6 +247,27 @@ export function markVideoCompleted(synthesiaId: string) {
     },
   });
 }
+export function unmarkVideoCompleted(synthesiaId: string) {
+  const progress = getProgress();
+  const language = progress.selectedLanguage;
+  const languages = progress.languages ?? {};
+
+  if (!language) return;
+
+  const currentLanguageProgress = languages[language] || {};
+  const completedVideos = currentLanguageProgress.completedVideos ?? [];
+
+  saveProgress({
+    ...progress,
+    languages: {
+      ...languages,
+      [language]: {
+        ...currentLanguageProgress,
+        completedVideos: completedVideos.filter((id) => id !== synthesiaId),
+      },
+    },
+  });
+}
 
 export function isVideoCompleted(synthesiaId: string): boolean {
   const progress = getProgress();

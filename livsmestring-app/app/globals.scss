@@ -336,9 +336,10 @@ main.pkt-container {
 .theme-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  gap: 1.25rem;
+  max-width: 1000px;
+  margin: 2rem auto 0;
+  padding: 0;
 }
 
 .theme-heading {
@@ -530,6 +531,7 @@ main.pkt-container {
   background: rgba(0, 0, 0, 0.05);
 }
 
+
 .stepper-container {
   display: flex;
   justify-content: center;
@@ -538,17 +540,62 @@ main.pkt-container {
 }
 
 .stepper-container .pkt-stepper {
-  width: 100%;
-  max-width: 850px;
+  width: min(100%, 1200px);
+  max-width: none;
   padding: 0 16px;
 }
-.stepper-container .pkt-step__content iframe {
-  width: 250%;
-  max-width: none;
+
+.pkt-step__wrapper {
+  width: 100%;
+}
+
+.pkt-step__content {
+  width: 100%;
+}
+
+.pkt-step--current .pkt-step__wrapper {
+  padding: 1.5rem;
+  width: 100%;
+  max-width: none !important;
+}
+
+.pkt-step--current .pkt-step__wrapper.step-wrapper--health {
+  background: var(--pkt-color-surface-default-faded-red)
+}
+
+.pkt-step--current .pkt-step__wrapper.step-wrapper--career {
+  background: var(--pkt-color-surface-default-light-beige)
+}
+
+.pkt-step--current .pkt-step__title,
+.pkt-step--current .pkt-step__content,
+.pkt-step--current .video-wrapper {
+  background: transparent !important;
+}
+
+.step-complete-action {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-left: 0;
+}
+
+.step-complete-action span {
+  font-size: 1.2rem;
+  color: #2a2859;
+}
+
+.video-wrapper {
+  width: min(100%, 850px);
+  margin: 1.5rem auto 0;
+}
+
+.video-wrapper iframe {
+  width: 100%;
   aspect-ratio: 16 / 9;
   border: none;
   display: block;
-  margin-left: -5%;
 }
 
 @media (max-width: 900px) {
@@ -591,12 +638,6 @@ main.pkt-container {
     width: 100%;
     padding: 0.75rem 0;
   }
-  .stepper-container .pkt-stepper {
-    max-width: 750px;
-  }
-  .stepper-container .pkt-step__content iframe {
-  width: 200%;
-}
 
 }
 
@@ -628,7 +669,7 @@ main.pkt-container {
   }
 
   .header-spacer {
-    width: 65px;
+    display: none;
   }
 
   .language-heading-wrap {
@@ -733,11 +774,7 @@ main.pkt-container {
 
   .stepper-container .pkt-stepper {
   width: 100%;
-  max-width: 600px;
-  padding: 0 16px;
+  padding: 0 12px;
 }
 
-  .stepper-container .pkt-step__content iframe {
-  width: 110%;
-}
 }

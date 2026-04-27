@@ -11,6 +11,7 @@ import { topics } from "@/lib/videos";
 import { healthThemes } from "@/lib/themes/health_themes";
 import { careerThemes } from "@/lib/themes/career_themes";
 import { translations } from "@/lib/translations";
+import Loading from "@/components/Loading";
 import ProgressBar from "@/components/ProgressBar";
 import ReturnBtn from "@/components/ReturnBtn";
 
@@ -110,35 +111,9 @@ export default function Page() {
       ? categoryText.healthTitle
       : categoryText.careerTitle;
 
-  if (!mounted) {
-    return (
-      <main className="pkt-container">
-        <ReturnBtn
-          text={translations.no.category.backToCategories}
-          href="/category"
-          disabled
-        />
-
-        <h1 className="theme-heading">...</h1>
-
-        <div className="theme-progress">
-          <ProgressBar value={0}/>
-        </div>
-
-        <div className="theme-grid">
-          {themes.map((item) => (
-            <div key={item.id} className={themeCardClass}>
-              <div className="theme-card__header">
-                <span className="theme-card__title">...</span>
-              </div>
-
-              <ProgressBar value={0} small />
-            </div>
-          ))}
-        </div>
-      </main>
-    );
-  }
+    if (!mounted) {
+      return <Loading />;
+    }
 
   return (
     <main className="pkt-container">

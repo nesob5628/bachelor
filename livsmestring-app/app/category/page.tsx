@@ -10,6 +10,7 @@ import {
 } from "@/lib/storage";
 import { translations } from "@/lib/translations";
 import { topics } from "@/lib/videos";
+import Loading from "@/components/Loading";
 import ProgressBar from "@/components/ProgressBar";
 import ReturnBtn from "@/components/ReturnBtn";
 
@@ -73,41 +74,7 @@ const text = translations[selectedLanguage] ?? translations.no;
   };
 
   if (!mounted) {
-    return (
-      <main className="pkt-container">
-        <ReturnBtn
-          text={text.category.changeLanguage}
-          onClick={handleChangeLanguage}
-          disabled
-        />
-
-        <div className="category-grid">
-          <div className="category-card category-card--health">
-            <div className="category-card__header">
-              <img
-                src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
-                alt=""
-                className="category-card__icon"
-              />
-              <h2 className="category-card__title">...</h2>
-            </div>
-            <ProgressBar value={0} small />
-          </div>
-
-          <div className="category-card category-card--career">
-            <div className="category-card__header">
-              <img
-                src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
-                alt=""
-                className="category-card__icon"
-              />
-              <h2 className="category-card__title">...</h2>
-            </div>
-            <ProgressBar value={0} small />
-          </div>
-        </div>
-      </main>
-    );
+    return <Loading />;
   }
 
   return (

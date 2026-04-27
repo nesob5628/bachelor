@@ -2,7 +2,7 @@
 
 import { topics } from "@/lib/videos";
 import { Topic } from "@/lib/types";
-import { getProgress, markVideoCompleted } from "@/lib/storage";
+import { getProgress, markVideoCompleted, unmarkVideoCompleted } from "@/lib/storage";
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { healthThemes } from "@/lib/themes/health_themes";
@@ -10,9 +10,11 @@ import { careerThemes } from "@/lib/themes/career_themes";
 import ReturnBtn from "@/components/ReturnBtn";
 import { translations } from "@/lib/translations";
 import Link from "next/link";
+import Loading from "@/components/Loading";
 import Stepper from "@/components/Stepper";
 import ProgressBar from "@/components/ProgressBar";
 import MessageBox from "@/components/MessageBox";
+
 
 type GroupItem = {
   id: string;
@@ -40,6 +42,7 @@ export default function Page() {
   const [language, setLanguage] = useState("no");
   const [hasGroups, setHasGroups] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const safeLanguage = translations[language] ? language : "no";
 
@@ -128,6 +131,7 @@ export default function Page() {
       progress.languages?.[selectedLanguage]?.completedVideos ?? [];
 
     setCompletedVideoIds(completed);
+    setIsLoading(false);
   }, [router, category, themeFromUrl]);
 
   useEffect(() => {
@@ -140,15 +144,23 @@ export default function Page() {
     setCurrentStep(firstIncomplete === -1 ? 0 : firstIncomplete);
   }, [filteredTopics, completedVideoIds]);
 
-  const handleMarkCompleted = (synthesiaId: string) => {
-    if (!synthesiaId) return;
+    const handleMarkCompleted = (synthesiaId: string, checked: boolean) => {
+      if (!synthesiaId) return;
 
-    markVideoCompleted(synthesiaId);
+      if (checked) {
+        markVideoCompleted(synthesiaId);
 
-    setCompletedVideoIds((prev) =>
-      prev.includes(synthesiaId) ? prev : [...prev, synthesiaId]
-    );
-  };
+        setCompletedVideoIds((prev) =>
+          prev.includes(synthesiaId) ? prev : [...prev, synthesiaId]
+        );
+      } else {
+        unmarkVideoCompleted(synthesiaId);
+
+        setCompletedVideoIds((prev) =>
+          prev.filter((id) => id !== synthesiaId)
+        );
+      }
+    };
 
   const text = translations[safeLanguage] ?? translations.no;
   const categoryText = text.category ?? translations.no.category;
@@ -209,7 +221,9 @@ export default function Page() {
         <ProgressBar value={themeProgress}/>
       </div>
 
-      {hasGroups && (
+      {isLoading && <Loading />}
+
+      {!isLoading && hasGroups && (
         <div className="subtheme-grid">
           {groups.map((group) => {
             const progress = getGroupProgress(group.id);
@@ -243,13 +257,13 @@ export default function Page() {
         </div>
       )}
 
-      {!hasGroups && filteredTopics.length === 0 && (
+      {!isLoading && !hasGroups && filteredTopics.length === 0 && (
         <MessageBox title={themeText.empty}>
           {themeText.emptyDescription}
         </MessageBox>
       )}
 
-      {!hasGroups && filteredTopics.length > 0 && (
+      {!isLoading && !hasGroups && filteredTopics.length > 0 && (
         <Stepper
           topics={filteredTopics}
           completedVideoIds={completedVideoIds}
@@ -257,6 +271,7 @@ export default function Page() {
           setCurrentStep={setCurrentStep}
           handleMarkCompleted={handleMarkCompleted}
           text={text}
+          category={category}
         />
       )}
     </main>

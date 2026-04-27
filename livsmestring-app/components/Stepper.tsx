@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Switch from "./Switch";
 
 type Topic = {
@@ -11,11 +11,12 @@ type StepperProps = {
   completedVideoIds: string[];
   currentStep: number;
   setCurrentStep: (step: number) => void;
-  handleMarkCompleted: (synthesiaId: string) => void;
+  handleMarkCompleted: (synthesiaId: string, checked: boolean) => void;
   text: {
     done: string;
     markDone: string;
   };
+  category: "helse" | "karriere";
 };
 
 const Stepper: React.FC<StepperProps> = ({
@@ -25,7 +26,16 @@ const Stepper: React.FC<StepperProps> = ({
   setCurrentStep,
   handleMarkCompleted,
   text,
+  category,
 }) => {
+  const currentStepRef = useRef<HTMLLIElement | null>(null);
+
+useEffect(() => {
+  currentStepRef.current?.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
+}, [currentStep]);
   return (
   <div className="stepper-container">
     <ol className="pkt-stepper pkt-stepper--vertical">
@@ -33,13 +43,22 @@ const Stepper: React.FC<StepperProps> = ({
         const completed =
           !!item.synthesiaId && completedVideoIds.includes(item.synthesiaId);
 
+        const wrapperClass =
+        category === "helse"
+          ? "pkt-step__wrapper step-wrapper--health"
+          : "pkt-step__wrapper step-wrapper--career";
+
         let stepClass = "pkt-step";
-        if (completed) stepClass += " pkt-step--completed";
-        else if (i === currentStep) stepClass += " pkt-step--current";
+        if (i === currentStep) stepClass += " pkt-step--current";
+        else if (completed) stepClass += " pkt-step--completed";
         else stepClass += " pkt-step--incomplete";
 
         return (
-          <li key={item.synthesiaId || i} className={stepClass}>
+          <li
+              key={item.synthesiaId || i}
+              className={stepClass}
+              ref={i === currentStep ? currentStepRef : null}
+            >
             <span className="pkt-step__line pkt-step__line--1" aria-hidden="true" />
             <span className="pkt-step__line pkt-step__line--2" aria-hidden="true" />
 
@@ -71,7 +90,7 @@ const Stepper: React.FC<StepperProps> = ({
 
             <span className="pkt-step__line pkt-step__line--3" aria-hidden="true" />
 
-            <div className="pkt-step__wrapper">
+            <div className={wrapperClass}>
               <div
                 className="pkt-step__title"
                 onClick={() => setCurrentStep(i)}
@@ -83,23 +102,25 @@ const Stepper: React.FC<StepperProps> = ({
               {i === currentStep && (
                 <div className="pkt-step__content">
                   {item.synthesiaId && (
-                    <iframe
-                      src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
-                      title={item.subtopicTitle}
-                      allow="encrypted-media; fullscreen;"
-                      allowFullScreen
-                    />
+                    <div className="video-wrapper">
+                      <iframe
+                        src={`https://share.synthesia.io/embeds/videos/${item.synthesiaId}`}
+                        title={item.subtopicTitle}
+                        allow="encrypted-media; fullscreen;"
+                        allowFullScreen
+                      />
+                    </div>
                   )}
 
                   {item.synthesiaId && (
-                    <Switch
-                      checked={completed}
-                      onChange={(checked) => {
-                        if (checked) {
-                          handleMarkCompleted(item.synthesiaId!);
-                        }
-                      }}
-                    />
+                    <div className="step-complete-action">
+                      <Switch
+                        checked={completed}
+                        onChange={(checked) => {
+                          handleMarkCompleted(item.synthesiaId!, checked);
+                        }}
+                      />
+                    </div>
                   )}
                 </div>
               )}
