@@ -10,8 +10,20 @@ export default function Header() {
   const [language, setLanguage] = useState("no");
 
   useEffect(() => {
-    const progress = getProgress();
-    setLanguage(progress.selectedLanguage || "no");
+    const updateLanguage = () => {
+      const progress = getProgress();
+      setLanguage(progress.selectedLanguage || "no");
+    };
+
+    updateLanguage();
+
+    window.addEventListener("storage", updateLanguage);
+    window.addEventListener("languageChanged", updateLanguage);
+
+    return () => {
+      window.removeEventListener("storage", updateLanguage);
+      window.removeEventListener("languageChanged", updateLanguage);
+    };
   }, []);
 
   const text = translations[language] || translations.no;
@@ -81,6 +93,7 @@ export default function Header() {
               href="/language"
               onClick={() => {
                 clearSelectedLanguage();
+                window.dispatchEvent(new Event("languageChanged"));
                 setMenuOpen(false);
               }}
               className="menu-item"

@@ -61,6 +61,7 @@ export default function LanguagePage() {
 
   const selectLanguage = (code: string) => {
     setSelectedLanguage(code);
+    window.dispatchEvent(new Event("languageChanged"));
     router.push("/category");
   };
 

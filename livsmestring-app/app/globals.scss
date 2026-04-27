@@ -524,7 +524,7 @@ main.pkt-container {
 }
 
 .menu-item span {
-  display: inline-block;
+  display: none;
 }
 
 .menu-item:hover {
@@ -637,6 +637,9 @@ main.pkt-container {
     justify-content: flex-start;
     width: 100%;
     padding: 0.75rem 0;
+  }
+    .menu-item span {
+    display: inline-block;
   }
 
 }
@@ -775,6 +778,13 @@ main.pkt-container {
   .stepper-container .pkt-stepper {
   width: 100%;
   padding: 0 12px;
+}
+ .brand-livsmestring {
+    display: flex;
+  }
+
+  .header-menu-toggle {
+  display: none;
 }
 
 }
