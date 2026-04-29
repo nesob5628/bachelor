@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  clearSelectedLanguage,
   getProgress,
   setCategory,
 } from "@/lib/storage";
@@ -69,8 +68,7 @@ export default function CategoryPage() {
 const text = translations[selectedLanguage] ?? translations.no;
 
   const handleChangeLanguage = () => {
-    clearSelectedLanguage();
-    router.push("/language");
+    router.push("/language?change=true");
   };
 
   if (!mounted) {

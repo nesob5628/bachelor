@@ -24,7 +24,7 @@ export default function FooterMenu() {
           className="mobile-footer-icon"
         />
       </Link>
-      <Link href="/language" className="mobile-footer-link">
+      <Link href="/language?change=true" className="mobile-footer-link">
         <img
           src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg"
           alt="Språk"
