@@ -2,6 +2,7 @@ type Translation = {
   markDone: string;
   done: string;
   loading: string;
+  
   category: {
     changeLanguage: string;
     healthTitle: string;
