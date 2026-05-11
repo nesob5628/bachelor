@@ -81,6 +81,7 @@ export default function LanguagePage() {
 
           {/* Heading */}
           <header className="language-header">
+            <title>Velg språk</title>
             <div className="language-heading-wrap">
               <h1 className={`language-title ${fade ? "is-visible" : "is-hidden"}`}>
                 {selectLanguageTexts[headingIndex]}
