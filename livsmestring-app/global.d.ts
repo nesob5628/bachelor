@@ -28,13 +28,10 @@ declare module "react" {
         title?: string;
         skin?: string;
       };
-      "pkt-checkbox": DetailedHTMLProps<
-        HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > & {
+      "pkt-checkbox": Omit<DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>, "onChange"> & {
         isSwitch?: boolean;
         checked?: boolean;
-        onChange?: (e: any) => void;
+        onChange?: (e: Event & { target: HTMLInputElement }) => void;
         disabled?: boolean;
         name?: string;
         value?: string;

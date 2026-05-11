@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import {
-  getProgress,
-  setCategory,
-} from "@/lib/storage";
+import { getProgress, setCategory } from "@/lib/storage";
 import { translations } from "@/lib/translations";
 import { topics } from "@/lib/videos";
 import Loading from "@/components/Loading";
@@ -16,64 +14,51 @@ import ReturnBtn from "@/components/ReturnBtn";
 export default function CategoryPage() {
   const router = useRouter();
 
-  const [mounted, setMounted] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("no");
-  const [healthProgress, setHealthProgress] = useState(0);
-  const [careerProgress, setCareerProgress] = useState(0);
+  const [selectedLanguage] = useState(() => getProgress().selectedLanguage || "");
 
-  useEffect(() => {
+  const healthProgress = useMemo(() => {
+    if (!selectedLanguage) return 0;
     const progress = getProgress();
-
-    if (!progress.selectedLanguage) {
-      router.replace("/language");
-      return;
-    }
-
-    const language = progress.selectedLanguage;
-    const completedVideos =
-      progress.languages?.[language]?.completedVideos ?? [];
-
+    const completedVideos = progress.languages?.[selectedLanguage]?.completedVideos ?? [];
     const healthVideos = topics.filter(
-      (item) => item.language === language && item.category === "helse"
+      (item) => item.language === selectedLanguage && item.category === "helse"
     );
-
-    const careerVideos = topics.filter(
-      (item) => item.language === language && item.category === "karriere"
-    );
-
     const completedHealth = healthVideos.filter((item) =>
       completedVideos.includes(item.synthesiaId)
     ).length;
+    return healthVideos.length > 0
+      ? Math.round((completedHealth / healthVideos.length) * 100)
+      : 0;
+  }, [selectedLanguage]);
 
+  const careerProgress = useMemo(() => {
+    if (!selectedLanguage) return 0;
+    const progress = getProgress();
+    const completedVideos = progress.languages?.[selectedLanguage]?.completedVideos ?? [];
+    const careerVideos = topics.filter(
+      (item) => item.language === selectedLanguage && item.category === "karriere"
+    );
     const completedCareer = careerVideos.filter((item) =>
       completedVideos.includes(item.synthesiaId)
     ).length;
+    return careerVideos.length > 0
+      ? Math.round((completedCareer / careerVideos.length) * 100)
+      : 0;
+  }, [selectedLanguage]);
 
-    const healthPercent =
-      healthVideos.length > 0
-        ? Math.round((completedHealth / healthVideos.length) * 100)
-        : 0;
+  useEffect(() => {
+    if (!selectedLanguage) {
+      router.replace("/language");
+    }
+  }, [router, selectedLanguage]);
 
-    const careerPercent =
-      careerVideos.length > 0
-        ? Math.round((completedCareer / careerVideos.length) * 100)
-        : 0;
-
-    setSelectedLanguage(language);
-    setHealthProgress(healthPercent);
-    setCareerProgress(careerPercent);
-    setMounted(true);
-  }, [router]);
-
-const text = translations[selectedLanguage] ?? translations.no;
+  const text = translations[selectedLanguage] ?? translations.no;
 
   const handleChangeLanguage = () => {
     router.push("/language?change=true");
   };
 
-  if (!mounted) {
-    return <Loading />;
-  }
+  if (!selectedLanguage) return <Loading />;
 
   return (
     <main className="pkt-container">
@@ -89,11 +74,13 @@ const text = translations[selectedLanguage] ?? translations.no;
           onClick={() => setCategory("helse")}
         >
           <div className="category-card__header">
-            <img
-              src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
-              alt=""
-              className="category-card__icon"
-            />
+            <div className="category-card__icon">
+              <Image
+                src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg"
+                alt=""
+                fill
+              />
+            </div>
             <h2 className="category-card__title">
               {text.category.healthTitle}
             </h2>
@@ -108,11 +95,13 @@ const text = translations[selectedLanguage] ?? translations.no;
           onClick={() => setCategory("karriere")}
         >
           <div className="category-card__header">
-            <img
-              src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
-              alt=""
-              className="category-card__icon"
-            />
+            <div className="category-card__icon">
+              <Image
+                src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg"
+                alt=""
+                fill
+              />
+            </div>
             <h2 className="category-card__title">
               {text.category.careerTitle}
             </h2>

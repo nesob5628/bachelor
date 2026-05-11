@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { getProgress } from "@/lib/storage";
@@ -56,10 +57,13 @@ export default function Header() {
     <header className="oslo-header">
       <div className="brand-header">
         <Link href="/category" aria-label="Gå til kategorisiden">
-          <img
+          <Image
             src="https://punkt-cdn.oslo.kommune.no/16/logos/oslologo.svg"
             alt="Oslo kommune"
             className="brand-header__logo"
+            width={0}
+            height={0}
+            style={{ width: "auto", height: "40px" }}
           />
         </Link>
       </div>
@@ -113,7 +117,7 @@ export default function Header() {
                   }}
                   className="menu-item"
                 >
-              <img src="https://punkt-cdn.oslo.kommune.no/16/icons/home.svg" alt="" className="header-icon" />
+              <div className="header-icon"><Image src="https://punkt-cdn.oslo.kommune.no/16/icons/home.svg" alt="" fill /></div>
               <span>{text.menu.home}</span>
             </Link>
           </div>
@@ -131,7 +135,7 @@ export default function Header() {
               }}
               className="menu-item"
             >
-              <img src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg" alt="" className="header-icon" />
+              <div className="header-icon"><Image src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg" alt="" fill /></div>
               <span>{text.menu.health}</span>
             </Link>
           </div>
@@ -149,7 +153,7 @@ export default function Header() {
               }}
               className="menu-item"
             >
-              <img src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg" alt="" className="header-icon" />
+              <div className="header-icon"><Image src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg" alt="" fill /></div>
               <span>{text.menu.career}</span>
             </Link>
           </div>
@@ -162,7 +166,7 @@ export default function Header() {
               }}
               className="menu-item"
             >
-              <img src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg" alt="" className="header-icon" />
+              <div className="header-icon"><Image src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg" alt="" fill /></div>
               <span>{text.menu.language}</span>
             </Link>
           </div>

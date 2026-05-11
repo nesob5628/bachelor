@@ -1,13 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  getProgress,
-  setProgress,
-  getCompletedVideos,
-} from "@/lib/storage";
+import { getProgress, setProgress, getCompletedVideos } from "@/lib/storage";
 import { topics } from "@/lib/videos";
+import { Topic } from "@/lib/types";
 import { healthThemes } from "@/lib/themes/health_themes";
 import { careerThemes } from "@/lib/themes/career_themes";
 import { translations } from "@/lib/translations";
@@ -28,26 +26,13 @@ export default function Page() {
   const themes: ThemeItem[] =
     category === "helse" ? healthThemes : careerThemes;
 
-  const [mounted, setMounted] = useState(false);
-  const [language, setLanguage] = useState("no");
-  const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
+  const [language] = useState(() => getProgress().selectedLanguage || "");
 
   useEffect(() => {
-    const progress = getProgress();
-
-    if (!progress.selectedLanguage) {
+    if (!language) {
       router.replace("/language");
-      return;
     }
-
-    const selectedLanguage = progress.selectedLanguage;
-    const completed =
-      progress.languages?.[selectedLanguage]?.completedVideos ?? [];
-
-    setLanguage(selectedLanguage);
-    setCompletedVideoIds(completed);
-    setMounted(true);
-  }, [router]);
+  }, [router, language]);
 
   const handleClick = (themeId: string) => {
     const progress = getProgress();
@@ -69,24 +54,22 @@ export default function Page() {
 
   const getSingleThemeProgress = (themeId: string) => {
     const completedVideos = getCompletedVideos();
-  
+
     const themeVideos = topics.filter(
-      (video: any) =>
+      (video: Topic) =>
         video.language === language &&
         video.category === category &&
         video.theme === themeId
     );
-  
+
     if (themeVideos.length === 0) return 0;
-  
-    const completedCount = themeVideos.filter((video: any) =>
+
+    const completedCount = themeVideos.filter((video: Topic) =>
       completedVideos.includes(video.synthesiaId)
     ).length;
-  
+
     return Math.round((completedCount / themeVideos.length) * 100);
   };
-  
-
 
   const totalProgress =
     themes.length > 0
@@ -111,9 +94,7 @@ export default function Page() {
       ? categoryText.healthTitle
       : categoryText.careerTitle;
 
-    if (!mounted) {
-      return <Loading />;
-    }
+  if (!language) return <Loading />;
 
   return (
     <main className="pkt-container">
@@ -146,13 +127,13 @@ export default function Page() {
                 </span>
 
                 {completed && (
-                  <img
-                    src="https://punkt-cdn.oslo.kommune.no/16/icons/check-medium.svg"
-                    alt="Fullført tema"
-                    className="theme-card__check"
-                    width={24}
-                    height={24}
-                  />
+                  <div className="theme-card__check">
+                    <Image
+                      src="https://punkt-cdn.oslo.kommune.no/16/icons/check-medium.svg"
+                      alt="Fullført tema"
+                      fill
+                    />
+                  </div>
                 )}
               </div>
 

@@ -99,6 +99,7 @@ main.pkt-container {
 }
 
 .header-icon {
+  position: relative;
   width: 24px;
   height: 24px;
   display: block;
@@ -133,6 +134,7 @@ main.pkt-container {
 }
 
 .mobile-footer-icon {
+  position: relative;
   width: 24px;
   height: 24px;
 }
@@ -255,6 +257,7 @@ main.pkt-container {
 }
 
 .category-card__icon {
+  position: relative;
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;
@@ -262,6 +265,7 @@ main.pkt-container {
 
 /* Return */
 .return-icon {
+  position: relative;
   width: 16px;
   height: 16px;
   margin-right: 0.5rem;
@@ -318,6 +322,7 @@ main.pkt-container {
 }
 
 .app-loader__icon {
+  position: relative;
   width: 300px;
   height: 100px;
 }
@@ -399,6 +404,7 @@ main.pkt-container {
 }
 
 .theme-card__check {
+  position: relative;
   flex-shrink: 0;
   width: 24px;
   height: 24px;

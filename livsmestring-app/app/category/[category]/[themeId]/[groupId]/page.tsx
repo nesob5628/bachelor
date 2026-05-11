@@ -3,7 +3,7 @@
 import { topics } from "@/lib/videos";
 import { Topic } from "@/lib/types";
 import { getProgress, markVideoCompleted, unmarkVideoCompleted } from "@/lib/storage";
-import { useEffect, useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter, useParams } from "next/navigation";
 import ReturnBtn from "@/components/ReturnBtn";
 import { translations } from "@/lib/translations";
@@ -16,9 +16,7 @@ import Loading from "@/components/Loading";
 const getTitle = (
   title: { no: string } & Record<string, string>,
   language: string
-) => {
-  return title[language] || title.no;
-};
+) => title[language] || title.no;
 
 export default function Page() {
   const router = useRouter();
@@ -28,107 +26,78 @@ export default function Page() {
   const theme = params.themeId as string;
   const groupId = params.groupId as string;
 
-  const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
-  const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
-  const [language, setLanguage] = useState("no");
-  const [currentStep, setCurrentStep] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [language] = useState(() => getProgress().selectedLanguage || "");
+  const [completedVideoIds, setCompletedVideoIds] = useState<string[]>(() => {
+    if (!language) return [];
+    return getProgress().languages?.[language]?.completedVideos ?? [];
+  });
 
   const safeLanguage = translations[language] ? language : "no";
   const text = translations[safeLanguage] ?? translations.no;
 
-  const getGroupTitle = () => {
+  const groupTitle = useMemo(() => {
+    if (!language) return groupId.replaceAll("_", " ");
+    const safeLang = translations[language] ? language : "no";
     const themeData = healthThemes.find((item) => item.id === theme);
     const group = themeData?.groups?.find((item) => item.id === groupId);
+    return group ? getTitle(group.title, safeLang) : groupId.replaceAll("_", " ");
+  }, [language, theme, groupId]);
 
-    return group
-      ? getTitle(group.title, safeLanguage)
-      : groupId.replaceAll("_", " ");
+  const filteredTopics = useMemo<Topic[]>(() => {
+    if (!language) return [];
+    const themeData = healthThemes.find((item) => item.id === theme);
+    const groupData = themeData?.groups?.find((item) => item.id === groupId);
+
+    return topics
+      .filter(
+        (item) =>
+          item.language === language &&
+          item.category === category &&
+          item.theme === theme &&
+          item.groupId === groupId
+      )
+      .map((item) => {
+        const subtopic = groupData?.subtopics?.find(
+          (sub) => sub.id === item.subtopicId
+        );
+        return {
+          ...item,
+          subtopicTitle: subtopic
+            ? getTitle(subtopic.title, language)
+            : item.subtopicTitle,
+        };
+      })
+      .sort((a, b) => Number(a.order) - Number(b.order));
+  }, [language, category, theme, groupId]);
+
+  useEffect(() => {
+    if (!language) {
+      router.replace("/language");
+    }
+  }, [router, language]);
+
+  const handleMarkCompleted = (synthesiaId: string, checked: boolean) => {
+    if (!synthesiaId) return;
+    if (checked) {
+      markVideoCompleted(synthesiaId);
+      setCompletedVideoIds((prev) =>
+        prev.includes(synthesiaId) ? prev : [...prev, synthesiaId]
+      );
+    } else {
+      unmarkVideoCompleted(synthesiaId);
+      setCompletedVideoIds((prev) => prev.filter((id) => id !== synthesiaId));
+    }
   };
 
-  useEffect(() => {
-    const progress = getProgress();
-
-    if (!progress.selectedLanguage) {
-      router.replace("/language");
-      return;
-    }
-
-    const selectedLanguage = progress.selectedLanguage;
-    setLanguage(selectedLanguage);
-
-    const themeData = healthThemes.find((item) => item.id === theme);
-const groupData = themeData?.groups?.find((item) => item.id === groupId);
-
-const filtered = topics
-  .filter(
-    (item) =>
-      item.language === selectedLanguage &&
-      item.category === category &&
-      item.theme === theme &&
-      item.groupId === groupId
-  )
-  .map((item) => {
-    const subtopic = groupData?.subtopics?.find(
-      (sub) => sub.id === item.subtopicId
-    );
-
-    return {
-      ...item,
-      subtopicTitle: subtopic
-        ? getTitle(subtopic.title, selectedLanguage)
-        : item.subtopicTitle,
-    };
-  })
-  .sort((a, b) => Number(a.order) - Number(b.order));
-
-    setFilteredTopics(filtered);
-
-    const completed =
-      progress.languages?.[selectedLanguage]?.completedVideos ?? [];
-
-    setCompletedVideoIds(completed);
-    setIsLoading(false);
-  }, [router, category, theme, groupId]);
-
-  useEffect(() => {
-    if (filteredTopics.length === 0) return;
-
-    const firstIncomplete = filteredTopics.findIndex(
-      (item) => !completedVideoIds.includes(item.synthesiaId)
-    );
-
-    setCurrentStep(firstIncomplete === -1 ? 0 : firstIncomplete);
+  const groupProgress = useMemo(() => {
+    if (filteredTopics.length === 0) return 0;
+    const completed = filteredTopics.filter((item) =>
+      completedVideoIds.includes(item.synthesiaId)
+    ).length;
+    return Math.round((completed / filteredTopics.length) * 100);
   }, [filteredTopics, completedVideoIds]);
 
-    const handleMarkCompleted = (synthesiaId: string, checked: boolean) => {
-      if (!synthesiaId) return;
-
-      if (checked) {
-        markVideoCompleted(synthesiaId);
-
-        setCompletedVideoIds((prev) =>
-          prev.includes(synthesiaId) ? prev : [...prev, synthesiaId]
-        );
-      } else {
-        unmarkVideoCompleted(synthesiaId);
-
-        setCompletedVideoIds((prev) =>
-          prev.filter((id) => id !== synthesiaId)
-        );
-      }
-    };
-  const getGroupProgress = () => {
-  if (filteredTopics.length === 0) return 0;
-
-  const completed = filteredTopics.filter((item) =>
-    completedVideoIds.includes(item.synthesiaId)
-  ).length;
-
-  return Math.round((completed / filteredTopics.length) * 100);
-};
-
-const groupProgress = getGroupProgress();
+  if (!language) return <Loading />;
 
   return (
     <main className="pkt-container">
@@ -137,31 +106,26 @@ const groupProgress = getGroupProgress();
         href={`/category/${category}/${theme}`}
       />
 
-      <h1 className="theme-heading">{getGroupTitle()}</h1>
+      <h1 className="theme-heading">{groupTitle}</h1>
 
       <div className="theme-progress">
         <ProgressBar value={groupProgress} />
       </div>
 
-        {isLoading && <Loading />}
+      {filteredTopics.length === 0 && (
+        <MessageBox title={text.subtopic.empty}>
+          {text.subtopic.emptyDescription}
+        </MessageBox>
+      )}
 
-        {!isLoading && filteredTopics.length === 0 && (
-          <MessageBox title={text.subtopic.empty}>
-            {text.subtopic.emptyDescription}
-          </MessageBox>
-        )}
-
-        {!isLoading && filteredTopics.length > 0 && (
-          <Stepper
-            topics={filteredTopics}
-            completedVideoIds={completedVideoIds}
-            currentStep={currentStep}
-            setCurrentStep={setCurrentStep}
-            handleMarkCompleted={handleMarkCompleted}
-            text={text}
-            category={category}
-          />
-        )}
+      {filteredTopics.length > 0 && (
+        <Stepper
+          topics={filteredTopics}
+          completedVideoIds={completedVideoIds}
+          handleMarkCompleted={handleMarkCompleted}
+          category={category}
+        />
+      )}
     </main>
   );
 }

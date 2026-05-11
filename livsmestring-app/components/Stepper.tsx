@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Switch from "./Switch";
 
 type Topic = {
@@ -9,33 +9,32 @@ type Topic = {
 type StepperProps = {
   topics: Topic[];
   completedVideoIds: string[];
-  currentStep: number;
-  setCurrentStep: (step: number) => void;
   handleMarkCompleted: (synthesiaId: string, checked: boolean) => void;
-  text: {
-    done: string;
-    markDone: string;
-  };
   category: "helse" | "karriere";
 };
 
 const Stepper: React.FC<StepperProps> = ({
   topics,
   completedVideoIds,
-  currentStep,
-  setCurrentStep,
   handleMarkCompleted,
-  text,
   category,
 }) => {
+  const [currentStep, setCurrentStep] = useState(() => {
+    const firstIncomplete = topics.findIndex(
+      (item) => !completedVideoIds.includes(item.synthesiaId ?? "")
+    );
+    return firstIncomplete === -1 ? 0 : firstIncomplete;
+  });
+
   const currentStepRef = useRef<HTMLLIElement | null>(null);
 
-useEffect(() => {
-  currentStepRef.current?.scrollIntoView({
-    behavior: "smooth",
-    block: "center",
-  });
-}, [currentStep]);
+  useEffect(() => {
+    currentStepRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }, [currentStep]);
+
   return (
   <div className="stepper-container">
     <ol className="pkt-stepper pkt-stepper--vertical">
@@ -118,6 +117,9 @@ useEffect(() => {
                         checked={completed}
                         onChange={(checked) => {
                           handleMarkCompleted(item.synthesiaId!, checked);
+                          if (checked && i < topics.length - 1) {
+                            setCurrentStep(i + 1);
+                          }
                         }}
                       />
                     </div>
