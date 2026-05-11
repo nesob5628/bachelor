@@ -1,17 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Loader from "@/components/Loading";
-export default function Page() {
-  const [loading, setLoading] = useState(true);
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+export default function Home() {
+  const router = useRouter();
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000); // 2 sek så du rekker å se den
-  }, []);
+    router.replace("/language");
+  }, [router]);
 
-  if (loading) return <Loader />;
-
-  return <div>Test side</div>;
+  return null;
 }
