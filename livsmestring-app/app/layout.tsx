@@ -41,7 +41,7 @@ export default function RootLayout({
 
         <Header />
 
-        <main>{children}</main>
+        <main className="pkt-container">{children}</main>
 
         {pathname !== "/language" && (
           <div className="mobile-footer">

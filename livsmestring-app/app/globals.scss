@@ -229,12 +229,12 @@ main.pkt-container {
 }
 
 .category-card--health {
-  background: var(--pkt-color-brand-red-600);
+  background: var(--pkt-color-brand-red-1000);
   color: var(--pkt-color-text-body-default);
 }
 
 .category-card--career {
-  background: var(--pkt-color-brand-yellow-500);
+  background: var(--pkt-color-surface-default-light-green);
   color: var(--pkt-color-text-body-default);
 }
 
@@ -371,7 +371,7 @@ main.pkt-container {
 }
 
 .theme-card--career {
-  background: var(--pkt-color-surface-default-yellow);
+  background: var(--pkt-color-surface-default-light-blue);
   border-color: var(--pkt-color-surface-subtle-pale-blue);
 }
 
