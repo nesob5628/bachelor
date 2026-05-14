@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { setSelectedLanguage, getProgress, clearSelectedLanguage } from "@/lib/storage";
+import { useRouter } from "next/navigation";
+import { setSelectedLanguage, getProgress } from "@/lib/storage";
 
 const languages = [
   { code: "no", name: "Norsk" },
@@ -38,22 +38,12 @@ export default function LanguagePage() {
   const router = useRouter();
   const [headingIndex, setHeadingIndex] = useState(0);
   const [fade, setFade] = useState(true);
-  const searchParams = useSearchParams();
-  const isChangingLanguage = searchParams.get("change") === "true";
-
   useEffect(() => {
     const progress = getProgress();
-
-    if (isChangingLanguage) {
-      clearSelectedLanguage();
-      window.dispatchEvent(new Event("languageChanged"));
-      return;
-    }
-
     if (progress.selectedLanguage) {
       router.replace("/category");
     }
-  }, [router, isChangingLanguage]);
+  }, [router]);
 
   useEffect(() => {
     const interval = setInterval(() => {

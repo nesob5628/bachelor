@@ -14,7 +14,12 @@ import ReturnBtn from "@/components/ReturnBtn";
 export default function CategoryPage() {
   const router = useRouter();
 
+  const [mounted, setMounted] = useState(false);
   const [selectedLanguage] = useState(() => getProgress().selectedLanguage || "");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const healthProgress = useMemo(() => {
     if (!selectedLanguage) return 0;
@@ -55,10 +60,10 @@ export default function CategoryPage() {
   const text = translations[selectedLanguage] ?? translations.no;
 
   const handleChangeLanguage = () => {
-    router.push("/language?change=true");
+    router.push("/language/change");
   };
 
-  if (!selectedLanguage) return <Loading />;
+  if (!mounted || !selectedLanguage) return <Loading />;
 
   return (
     <main className="pkt-container">

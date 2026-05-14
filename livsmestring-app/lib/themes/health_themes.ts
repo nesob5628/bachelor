@@ -14,7 +14,6 @@ Turkish: tr
 Urdu: ur
 */
 
-
 type Translation = {
   no: string;
   en: string;
@@ -68,6 +67,7 @@ export const healthThemes: HealthTheme[] = [
       en: "Queer world",
       tr: "Kuir dünya",
       ...emptyTranslations(),
+      ta: "குவியர் உலகம்",
     },
     subtopics: [
       {
@@ -77,6 +77,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Freedom of choice",
           tr: "Tercih özgürlüğü",
           ...emptyTranslations(),
+          ta: "தேர்வு சுதந்திரம்",
         },
       },
       {
@@ -86,6 +87,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Social norms",
           tr: "Sosyal normlar",
           ...emptyTranslations(),
+          ta: "சமூக விதிமுறைகள்",
         },
       },
       {
@@ -95,6 +97,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Diversity",
           tr: "Toplumsal çeşitlilik",
           ...emptyTranslations(),
+          ta: "பன்முகத்தன்மை",
         },
       },
       {
@@ -104,6 +107,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Discrimination",
           tr: "Ayrımcılık",
           ...emptyTranslations(),
+          ta: "பாகுபாடு",
         },
       },
     ],
@@ -116,6 +120,7 @@ export const healthThemes: HealthTheme[] = [
       en: "Violence in close relationships",
       tr: "Yakın ilişkilerde şiddet",
       ...emptyTranslations(),
+      ta: "நெருங்கிய உறவுகளில் வன்முறை",
     },
     subtopics: [
       {
@@ -125,6 +130,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Introduction",
           tr: "Giriş",
           ...emptyTranslations(),
+          ta: "அறிமுகம்",
         },
       },
       {
@@ -134,6 +140,7 @@ export const healthThemes: HealthTheme[] = [
           en: "New words",
           tr: "Yeni kelimeler",
           ...emptyTranslations(),
+          ta: "புதிய வார்த்தைகள்",
         },
       },
       {
@@ -143,6 +150,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Types of violence",
           tr: "Şiddet türleri",
           ...emptyTranslations(),
+          ta: "வன்முறை வகைகள்",
         },
       },
       {
@@ -152,6 +160,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Close relationships",
           tr: "Yakın ilişkiler",
           ...emptyTranslations(),
+          ta: "நெருங்கிய உறவுகள்",
         },
       },
       {
@@ -161,6 +170,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Duty to prevent harm",
           tr: "Önleme yükümlülüğü",
           ...emptyTranslations(),
+          ta: "தீங்கைத் தடுக்கும் கடமை",
         },
       },
       {
@@ -170,6 +180,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Duty of confidentiality",
           tr: "Gizlilik yükümlülüğü",
           ...emptyTranslations(),
+          ta: "இரகசியக் கடமை",
         },
       },
       {
@@ -179,6 +190,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Signs of violence",
           tr: "Şiddetin işaretleri",
           ...emptyTranslations(),
+          ta: "வன்முறையின் அறிகுறிகள்",
         },
       },
       {
@@ -188,6 +200,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Who can help, part 1",
           tr: "Kimler yardım edebilir, 1. kısım",
           ...emptyTranslations(),
+          ta: "யார் உதவலாம், பாகம் 1",
         },
       },
       {
@@ -197,6 +210,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Who can help, part 2",
           tr: "Kimler yardım edebilir, 2. kısım",
           ...emptyTranslations(),
+          ta: "யார் உதவலாம், பாகம் 2",
         },
       },
       {
@@ -206,6 +220,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Case",
           tr: "Örnek vaka",
           ...emptyTranslations(),
+          ta: "நிகழ்வு",
         },
       },
     ],
@@ -218,6 +233,7 @@ export const healthThemes: HealthTheme[] = [
       en: "Food and health",
       tr: "Beslenme ve sağlık",
       ...emptyTranslations(),
+      ta: "உணவு மற்றும் ஆரோக்கியம்",
     },
     groups: [
       {
@@ -227,6 +243,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Food and nutrition",
           tr: "Beslenme ve gıda",
           ...emptyTranslations(),
+          ta: "உணவு மற்றும் ஊட்டச்சத்து",
         },
         subtopics: [
           {
@@ -236,6 +253,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Introduction",
               tr: "Giriş",
               ...emptyTranslations(),
+              ta: "அறிமுகம்",
             },
           },
           {
@@ -245,6 +263,7 @@ export const healthThemes: HealthTheme[] = [
               en: "New words",
               tr: "Yeni kelimeler",
               ...emptyTranslations(),
+              ta: "புதிய வார்த்தைகள்",
             },
           },
           {
@@ -254,6 +273,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Food culture",
               tr: "Yemek kültürü",
               ...emptyTranslations(),
+              ta: "உணவு கலாச்சாரம்",
             },
           },
           {
@@ -263,6 +283,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Nutrients in food, part 1",
               tr: "Yiyeceklerdeki besinler, 1. kısım",
               ...emptyTranslations(),
+              ta: "உணவில் ஊட்டச்சத்துகள், பாகம் 1",
             },
           },
           {
@@ -272,6 +293,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Nutrients in food, part 2",
               tr: "Gıdalardaki besin öğeleri, 2. kısım",
               ...emptyTranslations(),
+              ta: "உணவில் ஊட்டச்சத்துகள், பாகம் 2",
             },
           },
         ],
@@ -283,6 +305,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Food choices and health",
           tr: "Besin seçimleri ve sağlık",
           ...emptyTranslations(),
+          ta: "உணவு தேர்வு மற்றும் ஆரோக்கியம்",
         },
         subtopics: [
           {
@@ -292,6 +315,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Fruit and vegetables",
               tr: "Meyve ve sebze",
               ...emptyTranslations(),
+              ta: "பழங்கள் மற்றும் காய்கறிகள்",
             },
           },
           {
@@ -301,6 +325,7 @@ export const healthThemes: HealthTheme[] = [
               en: "New words",
               tr: "Yeni kelimeler",
               ...emptyTranslations(),
+              ta: "புதிய வார்த்தைகள்",
             },
           },
           {
@@ -310,6 +335,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Avoid sugar",
               tr: "Şekerden kaçınma",
               ...emptyTranslations(),
+              ta: "சர்க்கரையை தவிர்க்கவும்",
             },
           },
           {
@@ -319,6 +345,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Case",
               tr: "Örnek vaka",
               ...emptyTranslations(),
+              ta: "நிகழ்வு",
             },
           },
           {
@@ -328,6 +355,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Diabetes",
               tr: "Diyabet",
               ...emptyTranslations(),
+              ta: "நீரிழிவு நோய்",
             },
           },
           {
@@ -337,6 +365,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Oral health",
               tr: "Ağız sağlığı",
               ...emptyTranslations(),
+              ta: "வாய் ஆரோக்கியம்",
             },
           },
         ],
@@ -348,6 +377,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Foods and habits",
           tr: "Gıdalar ve alışkanlıklar",
           ...emptyTranslations(),
+          ta: "உணவுப் பொருட்கள் மற்றும் பழக்கங்கள்",
         },
         subtopics: [
           {
@@ -357,6 +387,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Dietary fat",
               tr: "Yemeklik yağlar",
               ...emptyTranslations(),
+              ta: "உணவு கொழுப்பு",
             },
           },
           {
@@ -366,6 +397,7 @@ export const healthThemes: HealthTheme[] = [
               en: "New words",
               tr: "Yeni kelimeler",
               ...emptyTranslations(),
+              ta: "புதிய வார்த்தைகள்",
             },
           },
           {
@@ -375,6 +407,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Seafood",
               tr: "Deniz ürünleri",
               ...emptyTranslations(),
+              ta: "கடல் உணவு",
             },
           },
           {
@@ -384,6 +417,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Dairy products",
               tr: "Süt ürünleri",
               ...emptyTranslations(),
+              ta: "பால் பொருட்கள்",
             },
           },
           {
@@ -393,6 +427,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Grains",
               tr: "Tahıl",
               ...emptyTranslations(),
+              ta: "தானியங்கள்",
             },
           },
           {
@@ -402,6 +437,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Salt",
               tr: "Tuz",
               ...emptyTranslations(),
+              ta: "உப்பு",
             },
           },
           {
@@ -411,6 +447,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Hygiene",
               tr: "Hijyen",
               ...emptyTranslations(),
+              ta: "சுகாதாரம்",
             },
           },
           {
@@ -420,6 +457,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Case",
               tr: "Örnek vaka",
               ...emptyTranslations(),
+              ta: "நிகழ்வு",
             },
           },
           {
@@ -429,6 +467,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Summary",
               tr: "Özet",
               ...emptyTranslations(),
+              ta: "சுருக்கம்",
             },
           },
         ],
@@ -443,6 +482,7 @@ export const healthThemes: HealthTheme[] = [
       en: "Physical activity",
       tr: "Fiziksel aktivite",
       ...emptyTranslations(),
+      ta: "உடல் செயல்பாடு",
     },
     groups: [
       {
@@ -452,6 +492,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Getting started with physical activity",
           tr: "Fiziksel aktiviteye başlamak",
           ...emptyTranslations(),
+          ta: "உடல் செயல்பாட்டை தொடங்குதல்",
         },
         subtopics: [
           {
@@ -461,6 +502,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Introduction",
               tr: "Giriş",
               ...emptyTranslations(),
+              ta: "அறிமுகம்",
             },
           },
           {
@@ -470,6 +512,7 @@ export const healthThemes: HealthTheme[] = [
               en: "New words",
               tr: "Yeni kelimeler",
               ...emptyTranslations(),
+              ta: "புதிய வார்த்தைகள்",
             },
           },
           {
@@ -479,6 +522,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Be physically active",
               tr: "Fiziksel olarak aktif olun",
               ...emptyTranslations(),
+              ta: "உடல் ரீதியாக சுறுசுறுப்பாக இருங்கள்",
             },
           },
           {
@@ -488,6 +532,7 @@ export const healthThemes: HealthTheme[] = [
               en: "High-intensity training",
               tr: "Yoğun antrenman",
               ...emptyTranslations(),
+              ta: "அதிக தீவிர பயிற்சி",
             },
           },
           {
@@ -497,6 +542,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Strength training",
               tr: "Ağırlık antrenmanı",
               ...emptyTranslations(),
+              ta: "வலிமை பயிற்சி",
             },
           },
           {
@@ -506,6 +552,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Energy intake and expenditure",
               tr: "Enerji alımı ve tüketimi",
               ...emptyTranslations(),
+              ta: "ஆற்றல் உட்கொள்ளல் மற்றும் செலவு",
             },
           },
         ],
@@ -517,6 +564,7 @@ export const healthThemes: HealthTheme[] = [
           en: "What happens in the body?",
           tr: "Vücutta neler oluyor?",
           ...emptyTranslations(),
+          ta: "உடலில் என்ன நடக்கிறது?",
         },
         subtopics: [
           {
@@ -526,6 +574,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Blood sugar",
               tr: "Kan şekeri",
               ...emptyTranslations(),
+              ta: "இரத்த சர்க்கரை",
             },
           },
           {
@@ -535,6 +584,7 @@ export const healthThemes: HealthTheme[] = [
               en: "New words",
               tr: "Yeni kelimeler",
               ...emptyTranslations(),
+              ta: "புதிய வார்த்தைகள்",
             },
           },
           {
@@ -544,6 +594,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Cholesterol",
               tr: "Kolesterol",
               ...emptyTranslations(),
+              ta: "கொலஸ்டிரால்",
             },
           },
           {
@@ -553,6 +604,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Blood pressure",
               tr: "Kan basıncı",
               ...emptyTranslations(),
+              ta: "இரத்த அழுத்தம்",
             },
           },
           {
@@ -562,6 +614,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Cancer",
               tr: "Kanser",
               ...emptyTranslations(),
+              ta: "புற்றுநோய்",
             },
           },
           {
@@ -571,6 +624,7 @@ export const healthThemes: HealthTheme[] = [
               en: "The brain",
               tr: "Beyin",
               ...emptyTranslations(),
+              ta: "மூளை",
             },
           },
           {
@@ -580,6 +634,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Pain",
               tr: "Ağrı",
               ...emptyTranslations(),
+              ta: "வலி",
             },
           },
           {
@@ -589,6 +644,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Muscles and skeleton",
               tr: "Kas ve iskelet",
               ...emptyTranslations(),
+              ta: "தசைகள் மற்றும் எலும்பு கட்டமைப்பு",
             },
           },
         ],
@@ -600,6 +656,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Health in everyday life",
           tr: "Günlük hayatta sağlık",
           ...emptyTranslations(),
+          ta: "அன்றாட வாழ்வில் ஆரோக்கியம்",
         },
         subtopics: [
           {
@@ -609,6 +666,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Other aspects",
               tr: "Diğer hususlar",
               ...emptyTranslations(),
+              ta: "மற்ற அம்சங்கள்",
             },
           },
           {
@@ -618,6 +676,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Cases",
               tr: "Örnek vakalar",
               ...emptyTranslations(),
+              ta: "வழக்குகள்",
             },
           },
           {
@@ -627,6 +686,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Summary",
               tr: "Özet",
               ...emptyTranslations(),
+              ta: "சுருக்கம்",
             },
           },
         ],
@@ -641,6 +701,7 @@ export const healthThemes: HealthTheme[] = [
       en: "Oral health",
       tr: "Ağız sağlığı",
       ...emptyTranslations(),
+      ta: "வாய் ஆரோக்கியம்",
     },
     subtopics: [
       {
@@ -650,6 +711,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Introduction",
           tr: "Giriş",
           ...emptyTranslations(),
+          ta: "அறிமுகம்",
         },
       },
       {
@@ -659,6 +721,7 @@ export const healthThemes: HealthTheme[] = [
           en: "New words",
           tr: "Yeni kelimeler",
           ...emptyTranslations(),
+          ta: "புதிய வார்த்தைகள்",
         },
       },
       {
@@ -668,6 +731,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Rights",
           tr: "Haklar",
           ...emptyTranslations(),
+          ta: "உரிமைகள்",
         },
       },
       {
@@ -677,6 +741,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Keep your teeth clean",
           tr: "Dişlerinizi temiz tutun",
           ...emptyTranslations(),
+          ta: "பற்களை சுத்தமாக வைக்கவும்",
         },
       },
       {
@@ -686,6 +751,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Go for a dental check-up",
           tr: "Diş sağlığı kontrolüne gidin",
           ...emptyTranslations(),
+          ta: "பல் ஆரோக்கிய பரிசோதனைக்கு செல்லுங்கள்",
         },
       },
       {
@@ -695,6 +761,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Dietary advice for oral health",
           tr: "Ağız sağlığı için beslenme tavsiyeleri",
           ...emptyTranslations(),
+          ta: "வாய் ஆரோக்கியத்திற்கான உணவு ஆலோசனை",
         },
       },
       {
@@ -704,6 +771,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Oral health in children",
           tr: "Çocuklar için ağız sağlığı",
           ...emptyTranslations(),
+          ta: "குழந்தைகளின் வாய் ஆரோக்கியம்",
         },
       },
     ],
@@ -716,6 +784,7 @@ export const healthThemes: HealthTheme[] = [
       en: "Mental health",
       tr: "Ruh sağlığı",
       ...emptyTranslations(),
+      ta: "மன ஆரோக்கியம்",
     },
     groups: [
       {
@@ -725,6 +794,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Mental health",
           tr: "Ruh sağlığı",
           ...emptyTranslations(),
+          ta: "மன ஆரோக்கியம்",
         },
         subtopics: [
           {
@@ -734,6 +804,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Introduction",
               tr: "Giriş",
               ...emptyTranslations(),
+              ta: "அறிமுகம்",
             },
           },
           {
@@ -743,6 +814,7 @@ export const healthThemes: HealthTheme[] = [
               en: "New words",
               tr: "Yeni kelimeler",
               ...emptyTranslations(),
+              ta: "புதிய வார்த்தைகள்",
             },
           },
           {
@@ -752,6 +824,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Mental health",
               tr: "Ruh sağlığı",
               ...emptyTranslations(),
+              ta: "மன ஆரோக்கியம்",
             },
           },
           {
@@ -761,6 +834,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Mental health problems",
               tr: "Ruh sağlığı sorunları",
               ...emptyTranslations(),
+              ta: "மன ஆரோக்கிய பிரச்சினைகள்",
             },
           },
           {
@@ -770,6 +844,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Mental disorders",
               tr: "Ruhsal bozukluklar",
               ...emptyTranslations(),
+              ta: "மனநோய்கள்",
             },
           },
           {
@@ -779,6 +854,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Case",
               tr: "Örnek vaka",
               ...emptyTranslations(),
+              ta: "நிகழ்வு",
             },
           },
           {
@@ -788,6 +864,7 @@ export const healthThemes: HealthTheme[] = [
               en: "How to take care of your mental health",
               tr: "Ruh sağlığınıza nasıl dikkat etmelisiniz?",
               ...emptyTranslations(),
+              ta: "உங்கள் மன ஆரோக்கியத்தை எவ்வாறு கவனிப்பது",
             },
           },
         ],
@@ -799,6 +876,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Where to get help",
           tr: "Nereden yardım alabilirsiniz?",
           ...emptyTranslations(),
+          ta: "எங்கே உதவி பெறலாம்",
         },
         subtopics: [
           {
@@ -808,6 +886,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Where to get help",
               tr: "Nereden yardım alabilirsiniz?",
               ...emptyTranslations(),
+              ta: "எங்கே உதவி பெறலாம்",
             },
           },
           {
@@ -817,6 +896,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Crisis and emergency situations",
               tr: "Kriz ve kaza",
               ...emptyTranslations(),
+              ta: "நெருக்கடி மற்றும் அவசர சூழ்நிலைகள்",
             },
           },
           {
@@ -826,6 +906,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Urgent medical help",
               tr: "Acil servis ve acil yardım",
               ...emptyTranslations(),
+              ta: "அவசர மருத்துவ உதவி",
             },
           },
           {
@@ -835,6 +916,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Services in Oslo municipality",
               tr: "Oslo belediyesi hizmetleri",
               ...emptyTranslations(),
+              ta: "ஒஸ்லோ நகராட்சி சேவைகள்",
             },
           },
           {
@@ -844,6 +926,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Voluntary organisations in Oslo",
               tr: "Oslo'daki gönüllü kuruluşlar",
               ...emptyTranslations(),
+              ta: "ஒஸ்லோவில் தன்னார்வ நிறுவனங்கள்",
             },
           },
           {
@@ -853,6 +936,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Summary",
               tr: "Özet",
               ...emptyTranslations(),
+              ta: "சுருக்கம்",
             },
           },
         ],
@@ -864,6 +948,7 @@ export const healthThemes: HealthTheme[] = [
           en: "General practitioner",
           tr: "Aile hekimi",
           ...emptyTranslations(),
+          ta: "பொது மருத்துவர்",
         },
         subtopics: [
           {
@@ -873,6 +958,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Introduction",
               tr: "Giriş",
               ...emptyTranslations(),
+              ta: "அறிமுகம்",
             },
           },
           {
@@ -882,6 +968,7 @@ export const healthThemes: HealthTheme[] = [
               en: "New words",
               tr: "Yeni kelimeler",
               ...emptyTranslations(),
+              ta: "புதிய வார்த்தைகள்",
             },
           },
           {
@@ -891,6 +978,7 @@ export const healthThemes: HealthTheme[] = [
               en: "General practitioner",
               tr: "Aile hekimi",
               ...emptyTranslations(),
+              ta: "பொது மருத்துவர்",
             },
           },
           {
@@ -900,6 +988,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Rights",
               tr: "Haklar",
               ...emptyTranslations(),
+              ta: "உரிமைகள்",
             },
           },
           {
@@ -909,6 +998,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Summary",
               tr: "Özet",
               ...emptyTranslations(),
+              ta: "சுருக்கம்",
             },
           },
         ],
@@ -920,6 +1010,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Stress",
           tr: "Stres",
           ...emptyTranslations(),
+          ta: "மன அழுத்தம்",
         },
         subtopics: [
           {
@@ -929,6 +1020,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Introduction",
               tr: "Giriş",
               ...emptyTranslations(),
+              ta: "அறிமுகம்",
             },
           },
           {
@@ -938,6 +1030,7 @@ export const healthThemes: HealthTheme[] = [
               en: "New words",
               tr: "Yeni kelimeler",
               ...emptyTranslations(),
+              ta: "புதிய வார்த்தைகள்",
             },
           },
           {
@@ -947,6 +1040,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Understanding stress",
               tr: "Stres",
               ...emptyTranslations(),
+              ta: "மன அழுத்தம் புரிந்துகொள்ளல்",
             },
           },
           {
@@ -956,6 +1050,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Stress as a newcomer to Norway",
               tr: "Norveç'te yeni olanlar için stres",
               ...emptyTranslations(),
+              ta: "நார்வேயில் புதியவராக மன அழுத்தம்",
             },
           },
           {
@@ -965,6 +1060,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Case",
               tr: "Örnek vaka",
               ...emptyTranslations(),
+              ta: "நிகழ்வு",
             },
           },
           {
@@ -974,6 +1070,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Managing stress",
               tr: "Stresi yönetmek",
               ...emptyTranslations(),
+              ta: "மன அழுத்தத்தை நிர்வகித்தல்",
             },
           },
           {
@@ -983,6 +1080,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Case",
               tr: "Örnek vaka",
               ...emptyTranslations(),
+              ta: "நிகழ்வு",
             },
           },
           {
@@ -992,6 +1090,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Summary",
               tr: "Özet",
               ...emptyTranslations(),
+              ta: "சுருக்கம்",
             },
           },
         ],
@@ -1003,6 +1102,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Bullying",
           tr: "Zorbalık",
           ...emptyTranslations(),
+          ta: "கொடுமைப்படுத்துதல்",
         },
         subtopics: [
           {
@@ -1012,6 +1112,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Introduction",
               tr: "Giriş",
               ...emptyTranslations(),
+              ta: "அறிமுகம்",
             },
           },
           {
@@ -1021,6 +1122,7 @@ export const healthThemes: HealthTheme[] = [
               en: "New words",
               tr: "Yeni kelimeler",
               ...emptyTranslations(),
+              ta: "புதிய வார்த்தைகள்",
             },
           },
           {
@@ -1030,6 +1132,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Bullying",
               tr: "Zorbalık",
               ...emptyTranslations(),
+              ta: "கொடுமைப்படுத்துதல்",
             },
           },
           {
@@ -1039,6 +1142,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Consequences",
               tr: "Sonuçlar",
               ...emptyTranslations(),
+              ta: "விளைவுகள்",
             },
           },
           {
@@ -1048,6 +1152,7 @@ export const healthThemes: HealthTheme[] = [
               en: "The bully",
               tr: "Zorba",
               ...emptyTranslations(),
+              ta: "கொடுமைப்படுத்துபவர்",
             },
           },
           {
@@ -1057,6 +1162,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Where to get support",
               tr: "Nereden destek alabilirsiniz?",
               ...emptyTranslations(),
+              ta: "எங்கே ஆதரவு பெறலாம்",
             },
           },
           {
@@ -1066,6 +1172,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Have you been a bully?",
               tr: "Birine zorbalık yaptınız mı?",
               ...emptyTranslations(),
+              ta: "நீங்கள் யாரையாவது கொடுமைப்படுத்தியுள்ளீர்களா?",
             },
           },
           {
@@ -1075,6 +1182,7 @@ export const healthThemes: HealthTheme[] = [
               en: "Summary",
               tr: "Özet",
               ...emptyTranslations(),
+              ta: "சுருக்கம்",
             },
           },
         ],
@@ -1089,6 +1197,7 @@ export const healthThemes: HealthTheme[] = [
       en: "Women's reproductive health",
       tr: "Kadın üreme sağlığı",
       ...emptyTranslations(),
+      ta: "பெண்களின் இனப்பெருக்க ஆரோக்கியம்",
     },
     subtopics: [
       {
@@ -1098,6 +1207,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Women's external genitalia",
           tr: "Kadının dış cinsel organları",
           ...emptyTranslations(),
+          ta: "பெண்களின் வெளிப்புற பிறப்புறுப்புகள்",
         },
       },
       {
@@ -1107,6 +1217,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Women's internal reproductive organs",
           tr: "Kadının iç üreme organları",
           ...emptyTranslations(),
+          ta: "பெண்களின் உள் இனப்பெருக்க உறுப்புகள்",
         },
       },
       {
@@ -1116,6 +1227,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Menstruation",
           tr: "Menstrüasyon",
           ...emptyTranslations(),
+          ta: "மாதவிடாய்",
         },
       },
       {
@@ -1125,6 +1237,7 @@ export const healthThemes: HealthTheme[] = [
           en: "Contraception",
           tr: "Doğum kontrolü",
           ...emptyTranslations(),
+          ta: "கருத்தடை",
         },
       },
     ],
