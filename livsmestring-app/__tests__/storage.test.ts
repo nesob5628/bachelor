@@ -124,7 +124,7 @@ describe("storage progress helpers", () => {
 
     expect(isThemeCompleted("theme-1")).toBe(true);
     expect(isThemeCompleted("theme-3")).toBe(false);
-    expect(getThemeProgress(3)).toBe(67);
+    expect(getThemeProgress(3)).toBe(Math.round((2 / 3) * 100));
     expect(getThemeProgress(0)).toBe(0);
   });
 
