@@ -2401,7 +2401,7 @@ export const healthVideos: Topic[] = [
     "theme": "psykisk_helse",
     "groupId": "mobbing",
     "subtopicId": "oppsummering",
-    "synthesiaId": "9c25a86e-807b-48fb-84a2-8cc41ac7bac0\"\"",
+    "synthesiaId": "9c25a86e-807b-48fb-84a2-8cc41ac7bac0",
     "order": 36
   },
   {
