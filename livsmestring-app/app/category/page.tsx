@@ -52,10 +52,11 @@ export default function CategoryPage() {
   }, [selectedLanguage]);
 
   useEffect(() => {
+    if (!mounted) return;
     if (!selectedLanguage) {
       router.replace("/language");
     }
-  }, [router, selectedLanguage]);
+  }, [mounted, router, selectedLanguage]);
 
   const text = translations[selectedLanguage] ?? translations.no;
 
