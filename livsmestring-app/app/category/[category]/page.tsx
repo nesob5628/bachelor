@@ -101,7 +101,7 @@ export default function Page() {
       ? categoryText.healthTitle
       : categoryText.careerTitle;
 
-  if (!language) return <Loading />;
+  if (!mounted || !language) return <Loading />;
 
   return (
     <main className="pkt-container">
