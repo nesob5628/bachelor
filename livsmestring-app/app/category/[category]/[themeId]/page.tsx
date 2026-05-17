@@ -39,11 +39,17 @@ export default function Page() {
   const category = params.category as "helse" | "karriere";
   const themeFromUrl = params.themeId as string;
 
-  const [language] = useState(() => getProgress().selectedLanguage || "");
-  const [completedVideoIds, setCompletedVideoIds] = useState<string[]>(() => {
-    if (!language) return [];
-    return getProgress().languages?.[language]?.completedVideos ?? [];
-  });
+  const [mounted, setMounted] = useState(false);
+  const [language, setLanguage] = useState("");
+  const [completedVideoIds, setCompletedVideoIds] = useState<string[]>([]);
+
+  useEffect(() => {
+    const progress = getProgress();
+    const lang = progress.selectedLanguage || "";
+    setLanguage(lang);
+    setCompletedVideoIds(lang ? (progress.languages?.[lang]?.completedVideos ?? []) : []);
+    setMounted(true);
+  }, []);
 
   const safeLanguage = translations[language] ? language : "no";
 
@@ -106,10 +112,10 @@ export default function Page() {
   }, [language, category, themeFromUrl]);
 
   useEffect(() => {
-    if (!language) {
+    if (mounted && !language) {
       router.replace("/language");
     }
-  }, [router, language]);
+  }, [router, language, mounted]);
 
   const handleMarkCompleted = (synthesiaId: string, checked: boolean) => {
     if (!synthesiaId) return;
@@ -162,7 +168,7 @@ export default function Page() {
     return Math.round((completed / allVideos.length) * 100);
   };
 
-  if (!language) return <Loading />;
+  if (!mounted || !language) return <Loading />;
 
   return (
     <main className="pkt-container">
