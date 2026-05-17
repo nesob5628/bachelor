@@ -15,11 +15,13 @@ export default function CategoryPage() {
   const router = useRouter();
 
   const [mounted, setMounted] = useState(false);
-  const [selectedLanguage] = useState(() => getProgress().selectedLanguage || "");
+  const [selectedLanguage, setSelectedLanguage] = useState("");
 
   useEffect(() => {
+    setSelectedLanguage(getProgress().selectedLanguage || "");
     setMounted(true);
   }, []);
+
 
   const healthProgress = useMemo(() => {
     if (!selectedLanguage) return 0;
