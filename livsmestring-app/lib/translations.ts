@@ -2,6 +2,10 @@ type Translation = {
   markDone: string;
   done: string;
   loading: string;
+
+  moduleInProgress: string;
+  videoNotAvailable: string;
+
   
   category: {
     changeLanguage: string;
@@ -29,9 +33,13 @@ type Translation = {
 
 export const translations: Record<string, Translation> = {
   no: {
+  
     markDone: "Marker som fullført",
     done: "Fullført",
     loading: "Laster...",
+    moduleInProgress: "Modul under prosess",
+    videoNotAvailable: "Videoen er ikke tilgjengelig for dette språket enda.",
+
     category: {
       changeLanguage: "Bytt språk",
       healthTitle: "Helse",
@@ -62,6 +70,10 @@ export const translations: Record<string, Translation> = {
     markDone: "Mark as completed",
     done: "Completed",
     loading: "Loading...",
+
+    moduleInProgress: "Module in progress",
+    videoNotAvailable: "The video is not yet available in this language.",
+
     category: {
       changeLanguage: "Change language",
       healthTitle: "Health",
@@ -92,6 +104,10 @@ export const translations: Record<string, Translation> = {
     markDone: "Tamamlandı olarak işaretle",
     done: "Tamamlandı",
     loading: "Yükleniyor...",
+
+    moduleInProgress: "Modül hazırlanıyor",
+    videoNotAvailable: "Video henüz bu dilde mevcut değil.",
+
     category: {
       changeLanguage: "Dile geri dön",
       healthTitle: "Sağlık",
@@ -122,6 +138,9 @@ export const translations: Record<string, Translation> = {
     markDone: "முடிந்ததாக குறிக்கவும்",
     done: "முடிந்தது",
     loading: "ஏற்றப்படுகிறது...",
+    moduleInProgress: "தொகுதி தயாராகிறது",
+    videoNotAvailable: "இந்த மொழியில் இந்த வீடியோ இன்னும் கிடைக்கவில்லை.",
+
     category: {
       changeLanguage: "மொழியை மாற்று",
       healthTitle: "ஆரோக்கியம்",
@@ -150,9 +169,14 @@ export const translations: Record<string, Translation> = {
   },
   
   ar: {
+    
     markDone: "وضع علامة مكتمل",
     done: "مكتمل",
     loading: "جارٍ التحميل...",
+
+    moduleInProgress: "هذا المحتوى قيد التجهيز",
+    videoNotAvailable: "هذا الفيديو غير متوفر باللغة المختارة حالياً.",
+
     category: {
       changeLanguage: "تغيير اللغة",
       healthTitle: "الصحة",
@@ -183,6 +207,9 @@ export const translations: Record<string, Translation> = {
     markDone: "علامت‌گذاری به عنوان تکمیل‌شده",
     done: "تکمیل شد",
     loading: "در حال بارگذاری...",
+    moduleInProgress: "ماژول در حال آماده‌سازی است",
+    videoNotAvailable: "ویدیو هنوز برای این زبان در دسترس نیست.",
+
     category: {
       changeLanguage: "تغییر زبان",
       healthTitle: "سلامت",
@@ -213,6 +240,9 @@ export const translations: Record<string, Translation> = {
     markDone: "Wekî qedandî nîşan bide",
     done: "Qediya",
     loading: "Tê barkirin...",
+    moduleInProgress: "Modul di pêvajoya amadekirinê de ye",
+    videoNotAvailable: "Vîdyoyê hîn ji bo vî zimanî amade nîne.",
+
     category: {
       changeLanguage: "Zimanê biguhere",
       healthTitle: "Tenduristî",
@@ -243,6 +273,8 @@ export const translations: Record<string, Translation> = {
     markDone: "U calaamadee dhamaystiran",
     done: "Dhamaystiran",
     loading: "Waa la rarayo...",
+    moduleInProgress: "Qaybta wali waa la diyaarinayaa",
+videoNotAvailable: "Fiidiyowgan wali diyaar uma aha luuqaddan.",
     category: {
       changeLanguage: "Beddel luuqadda",
       healthTitle: "Caafimaadka",
@@ -273,6 +305,9 @@ export const translations: Record<string, Translation> = {
     markDone: "Marcar como completado",
     done: "Completado",
     loading: "Cargando...",
+    moduleInProgress: "Módulo en proceso",
+    videoNotAvailable: "El video aún no está disponible para este idioma.",
+
     category: {
       changeLanguage: "Cambiar idioma",
       healthTitle: "Salud",
@@ -303,6 +338,9 @@ export const translations: Record<string, Translation> = {
     markDone: "Weka alama kama imekamilika",
     done: "Imekamilika",
     loading: "Inapakia...",
+    moduleInProgress: "Moduli inaendelea kutayarishwa",
+    videoNotAvailable: "Video bado haipatikani kwa lugha hii.",
+
     category: {
       changeLanguage: "Badilisha lugha",
       healthTitle: "Afya",
@@ -333,6 +371,9 @@ export const translations: Record<string, Translation> = {
     markDone: "ከምዝተወደአ ምልክት ግበር",
     done: "ተወዲኡ",
     loading: "ይጽዓን ኣሎ...",
+    moduleInProgress: "ሞጁል ኣብ ሂደት ምድላው ኣሎ",
+    videoNotAvailable: "እዚ ቪድዮ ንዚ ቋንቋ ገና ኣይተዳለወን።",
+
     category: {
       changeLanguage: "ቋንቋ ቀይር",
       healthTitle: "ጥዕና",
@@ -363,6 +404,9 @@ export const translations: Record<string, Translation> = {
     markDone: "مکمل کے طور پر نشان زد کریں",
     done: "مکمل",
     loading: "لوڈ ہو رہا ہے...",
+    moduleInProgress: "ماڈیول زیرِ تیاری ہے",
+    videoNotAvailable: "یہ ویڈیو ابھی اس زبان کے لیے دستیاب نہیں ہے۔",
+
     category: {
       changeLanguage: "زبان تبدیل کریں",
       healthTitle: "صحت",

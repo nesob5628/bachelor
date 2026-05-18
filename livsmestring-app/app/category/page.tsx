@@ -10,10 +10,10 @@ import { topics } from "@/lib/videos";
 import Loading from "@/components/Loading";
 import ProgressBar from "@/components/ProgressBar";
 import ReturnBtn from "@/components/ReturnBtn";
+import MessageBox from "@/components/MessageBox";
 
 export default function CategoryPage() {
   const router = useRouter();
-
   const [mounted, setMounted] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("");
 
@@ -67,20 +67,37 @@ export default function CategoryPage() {
   };
 
   if (!mounted || !selectedLanguage) return <Loading />;
+  const hasVideos =
+  topics.filter((item) => item.language === selectedLanguage).length > 0;
 
+  
   return (
     <main className="pkt-container">
       <ReturnBtn
         text={text.category.changeLanguage}
         onClick={handleChangeLanguage}
       />
-
+      
       <div className="category-grid">
+
+
+      
+
+      {!hasVideos && (
+  <MessageBox title={text.moduleInProgress}>
+  {text.videoNotAvailable}
+</MessageBox>
+)}
+
+
         <Link
           href="/category/helse"
           className="category-card category-card--health"
           onClick={() => setCategory("helse")}
         >
+          
+
+
           <div className="category-card__header">
             <div className="category-card__icon">
               <Image
