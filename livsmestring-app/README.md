@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Livsmestring App
 
-## Getting Started
+Livsmestring is a multilingual, progressive web app for learning life skills through short video-based lessons. The experience is designed to be simple, accessible, and supportive for users who want to explore topics such as health and career in a language they understand.
 
-First, run the development server:
+## What this project does
+
+The app guides users through a structured learning flow:
+
+- Choose a language from a wide range of supported languages
+- Browse categories such as health and career
+- Explore themes and subtopics
+- Watch educational videos
+- Track progress locally as they move through the content
+
+The project is built with Next.js and uses browser storage to remember the selected language and completed content so users can continue where they left off.
+
+> Note: at the moment, both the styling and the video content depend on an internet connection. The app is not fully offline-ready yet.
+
+## Main features
+
+- Multilingual interface and content support
+- Category-based navigation
+- Theme and subtopic progression
+- Video-based learning experience
+- Progress tracking with local storage
+- Progressive Web App setup
+- Responsive and mobile-friendly UI
+
+## Tech stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Sass
+- Jest for testing
+- Progressive Web App support via service worker and manifest
+
+## Project structure
+
+- `app/` contains the main pages and routing
+- `components/` contains reusable UI components
+- `lib/` contains translations, storage logic, content data, and shared types
+- `public/` contains the service worker and static assets
+- `__tests__/` contains automated tests for progress, saving, theme handling, and translations
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 18.18 or newer
+- npm, pnpm, yarn, or bun
+
+### Installation
+
+```bash
+npm install
+```
+
+### Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev      # start the development server
+npm run build    # create a production build
+npm run start    # start the production server
+npm run lint     # run ESLint
+npm run test     # run the Jest test suite
+```
 
-## Learn More
+## Testing
 
-To learn more about Next.js, take a look at the following resources:
+Run the test suite with:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The tests cover core behaviors such as progress persistence, language selection flow, theme handling, and translation data.
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is well suited for deployment on Vercel, but it can also be deployed to other platforms that support Next.js applications.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For a production build, run:
+
+```bash
+npm run build
+```
+
+## Notes
+
+The app is designed to be lightweight, accessible, and easy to extend with more categories, themes, languages, or learning content over time.
