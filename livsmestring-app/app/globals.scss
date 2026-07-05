@@ -19,11 +19,12 @@ button {
   font: inherit;
 }
 
+/* Base layout */
 main.pkt-container {
   padding-bottom: 6rem;
 }
 
-/* Oslo-header */
+/* Header and global navigation */
 .oslo-header {
   display: flex;
   align-items: center;
@@ -76,13 +77,12 @@ main.pkt-container {
   background: rgba(0, 0, 0, 0.04);
 }
 
+/* Desktop header menu container */
 .header-actions-menu {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
-
 
 .header-actions-menu .header-icons {
   display: flex;
@@ -103,9 +103,7 @@ main.pkt-container {
   width: 24px;
   height: 24px;
   display: block;
-  
 }
-
 
 /* Mobile footer */
 .mobile-footer {
@@ -139,7 +137,7 @@ main.pkt-container {
   height: 24px;
 }
 
-/* Language */
+/* Language selection page */
 .language-heading-wrap {
   height: 6rem;
   display: flex;
@@ -203,7 +201,7 @@ main.pkt-container {
   color: var(--pkt-color-brand-neutrals-white);
 }
 
-/* Category */
+/* Category page cards */
 .category-card__header {
   display: flex;
   align-items: center;
@@ -263,7 +261,7 @@ main.pkt-container {
   flex-shrink: 0;
 }
 
-/* Return */
+/* Return button styles */
 .return-icon {
   position: relative;
   width: 16px;
@@ -287,7 +285,7 @@ main.pkt-container {
   text-decoration: underline;
 }
 
-/* Footer simple */
+/* Simple footer bar */
 .pkt-footer-simple {
   position: fixed;
   bottom: 0;
@@ -308,7 +306,7 @@ main.pkt-container {
   align-items: center;
 }
 
-/* Loader */
+/* Loading screen */
 .app-loader {
   min-height: 100vh;
   min-height: 100dvh;
@@ -327,7 +325,7 @@ main.pkt-container {
   height: 100px;
 }
 
-/* Progress */
+/* Progress bar layout */
 .progress-wrapper {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -337,7 +335,7 @@ main.pkt-container {
   height: 6px;
 }
 
-/* Theme page */
+/* Theme selection page layout */
 .theme-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -454,9 +452,10 @@ main.pkt-container {
   height: 24px;
 }
 
+/* Progress bar container for subtheme cards */
 .subtheme-card__progress {
   width: 100%;
-  max-width: 450;
+  max-width: 450px;
   margin: 0 auto;
 }
 
@@ -529,6 +528,7 @@ main.pkt-container {
   border-radius: 8px;
 }
 
+/* Hide link labels on desktop, reveal them on mobile */
 .menu-item span {
   display: none;
 }
@@ -604,6 +604,7 @@ main.pkt-container {
   display: block;
 }
 
+/* Tablet and smaller screen responsive styles */
 @media (max-width: 900px) {
 .header-menu-toggle {
   display: inline-flex;
@@ -644,10 +645,12 @@ main.pkt-container {
     width: 100%;
     padding: 0.75rem 0;
   }
-    .menu-item span {
+
+  /* show menu item labels in the open mobile side panel */
+  .menu-item span {
     display: inline-block;
   }
-  
+
   .header-menu-backdrop {
   position: fixed;
   inset: 0;
@@ -658,7 +661,7 @@ main.pkt-container {
 
 }
 
-/* Mobile */
+/* Mobile-only overrides */
 @media (max-width: 640px) {
   main.pkt-container {
     padding-bottom: 7rem;
