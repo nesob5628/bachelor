@@ -51,6 +51,7 @@ export default function Page() {
     setMounted(true);
   }, []);
 
+  // Ensure we have a valid language, fallback to Norwegian if not
   const safeLanguage = translations[language] ? language : "no";
 
   const themeTitle = useMemo(() => {

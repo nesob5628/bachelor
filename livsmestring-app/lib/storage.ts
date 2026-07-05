@@ -24,6 +24,7 @@ export const setProgress = (progress: Progress) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
 };
 
+// Read the saved progress from localStorage, falling back to the default state.
 export function getProgress(): Progress {
   if (typeof window === "undefined") {
     return defaultProgress;
@@ -61,6 +62,7 @@ export function saveProgress(progress: Progress) {
 }
 
 export function setSelectedLanguage(language: string) {
+  // Store the selected language and initialize the per-language progress entry.
   const progress = getProgress();
   const languages = progress.languages ?? {};
 
@@ -75,6 +77,7 @@ export function setSelectedLanguage(language: string) {
 }
 
 export function setCategory(category: string) {
+  // Remember the current category for the active language.
   const progress = getProgress();
   const language = progress.selectedLanguage;
   const languages = progress.languages ?? {};
@@ -225,6 +228,7 @@ export function clearSelectedLanguage() {
 }
 
 export function markVideoCompleted(synthesiaId: string) {
+  // Track completed videos for the active language without duplicates.
   const progress = getProgress();
   const language = progress.selectedLanguage;
   const languages = progress.languages ?? {};
@@ -248,6 +252,7 @@ export function markVideoCompleted(synthesiaId: string) {
   });
 }
 export function unmarkVideoCompleted(synthesiaId: string) {
+  // Remove a video from the completed list when the user unchecks it.
   const progress = getProgress();
   const language = progress.selectedLanguage;
   const languages = progress.languages ?? {};

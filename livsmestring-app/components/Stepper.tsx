@@ -20,6 +20,7 @@ const Stepper: React.FC<StepperProps> = ({
   category,
 }) => {
   const [currentStep, setCurrentStep] = useState(() => {
+    // Start at the first unfinished item, or fall back to the first step if everything is done.
     const firstIncomplete = topics.findIndex(
       (item) => !completedVideoIds.includes(item.synthesiaId ?? "")
     );
@@ -29,6 +30,7 @@ const Stepper: React.FC<StepperProps> = ({
   const currentStepRef = useRef<HTMLLIElement | null>(null);
 
   useEffect(() => {
+    // Keep the active step centered when the user moves between items.
     currentStepRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "center",
@@ -36,24 +38,24 @@ const Stepper: React.FC<StepperProps> = ({
   }, [currentStep]);
 
   return (
-  <div className="stepper-container">
-    <ol className="pkt-stepper pkt-stepper--vertical">
-      {topics.map((item, i) => {
-        const completed =
-          !!item.synthesiaId && completedVideoIds.includes(item.synthesiaId);
+    <div className="stepper-container">
+      <ol className="pkt-stepper pkt-stepper--vertical">
+        {topics.map((item, i) => {
+          const completed =
+            !!item.synthesiaId && completedVideoIds.includes(item.synthesiaId);
 
-        const wrapperClass =
-        category === "helse"
-          ? "pkt-step__wrapper step-wrapper--health"
-          : "pkt-step__wrapper step-wrapper--career";
+          const wrapperClass =
+            category === "helse"
+              ? "pkt-step__wrapper step-wrapper--health"
+              : "pkt-step__wrapper step-wrapper--career";
 
-        let stepClass = "pkt-step";
-        if (i === currentStep) stepClass += " pkt-step--current";
-        else if (completed) stepClass += " pkt-step--completed";
-        else stepClass += " pkt-step--incomplete";
+          let stepClass = "pkt-step";
+          if (i === currentStep) stepClass += " pkt-step--current";
+          else if (completed) stepClass += " pkt-step--completed";
+          else stepClass += " pkt-step--incomplete";
 
-        return (
-          <li
+          return (
+            <li
               key={item.synthesiaId || i}
               className={stepClass}
               ref={i === currentStep ? currentStepRef : null}
@@ -95,6 +97,8 @@ const Stepper: React.FC<StepperProps> = ({
                 onClick={() => setCurrentStep(i)}
                 style={{ cursor: "pointer" }}
               >
+                {/* Keep the clicked step in view when the user opens a new item. */}
+
                 {item.subtopicTitle}
               </div>
 
@@ -116,6 +120,7 @@ const Stepper: React.FC<StepperProps> = ({
                       <Switch
                         checked={completed}
                         onChange={(checked) => {
+                          // Mark the item as done and move to the next one when completed.
                           handleMarkCompleted(item.synthesiaId!, checked);
                           if (checked && i < topics.length - 1) {
                             setCurrentStep(i + 1);
@@ -131,7 +136,7 @@ const Stepper: React.FC<StepperProps> = ({
         );
       })}
     </ol>
-  </div>
+    </div>
   );
 };
 

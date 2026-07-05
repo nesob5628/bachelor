@@ -112,6 +112,7 @@ export default function Page() {
         <ProgressBar value={groupProgress} />
       </div>
 
+      // If there are no videos for this group, show a message
       {filteredTopics.length === 0 && (
         <MessageBox title={text.subtopic.empty}>
           {text.subtopic.emptyDescription}

@@ -2,11 +2,10 @@ type Translation = {
   markDone: string;
   done: string;
   loading: string;
-
   moduleInProgress: string;
   videoNotAvailable: string;
 
-  
+  // Section-specific UI text used across the app.
   category: {
     changeLanguage: string;
     healthTitle: string;
@@ -32,8 +31,8 @@ type Translation = {
 };
 
 export const translations: Record<string, Translation> = {
+  // Default language used when no language is selected yet.
   no: {
-  
     markDone: "Marker som fullført",
     done: "Fullført",
     loading: "Laster...",
@@ -65,7 +64,6 @@ export const translations: Record<string, Translation> = {
       themeFallback: "Tema",
     },
   },
-
   en: {
     markDone: "Mark as completed",
     done: "Completed",
@@ -99,7 +97,6 @@ export const translations: Record<string, Translation> = {
       themeFallback: "Theme",
     },
   },
-
   tr: {
     markDone: "Tamamlandı olarak işaretle",
     done: "Tamamlandı",
@@ -133,7 +130,6 @@ export const translations: Record<string, Translation> = {
       themeFallback: "Tema",
     },
   },
-
   ta: {
     markDone: "முடிந்ததாக குறிக்கவும்",
     done: "முடிந்தது",
@@ -152,8 +148,7 @@ export const translations: Record<string, Translation> = {
       home: "முகப்பு",
       health: "ஆரோக்கியம்",
       career: "தொழில்",
-      language: "மொழி", 
-      
+      language: "மொழி",
     },
     theme: {
       empty: "இங்கே இன்னும் காணொளிகள் இல்லை",
@@ -167,7 +162,6 @@ export const translations: Record<string, Translation> = {
       themeFallback: "தலைப்பு",
     },
   },
-  
   ar: {
     
     markDone: "وضع علامة مكتمل",
@@ -202,7 +196,6 @@ export const translations: Record<string, Translation> = {
       themeFallback: "موضوع",
     },
   },
-  
   fa: {
     markDone: "علامت‌گذاری به عنوان تکمیل‌شده",
     done: "تکمیل شد",

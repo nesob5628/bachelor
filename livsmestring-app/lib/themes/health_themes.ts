@@ -47,6 +47,7 @@ type HealthTheme = {
   groups?: ThemeGroup[];
 };
 
+// Shared fallback values for languages without dedicated translations yet.
 const emptyTranslations = (): Omit<Translation, "no" | "en" | "tr"> => ({
   ar: "",
   fa: "",
@@ -59,6 +60,7 @@ const emptyTranslations = (): Omit<Translation, "no" | "en" | "tr"> => ({
   ur: "",
 });
 
+// Health themes are grouped into top-level topics and their subthemes.
 export const healthThemes: HealthTheme[] = [
   {
     id: "skeiv_verden",
@@ -112,7 +114,6 @@ export const healthThemes: HealthTheme[] = [
       },
     ],
   },
-
   {
     id: "vold_i_naere_relasjoner",
     title: {
@@ -225,7 +226,6 @@ export const healthThemes: HealthTheme[] = [
       },
     ],
   },
-
   {
     id: "mat_og_helse",
     title: {
@@ -474,7 +474,6 @@ export const healthThemes: HealthTheme[] = [
       },
     ],
   },
-
   {
     id: "fysisk_aktivitet",
     title: {

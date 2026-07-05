@@ -24,6 +24,7 @@ type CareerTheme = {
   subtopics?: Subtopic[];
 };
 
+// Shared fallback values for languages that do not have dedicated translations yet.
 const emptyTranslations = (): Omit<Translation, "no" | "en" | "ta" | "tr"> => ({
   ar: "",
   fa: "",
@@ -35,6 +36,7 @@ const emptyTranslations = (): Omit<Translation, "no" | "en" | "ta" | "tr"> => ({
   ur: "",
 });
 
+// Career themes are grouped by topic and contain the subtopics shown in the app.
 export const careerThemes: CareerTheme[] = [
   {
     id: "meg_i_kontekst",
