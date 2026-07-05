@@ -6,6 +6,7 @@ const createJestConfig = nextJest({
 });
 
 const config: Config = {
+  // Use the browser-like DOM environment expected by React tests.
   testEnvironment: "jsdom",
 };
 

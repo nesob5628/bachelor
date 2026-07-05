@@ -1,12 +1,14 @@
 const CACHE_NAME = "livsmestring-v1";
 const APP_SHELL = ["/", "/language", "/category", "/offline"];
 
+// Cache the core app shell during installation so the app works offline.
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL))
   );
 });
 
+// Remove old caches so the service worker always serves the latest version.
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
@@ -19,6 +21,7 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// Serve cached responses when available, otherwise fall back to the offline page.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 

@@ -13,9 +13,9 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
 
-
   const [hasLanguage, setHasLanguage] = useState(false);
   const isLanguagePage = pathname.startsWith("/language");
+  // Prevent category navigation until a language has been selected.
   const canNavigateCategories = hasLanguage && !isLanguagePage;
 
   useEffect(() => {
@@ -36,7 +36,8 @@ export default function Header() {
     };
   }, []);
 
-        useEffect(() => {
+  useEffect(() => {
+    // Close the mobile menu when the viewport becomes wide enough again.
     const handleResize = () => {
       if (window.innerWidth <= 640) {
         setMenuOpen(false);
@@ -76,13 +77,13 @@ export default function Header() {
       <div className="header-spacer" />
 
       {menuOpen && (
-      <button
-        type="button"
-        className="header-menu-backdrop"
-        aria-label="Lukk meny"
-        onClick={() => setMenuOpen(false)}
-      />
-    )}
+        <button
+          type="button"
+          className="header-menu-backdrop"
+          aria-label="Lukk meny"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
 
       <div className="header-actions">
         <button
@@ -106,19 +107,21 @@ export default function Header() {
           className={`header-actions-menu ${menuOpen ? "is-open" : ""}`}
         >
           <div className="header-icons">
-              <Link
-                  href={canNavigateCategories ? "/category" : "#"}
-                  onClick={(e) => {
-                    if (!canNavigateCategories) {
-                      e.preventDefault();
-                      router.push("/language?change=true");
-                    } else {
-                      setMenuOpen(false);
-                    }
-                  }}
-                  className="menu-item"
-                >
-              <div className="header-icon"><Image src="https://punkt-cdn.oslo.kommune.no/16/icons/home.svg" alt="" fill /></div>
+            <Link
+              href={canNavigateCategories ? "/category" : "#"}
+              onClick={(e) => {
+                if (!canNavigateCategories) {
+                  e.preventDefault();
+                  router.push("/language/change");
+                } else {
+                  setMenuOpen(false);
+                }
+              }}
+              className="menu-item"
+            >
+              <div className="header-icon">
+                <Image src="https://punkt-cdn.oslo.kommune.no/16/icons/home.svg" alt="" fill />
+              </div>
               <span>{text.menu.home}</span>
             </Link>
           </div>
@@ -129,14 +132,16 @@ export default function Header() {
               onClick={(e) => {
                 if (!canNavigateCategories) {
                   e.preventDefault();
-                  router.push("/language?change=true");
+                  router.push("/language/change");
                 } else {
                   setMenuOpen(false);
                 }
               }}
               className="menu-item"
             >
-              <div className="header-icon"><Image src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg" alt="" fill /></div>
+              <div className="header-icon">
+                <Image src="https://punkt-cdn.oslo.kommune.no/16/icons/ecg-heart.svg" alt="" fill />
+              </div>
               <span>{text.menu.health}</span>
             </Link>
           </div>
@@ -147,27 +152,31 @@ export default function Header() {
               onClick={(e) => {
                 if (!canNavigateCategories) {
                   e.preventDefault();
-                  router.push("/language?change=true");
+                  router.push("/language/change");
                 } else {
                   setMenuOpen(false);
                 }
               }}
               className="menu-item"
             >
-              <div className="header-icon"><Image src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg" alt="" fill /></div>
+              <div className="header-icon">
+                <Image src="https://punkt-cdn.oslo.kommune.no/16/icons/briefcase.svg" alt="" fill />
+              </div>
               <span>{text.menu.career}</span>
             </Link>
           </div>
 
           <div className="header-icons">
             <Link
-              href="/language?change=true"
+              href="/language/change"
               onClick={() => {
                 setMenuOpen(false);
               }}
               className="menu-item"
             >
-              <div className="header-icon"><Image src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg" alt="" fill /></div>
+              <div className="header-icon">
+                <Image src="https://punkt-cdn.oslo.kommune.no/16/icons/language.svg" alt="" fill />
+              </div>
               <span>{text.menu.language}</span>
             </Link>
           </div>

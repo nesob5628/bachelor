@@ -1,3 +1,4 @@
+// Shared shape for a video topic used throughout the app.
 export interface Topic {
   language: string;
   category: "helse" | "karriere";
