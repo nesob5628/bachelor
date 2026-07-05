@@ -2,7 +2,11 @@
 
 import { topics } from "@/lib/videos";
 import { Topic } from "@/lib/types";
-import { getProgress, markVideoCompleted, unmarkVideoCompleted } from "@/lib/storage";
+import {
+  getProgress,
+  markVideoCompleted,
+  unmarkVideoCompleted,
+} from "@/lib/storage";
 import { useState, useEffect, useMemo } from "react";
 import { useRouter, useParams } from "next/navigation";
 import ReturnBtn from "@/components/ReturnBtn";
@@ -13,6 +17,7 @@ import { healthThemes } from "@/lib/themes/health_themes";
 import ProgressBar from "@/components/ProgressBar";
 import Loading from "@/components/Loading";
 
+// Resolve the localized title for a theme, group, or subtopic.
 const getTitle = (
   title: { no: string } & Record<string, string>,
   language: string
@@ -35,6 +40,7 @@ export default function Page() {
   const safeLanguage = translations[language] ? language : "no";
   const text = translations[safeLanguage] ?? translations.no;
 
+  // Build the localized title for the current group.
   const groupTitle = useMemo(() => {
     if (!language) return groupId.replaceAll("_", " ");
     const safeLang = translations[language] ? language : "no";
@@ -43,6 +49,7 @@ export default function Page() {
     return group ? getTitle(group.title, safeLang) : groupId.replaceAll("_", " ");
   }, [language, theme, groupId]);
 
+  // Filter videos for the current language, category, theme, and group.
   const filteredTopics = useMemo<Topic[]>(() => {
     if (!language) return [];
     const themeData = healthThemes.find((item) => item.id === theme);
@@ -112,7 +119,6 @@ export default function Page() {
         <ProgressBar value={groupProgress} />
       </div>
 
-      // If there are no videos for this group, show a message
       {filteredTopics.length === 0 && (
         <MessageBox title={text.subtopic.empty}>
           {text.subtopic.emptyDescription}
