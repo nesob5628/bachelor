@@ -1,5 +1,8 @@
 import { Topic } from "@/lib/types";
-
+// Mapping of Synthesia video IDs for the 'helse' category.
+// Each object links `language`, `theme`, and `subtopicId` to an external
+// `synthesiaId`. These IDs are external resources — do not modify them
+// unless you intend to update the corresponding video assets.
 export const healthVideos: Topic[] = [
   {
     "language": "no",

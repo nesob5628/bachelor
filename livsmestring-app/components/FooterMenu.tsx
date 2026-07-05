@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function FooterMenu() {
+  // Bottom navigation displayed on mobile devices.
   return (
     <nav className="mobile-footer-menu">
       <Link href="/category" className="mobile-footer-link">
