@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { translations } from "../lib/translations";
-import { getProgress } from "../lib/storage";
+import { translations } from "@/lib/translations";
+import { getProgress } from "@/lib/storage";
 
 export default function Switch({
   checked,

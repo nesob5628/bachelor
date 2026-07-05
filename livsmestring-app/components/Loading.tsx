@@ -1,16 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getProgress } from "@/lib/storage";
 import { translations } from "@/lib/translations";
 
 export default function Loading() {
-  const [text] = useState(() => {
+  const [text, setText] = useState("Laster...");
+
+  useEffect(() => {
     const progress = getProgress();
     const lang = progress.selectedLanguage || "no";
-    return translations[lang]?.loading || "Laster...";
-  });
+    setText(translations[lang]?.loading || "Laster...");
+  }, []);
 
   return (
     <div className="app-loader">

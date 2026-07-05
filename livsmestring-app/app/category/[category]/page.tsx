@@ -26,13 +26,20 @@ export default function Page() {
   const themes: ThemeItem[] =
     category === "helse" ? healthThemes : careerThemes;
 
-  const [language] = useState(() => getProgress().selectedLanguage || "");
+  const [mounted, setMounted] = useState(false);
+  const [language, setLanguage] = useState("");
 
   useEffect(() => {
+    setLanguage(getProgress().selectedLanguage || "");
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     if (!language) {
       router.replace("/language");
     }
-  }, [router, language]);
+  }, [mounted, router, language]);
 
   const handleClick = (themeId: string) => {
     const progress = getProgress();
@@ -94,7 +101,7 @@ export default function Page() {
       ? categoryText.healthTitle
       : categoryText.careerTitle;
 
-  if (!language) return <Loading />;
+  if (!mounted || !language) return <Loading />;
 
   return (
     <main className="pkt-container">

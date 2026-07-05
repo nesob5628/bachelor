@@ -11,7 +11,9 @@ export default function MessageBox({
 }: Props) {
   return (
     <pkt-messagebox title={title} skin={skin}>
-      <span>{children}</span>
+     <span style={{ textAlign: "center", width: "100%", display: "block" }}>
+  {children}
+</span>
     </pkt-messagebox>
   );
 }
