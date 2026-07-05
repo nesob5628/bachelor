@@ -1,4 +1,6 @@
-
+// Unit tests for storage progress loading behavior.
+// These tests verify default fallback behavior when localStorage data is invalid,
+// missing, or unavailable in the browser environment.
 import { getProgress } from "@/lib/storage";
 
 // Invalid input
