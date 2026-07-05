@@ -6,9 +6,11 @@ import { getProgress } from "@/lib/storage";
 import { translations } from "@/lib/translations";
 
 export default function Loading() {
+  // Localized loading text shown below the loader icon.
   const [text, setText] = useState("Laster...");
 
   useEffect(() => {
+    // Read last selected language from storage and pick the localized string.
     const progress = getProgress();
     const lang = progress.selectedLanguage || "no";
     setText(translations[lang]?.loading || "Laster...");

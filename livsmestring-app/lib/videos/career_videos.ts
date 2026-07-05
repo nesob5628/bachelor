@@ -1,5 +1,9 @@
 import { Topic } from "@/lib/types";
 
+// List of Synthesia video mappings for the 'karriere' category.
+// Each entry maps a `language`, `theme`, and `subtopicId` to a `synthesiaId`.
+// NOTE: This file contains external IDs used at runtime — avoid changing
+// IDs or object shapes unless you intend to update the video resources.
 export const careerVideos: Topic[] = [
   {
     "language": "no",

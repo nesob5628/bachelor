@@ -22,27 +22,28 @@ export default function RootLayout({
         />
       </head>
       <body>
+        {/* Load Punkt component scripts after hydration */}
         <Script
           src="https://punkt-cdn.oslo.kommune.no/16/elements/pkt-progressbar.js"
           type="module"
           strategy="afterInteractive"
         />
-
-          <Script
-            src="https://punkt-cdn.oslo.kommune.no/16/elements/pkt-messagebox.js"
-            type="module"
-            strategy="afterInteractive"
-          />
-          <Script
-            src="https://punkt-cdn.oslo.kommune.no/16/elements/pkt-checkbox.js"
-            type="module"
-            strategy="afterInteractive"
-          />
+        <Script
+          src="https://punkt-cdn.oslo.kommune.no/16/elements/pkt-messagebox.js"
+          type="module"
+          strategy="afterInteractive"
+        />
+        <Script
+          src="https://punkt-cdn.oslo.kommune.no/16/elements/pkt-checkbox.js"
+          type="module"
+          strategy="afterInteractive"
+        />
 
         <Header />
 
         <main className="pkt-container">{children}</main>
 
+        {/* Hide the mobile footer on the language selection page */}
         {pathname !== "/language" && (
           <div className="mobile-footer">
             <FooterMenu />

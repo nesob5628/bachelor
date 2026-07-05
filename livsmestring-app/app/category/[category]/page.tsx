@@ -29,11 +29,13 @@ export default function Page() {
   const [mounted, setMounted] = useState(false);
   const [language, setLanguage] = useState("");
 
+  // Read stored language when the component mounts on the client.
   useEffect(() => {
     setLanguage(getProgress().selectedLanguage || "");
     setMounted(true);
   }, []);
 
+  // Only redirect once the client has mounted and storage is available.
   useEffect(() => {
     if (!mounted) return;
     if (!language) {
@@ -41,6 +43,7 @@ export default function Page() {
     }
   }, [mounted, router, language]);
 
+  // Store the selected category and theme, then navigate to the theme page.
   const handleClick = (themeId: string) => {
     const progress = getProgress();
 
@@ -59,6 +62,7 @@ export default function Page() {
     router.push(`/category/${category}/${themeId}`);
   };
 
+  // Calculate completion percent for a single theme in this category and language.
   const getSingleThemeProgress = (themeId: string) => {
     const completedVideos = getCompletedVideos();
 
@@ -78,6 +82,7 @@ export default function Page() {
     return Math.round((completedCount / themeVideos.length) * 100);
   };
 
+  // Average progress across all themes in the current category.
   const totalProgress =
     themes.length > 0
       ? Math.round(

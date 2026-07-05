@@ -17,12 +17,13 @@ export default function CategoryPage() {
   const [mounted, setMounted] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("");
 
+  // Load the stored language selection once when the client mounts.
   useEffect(() => {
     setSelectedLanguage(getProgress().selectedLanguage || "");
     setMounted(true);
   }, []);
 
-
+  // Compute health category progress for the currently selected language.
   const healthProgress = useMemo(() => {
     if (!selectedLanguage) return 0;
     const progress = getProgress();
@@ -38,6 +39,7 @@ export default function CategoryPage() {
       : 0;
   }, [selectedLanguage]);
 
+  // Compute career category progress for the currently selected language.
   const careerProgress = useMemo(() => {
     if (!selectedLanguage) return 0;
     const progress = getProgress();
@@ -53,6 +55,8 @@ export default function CategoryPage() {
       : 0;
   }, [selectedLanguage]);
 
+  // Only redirect after mount, so the client can read storage first.
+  // If no language is selected, send the user to language selection.
   useEffect(() => {
     if (!mounted) return;
     if (!selectedLanguage) {
@@ -67,10 +71,12 @@ export default function CategoryPage() {
   };
 
   if (!mounted || !selectedLanguage) return <Loading />;
-  const hasVideos =
-  topics.filter((item) => item.language === selectedLanguage).length > 0;
 
-  
+  // Check whether the current language has any available videos.
+  const hasVideos = topics.filter(
+    (item) => item.language === selectedLanguage
+  ).length > 0;
+
   return (
     <main className="pkt-container">
       <ReturnBtn
@@ -79,25 +85,17 @@ export default function CategoryPage() {
       />
       
       <div className="category-grid">
-
-
-      
-
-      {!hasVideos && (
-  <MessageBox title={text.moduleInProgress}>
-  {text.videoNotAvailable}
-</MessageBox>
-)}
-
+        {!hasVideos && (
+          <MessageBox title={text.moduleInProgress}>
+            {text.videoNotAvailable}
+          </MessageBox>
+        )}
 
         <Link
           href="/category/helse"
           className="category-card category-card--health"
           onClick={() => setCategory("helse")}
         >
-          
-
-
           <div className="category-card__header">
             <div className="category-card__icon">
               <Image

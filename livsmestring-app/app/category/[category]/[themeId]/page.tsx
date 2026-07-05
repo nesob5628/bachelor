@@ -51,9 +51,10 @@ export default function Page() {
     setMounted(true);
   }, []);
 
-  // Ensure we have a valid language, fallback to Norwegian if not
+  // Use a fallback language if the stored language is not available.
   const safeLanguage = translations[language] ? language : "no";
 
+  // Determine the displayed theme title using the active language and theme metadata.
   const themeTitle = useMemo(() => {
     if (!language) return "Tema";
     const safeLang = translations[language] ? language : "no";
@@ -64,6 +65,7 @@ export default function Page() {
       : (translations[safeLang]?.subtopic?.themeFallback ?? "Tema");
   }, [language, category, themeFromUrl]);
 
+  // Filter and group topics based on language, category, theme, and group membership.
   const { filteredTopics, groups, hasGroups } = useMemo(() => {
     if (!language) return { filteredTopics: [] as Topic[], groups: [] as GroupItem[], hasGroups: false };
     const safeLang = translations[language] ? language : "no";
@@ -118,6 +120,7 @@ export default function Page() {
     }
   }, [router, language, mounted]);
 
+  // Toggle completion state for a video and keep the UI in sync with storage.
   const handleMarkCompleted = (synthesiaId: string, checked: boolean) => {
     if (!synthesiaId) return;
     if (checked) {
@@ -140,6 +143,7 @@ export default function Page() {
       ? "subtheme-card subtheme-card--health"
       : "subtheme-card subtheme-card--career";
 
+  // Compute overall theme completion percentage for the progress bar.
   const getThemeProgress = () => {
     const allVideos = topics.filter(
       (item) =>
@@ -154,6 +158,7 @@ export default function Page() {
     return Math.round((completed / allVideos.length) * 100);
   };
 
+  // Compute completion percent for a single group within the theme.
   const getGroupProgress = (groupId: string) => {
     const allVideos = topics.filter(
       (item) =>

@@ -38,6 +38,8 @@ export default function LanguagePage() {
   const router = useRouter();
   const [headingIndex, setHeadingIndex] = useState(0);
   const [fade, setFade] = useState(true);
+
+  // Redirect users who already selected a language.
   useEffect(() => {
     const progress = getProgress();
     if (progress.selectedLanguage) {
@@ -45,6 +47,7 @@ export default function LanguagePage() {
     }
   }, [router]);
 
+  // Cycle the heading text with a fade animation.
   useEffect(() => {
     const interval = setInterval(() => {
       setFade(false);
@@ -58,6 +61,7 @@ export default function LanguagePage() {
     return () => clearInterval(interval);
   }, []);
 
+  // Save selection and navigate to the category page.
   const selectLanguage = (code: string) => {
     setSelectedLanguage(code);
     window.dispatchEvent(new Event("languageChanged"));
@@ -68,7 +72,6 @@ export default function LanguagePage() {
     <div className="pkt-container">
       <section className="pkt-section">
         <div className="pkt-section__content">
-
           {/* Heading */}
           <header className="language-header">
             <title>Velg språk</title>
@@ -78,7 +81,6 @@ export default function LanguagePage() {
               </h1>
             </div>
           </header>
-
           {/* Grid */}
           <div className="language-grid">
             {languages.map((lang) => (
@@ -88,9 +90,7 @@ export default function LanguagePage() {
                 onClick={() => selectLanguage(lang.code)}
                 className="pkt-linkcard language-card"
               >
-                <span className="pkt-linkcard__title">
-                  {lang.name}
-                </span>
+                <span className="pkt-linkcard__title">{lang.name}</span>
               </button>
             ))}
           </div>

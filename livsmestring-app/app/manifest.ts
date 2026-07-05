@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+// Defines the Progressive Web App manifest for the Livsmestring application.
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Livsmestring",

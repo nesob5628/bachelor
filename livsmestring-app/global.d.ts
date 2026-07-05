@@ -1,5 +1,8 @@
 import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
+// Global JSX type augmentations for Punkt web components used in this app.
+// Adds `pkt-progressbar`, `pkt-messagebox`, and `pkt-checkbox` to the
+// `JSX.IntrinsicElements` so they can be used as JSX tags without TS errors.
 declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
@@ -21,7 +24,7 @@ declare module "react" {
         role?: string;
         ariaLive?: string;
       };
-           "pkt-messagebox": DetailedHTMLProps<
+      "pkt-messagebox": DetailedHTMLProps<
         HTMLAttributes<HTMLElement>,
         HTMLElement
       > & {
